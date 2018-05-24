@@ -44,7 +44,7 @@ double inelastic_sigma(int A_p, int Z_p, int A_t, int Z_t, double T_n) {
 
 	double D = 2.05;
 	double T_1 = 40;
-	double G = 75;
+	double G;
 	if ((A_t == 1 && Z_t == 1) || (A_p == 1 && Z_p == 1)) {
 		T_1 = 23.0;
 		D = 1.85 + 0.16 / (1. + exp((500. - Tn_mev) / 200.));
