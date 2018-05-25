@@ -59,12 +59,19 @@ set( D2XSEC_SRCS
         src/antiproton_tables.cpp
         )
 
+set( D2XSEC_HDRS
+        include/axis.h
+        include/pid.h
+        include/antiproton_tables.h
+        include/antiprotons.h
+        )
+
 # make library
 include_directories (include ${D2XSEC_INCLUDES})
 add_library( D2XSEC ${D2XSEC_SRCS} ${D2XSEC_INCLUDES} )
 
 # make executables
-add_executable(xsec_example1 examples/example1.cpp )
+add_executable(xsec_example1 examples/example1.cpp ${D2XSEC_HDRS})
 target_link_libraries (xsec_example1 D2XSEC ${D2XSEC_LIBRARIES})
 
 add_executable(xsec_example2 examples/example2.cpp )
