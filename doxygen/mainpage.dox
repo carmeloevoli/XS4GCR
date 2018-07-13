@@ -1,0 +1,47 @@
+/*! \file   mainpage.dox
+    \brief  Introduction page
+
+\mainpage Introduction
+
+\version 1.0
+
+Welcome to the documentation of D2MW. 
+            
+This documentation is a work in progress - only some part of the code has been documented and we welcome any input to documenting it further. 
+
+This code is part of the <a href="www.dragonproject.org">DRAGON</a> DRAGON project.
+
+\section about What is D2MW?
+
+D2MW is a DRAGON2 interface to compute the astrophysical ingredients described in the Appendix C of <a href="https://arxiv.org/abs/1607.07886">arXiv:1607.07886</a> 
+
+\section installation Installation
+
+This package should be useable on a system with C++ and C compilers installed. 
+
+\code{.sh}
+git clone
+mkdir build ; cd build
+cmake ..
+make
+\endcode
+
+If you want to install locally this documentation you need doxygen installed 
+
+\code{.sh}
+make doc
+\endcode
+
+\section todos D2MW todos
+
+\todo Implement magnetic field models
+\todo Implement source models
+
+\section changelog Change Log
+
+\since 1.0
+
+- Models for gas distribution:
+- Doxygen documentation
+
+*/
