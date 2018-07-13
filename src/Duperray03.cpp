@@ -24,7 +24,7 @@ double sigma_invariant(const double &sqrt_s, const double &X_r, const double &p_
 	value *= std::exp(-C[4] * X_r);
 	value *= C[5] * std::pow(sqrt_s_GeV, C[6]) * std::exp(-C[7] * p_T_GeVc)
 			+ C[8] * std::pow(sqrt_s_GeV, C[9]) * std::exp(-C[10] * p_T_GeVc * p_T_GeVc);
-	return max(value, 0.) * mbarn * pow3(c_light) / pow2(GeV);
+	return std::max(value, 0.) * mbarn * pow3(c_light) / pow2(GeV);
 }
 
 double sigma_func(double eta, void *params) {

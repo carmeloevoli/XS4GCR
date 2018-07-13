@@ -12,6 +12,8 @@
 #include "pid.h"
 #include "utilities.h"
 
+namespace DRAGON2 {
+
 class Total_Inelastic {
 public:
     virtual ~Total_Inelastic() {
@@ -73,5 +75,7 @@ protected:
     double PA = 1, PZ = 1; // projectile mass and charge numbers (for pions PA<0.2)
     double T_n_min = 20. * MeV, T_n_max = TeV;
 };
+
+} // namespace DRAGON2
 
 #endif

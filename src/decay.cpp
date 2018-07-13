@@ -1,5 +1,7 @@
 #include "decay.h"
 
+namespace DRAGON2 {
+
 void DRAGON2_Decay_Chart::print() {
 	std::cout << "Using DRAGON2 decay chart: REF" << std::endl;
 }
@@ -23,3 +25,5 @@ DRAGON2_Decay_Chart::decay_mode DRAGON2_Decay_Chart::get_mode(PID particle) {
 		return STABLE;
 	}
 }
+
+} // namespace DRAGON2

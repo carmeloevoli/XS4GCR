@@ -162,7 +162,7 @@ double inelastic_sigma(int A_p, int Z_p, int A_t, int Z_t, double T_n) {
 	double value = M_PI * pow2(r_0);
 	value *= pow2(pow(A_p, 1. / 3.) + pow(A_t, 1. / 3.) + delta_E);
 	value *= (1. - R_c * B / E_cm_mev) * X_m;
-	return max(0., value);
+	return std::max(0., value);
 }
 
 } /* namespace Tripathi99 */

@@ -1,5 +1,7 @@
 #include "leptons.h"
 
+namespace DRAGON2 {
+
 double Secondary_Leptons::annihilation_xsec(const PID& target, const double& T_positron) const {
 	double Gamma = 1.0 + T_positron / electron_mass_c2;
 	double logGamma = std::log(Gamma + sqrt(pow2(Gamma) - 1));
@@ -165,3 +167,6 @@ void HuangPohl2007_Secondary_Leptons::read_data_file() {
 	}
 	return;
 }
+
+} // namespace DRAGON2
+

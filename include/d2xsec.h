@@ -11,6 +11,8 @@
 #include "leptons.h"
 #include "protons.h"
 
+namespace DRAGON2 {
+
 class D2XSEC {
 public:
 	D2XSEC() {
@@ -57,5 +59,7 @@ private:
 	std::shared_ptr<Secondary_Antiprotons> secondary_antiprotons;
 	//std::shared_ptr<Decay_Chart> decay_chart;
 };
+
+} // namespace DRAGON2
 
 #endif

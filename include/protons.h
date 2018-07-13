@@ -13,6 +13,8 @@
 #include "Tripathi99.h"
 #include "utilities.h"
 
+namespace DRAGON2 {
+
 class Proton_Xsecs {
 public:
 	virtual ~Proton_Xsecs() {
@@ -45,5 +47,7 @@ public:
 private:
 	double T_threshold = 0.2797 * GeV;
 };
+
+} // namespace DRAGON2
 
 #endif /* INCLUDE_PROTONS_H_ */

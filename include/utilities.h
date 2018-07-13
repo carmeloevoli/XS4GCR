@@ -7,6 +7,8 @@
 
 #include "mks.h"
 
+namespace DRAGON2 {
+
 template<class T>
 const T& max(const T& a, const T& b) {
 	return (a < b) ? b : a;
@@ -94,5 +96,7 @@ double wsigma_cc(int IZ, int IA, int JZ, int JA, double T_n);
 
 extern "C" void yieldx_(int*, int*, int*, int*, float*, float*);
 double yieldx_cc(int IZ, int IA, int JZ, int JA, double T_n);
+
+} // namespace DRAGON2
 
 #endif /* INCLUDE_UTILITIES_H_ */

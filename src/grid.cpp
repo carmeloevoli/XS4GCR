@@ -1,5 +1,7 @@
 #include "grid.h"
 
+namespace DRAGON2 {
+
 double grid::getlog(const size_t& ix) const {
 	double value = sigma[ix];
 	return (value > 0) ? log(value) : -100.0;
@@ -34,3 +36,5 @@ double grid2d::get_interpolated(const double& x_, const double& y_) const {
 		return exp(B.get(log(x_), log(y_)));
 	}
 }
+
+} // namespace DRAGON2

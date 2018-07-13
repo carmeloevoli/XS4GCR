@@ -87,12 +87,12 @@ double sigma_invariant(const double &sqrt_s, const double &X_r, const double &p_
 		sigma_total sigmatot;
 		sigma_elastic sigmaele;
 		fitting_func func;
-		double sqrt_s_GeV = min(sqrt_s / GeV, 1e3);
-		double p_T_GeVc = min(p_T / GeV_c, 1e3);
+		double sqrt_s_GeV = std::min(sqrt_s / GeV, 1e3);
+		double p_T_GeVc = std::min(p_T / GeV_c, 1e3);
 		double sigma_inelastic = sigmatot.get(pow2(sqrt_s_GeV)) - sigmaele.get(pow2(sqrt_s_GeV));
 		value = sigma_inelastic * func.get(X_r, sqrt_s_GeV, p_T_GeVc);
 	}
-	return max(value, 0.) * mbarn * pow3(c_light) / pow2(GeV);
+	return std::max(value, 0.) * mbarn * pow3(c_light) / pow2(GeV);
 }
 
 double sigma_func(double eta, void *params) {

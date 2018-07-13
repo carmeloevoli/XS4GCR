@@ -3,6 +3,8 @@
 
 #include <cmath>
 
+namespace DRAGON2 {
+
 template<typename T>
 class log_axis {
 public:
@@ -52,5 +54,7 @@ protected:
 	T ratio;
 	size_t size;
 };
+
+} // namespace DRAGON2
 
 #endif /* INCLUDE_AXIS_H_ */

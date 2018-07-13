@@ -2,6 +2,7 @@
 #define INCLUDE_DUPERRAY03_H_
 
 #include <cassert>
+#include <cmath>
 #include <iostream>
 #include "gsl/gsl_integration.h"
 #include "mks.h"

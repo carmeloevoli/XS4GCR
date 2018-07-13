@@ -15,6 +15,8 @@
 #include "pid.h"
 #include "utilities.h"
 
+namespace DRAGON2 {
+
 class Secondary_Leptons {
 public:
 	virtual ~Secondary_Leptons() {
@@ -91,5 +93,7 @@ private:
 
 	void resize_sigma_grids();
 };
+
+} // namespace DRAGON2
 
 #endif /* INCLUDE_LEPTONS_H_ */

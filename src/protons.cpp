@@ -1,5 +1,7 @@
 #include "protons.h"
 
+namespace DRAGON2 {
+
 DRAGON2_Proton_Xsecs::DRAGON2_Proton_Xsecs() {
 	set_model_name("DRAGON2");
 }
@@ -26,3 +28,5 @@ double DRAGON2_Proton_Xsecs::get_inelastic(const TARGET& target, const double& T
 		return Tripathi99::inelastic_sigma(4, 2, 1, 1, T);
 	}
 }
+
+} // namespace DRAGON2

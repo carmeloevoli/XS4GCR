@@ -5,6 +5,8 @@
 #include <map>
 #include <sstream>
 
+namespace DRAGON2 {
+
 class PID {
 public:
 	PID() {
@@ -156,5 +158,7 @@ static const PID S34 = PID(16, 34);
 static const PID S36 = PID(16, 36);
 static const PID Cl35 = PID(17, 35);
 static const PID Cl37 = PID(17, 37);
+
+} // namespace DRAGON2
 
 #endif

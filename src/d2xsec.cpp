@@ -1,5 +1,7 @@
 #include "d2xsec.h"
 
+namespace DRAGON2 {
+
 std::shared_ptr<Total_Inelastic> D2XSEC::create_total_inelastic() {
 	if (total_inelastic_model == "Letaw83") {
 		total_inelastic = std::make_shared<Letaw1983_Total_Inelastic>();
@@ -26,9 +28,9 @@ std::shared_ptr<Proton_Xsecs> D2XSEC::create_proton_xsecs() {
 
 std::shared_ptr<Secondary_Leptons> D2XSEC::create_secondary_leptons(const PID& lepton) {
 	if (secondary_leptons_model == "Kamae2006") {
-		secondary_leptons = std::make_shared<Kamae2006_Secondary_Leptons>(lepton);
+		secondary_leptons = std::make_shared < Kamae2006_Secondary_Leptons > (lepton);
 	} else if (secondary_leptons_model == "HuangPohl2007") {
-		secondary_leptons = std::make_shared<HuangPohl2007_Secondary_Leptons>(lepton);
+		secondary_leptons = std::make_shared < HuangPohl2007_Secondary_Leptons > (lepton);
 	} else {
 		assert(secondary_leptons_model == "Kamae2006");
 		return 0;
@@ -45,7 +47,7 @@ std::shared_ptr<Secondary_Antiprotons> D2XSEC::create_secondary_antiprotons(gene
 	} else if (secondary_antiprotons_model == "Winkler2017") {
 		secondary_antiprotons = std::make_shared<Winkler2017_antiprotons>();
 	} else if (secondary_antiprotons_model == "Feng2016") {
-		secondary_antiprotons = std::make_shared<Feng2016_antiprotons>(EPOS);
+		secondary_antiprotons = std::make_shared < Feng2016_antiprotons > (EPOS);
 	} else {
 		assert(secondary_antiprotons_model == "TanNg83");
 		return 0;
@@ -53,6 +55,8 @@ std::shared_ptr<Secondary_Antiprotons> D2XSEC::create_secondary_antiprotons(gene
 	secondary_antiprotons->print();
 	return secondary_antiprotons->clone();
 }
+
+} // namespace DRAGON2
 
 /*std::shared_ptr<Decay_Chart> D2XSEC::create_decay_chart() {
  decay_chart = std::make_shared<DRAGON2_Decay_Chart>();

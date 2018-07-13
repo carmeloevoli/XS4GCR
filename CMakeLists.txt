@@ -10,6 +10,7 @@ set( CMAKE_CXX_COMPILER "g++" )
 set( CMAKE_CXX_FLAGS "-O2 -ftree-vectorize -std=c++11" )
 set( D2XSEC_INCLUDES )
 set( D2XSEC_LIBRARIES )
+option(BUILD_DOC "Build documentation" OFF)
 
 # download data files
 message("-- Downloading data file from repository ~ 3 MB")
@@ -41,6 +42,26 @@ if(GSL_FOUND)
 else(GSL_FOUND)
     message(FATAL_ERROR "Require GSL: set GSL_HOME")
 endif(GSL_FOUND)
+
+# check if Doxygen is installed
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/doxygen/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+
+    # request to configure the file
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    message("Doxygen build started")
+	
+	# note the option DOC to build the docs with make doc
+	add_custom_target(doc
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+		COMMENT "Generating API documentation with Doxygen" VERBATIM
+	)
+else (DOXYGEN_FOUND)
+  message("Doxygen need to be installed to generate the doxygen documentation")
+endif (DOXYGEN_FOUND)
 
 # add source files
 set( D2XSEC_SRCS

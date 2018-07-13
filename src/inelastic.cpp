@@ -1,6 +1,8 @@
 #include "inelastic.h"
 #include "Tripathi99.h"
 
+namespace DRAGON2 {
+
 Letaw1983_Total_Inelastic::Letaw1983_Total_Inelastic() {
 	set_model_name("Letaw1983");
 }
@@ -90,3 +92,5 @@ double CROSEC_Total_Inelastic::get(const PID& projectile, const TARGET& target, 
 	value *= (target.is_He()) ? 2.1 * pow(projectile.get_A(), .055) : 1;
 	return value;
 }
+
+} // namespace DRAGON2

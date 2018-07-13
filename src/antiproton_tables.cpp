@@ -1,5 +1,7 @@
 #include "antiproton_tables.h"
 
+namespace DRAGON2 {
+
 antiproton_tables::antiproton_tables(std::pair<size_t, size_t> sizes, const std::string &filename) :
 		T_proj_size(sizes.first), T_ap_size(sizes.second), datafile(filename) {
 	read_data_file(filename, GeV, mbarn / GeV);
@@ -66,3 +68,6 @@ double antiproton_tables::get_grid(const size_t &i, const size_t &j, const size_
 	auto s = table.at(j + i * T_ap_size);
 	return s.at(k);
 }
+
+} // namespace DRAGON2
+

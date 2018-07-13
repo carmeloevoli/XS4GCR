@@ -11,6 +11,8 @@
 #include "pid.h"
 #include "utilities.h"
 
+namespace DRAGON2 {
+
 class grid {
 public:
 	grid() {
@@ -92,5 +94,7 @@ protected:
 	log_axis<double> x;
 	log_axis<double> y;
 };
+
+} // namespace DRAGON2
 
 #endif /* INCLUDE_GRID_H_ */

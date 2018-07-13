@@ -6,6 +6,8 @@
 
 #include "pid.h"
 
+namespace DRAGON2 {
+
 class Decay_Chart {
 public:
 	enum decay_mode {
@@ -37,5 +39,7 @@ public:
 private:
 	PID Li6 = PID(3, 4);
 };
+
+} // namespace DRAGON2
 
 #endif

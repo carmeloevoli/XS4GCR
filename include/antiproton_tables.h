@@ -13,6 +13,8 @@
 #include "mks.h"
 #include "utilities.h"
 
+namespace DRAGON2 {
+
 class antiproton_tables {
 public:
 	antiproton_tables(std::pair<size_t, size_t> sizes, const std::string &filename);
@@ -38,5 +40,7 @@ protected:
 
 	double get_grid(const size_t &i, const size_t &j, const size_t &k) const;
 };
+
+} // namespace DRAGON2
 
 #endif /* D2XSECS_ANTIPROTON_TABLES_H_ */

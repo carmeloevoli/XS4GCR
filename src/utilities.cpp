@@ -1,5 +1,7 @@
 #include "utilities.h"
 
+namespace DRAGON2 {
+
 size_t count_file_lines(const std::string& filename) {
 	size_t count = 0;
 	std::string line;
@@ -39,3 +41,5 @@ double yieldx_cc(int IZ, int IA, int JZ, int JA, double T_n) {
 	yieldx_(&IZ, &IA, &JZ, &JA, &T_n_MeV, &cs_mb);
 	return (double) cs_mb * mbarn;
 }
+
+} // namespace DRAGON2

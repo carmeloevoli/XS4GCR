@@ -1,5 +1,7 @@
 #include "antiprotons.h"
 
+namespace DRAGON2 {
+
 double Secondary_Antiprotons::get_total_inelastic(const TARGET& target, const double& T_ap) {
 	double value = 0;
 	if (target.is_H()) {
@@ -124,3 +126,6 @@ double Feng2016_antiprotons::get(const PID& projectile, const TARGET& target, co
 		const double& T_ap) const {
 	return table.dsigma_dT(T_n, T_ap, projectile.is_H(), target.is_H());
 }
+
+} // namespace DRAGON2
+

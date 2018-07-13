@@ -14,6 +14,8 @@
 #include "pid.h"
 #include "utilities.h"
 
+namespace DRAGON2 {
+
 enum generators {
 	EPOS, SIBYLL, QGSJET, DIMAURO
 };
@@ -98,5 +100,7 @@ private:
 	generators generator;
 	antiproton_tables table;
 };
+
+} // namespace DRAGON2
 
 #endif /* INCLUDE_ANTIPROTONS_H_ */
