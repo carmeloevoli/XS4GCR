@@ -22,7 +22,7 @@ public:
 		return x.get_size();
 	}
 	double get_x(size_t ix) const {
-		return x.get_min() * pow(x.get_ratio(), (double)ix);
+		return x.get_min() * pow(x.get_ratio(), (double) ix);
 	}
 	double &get(size_t ix) {
 		return sigma[ix];
@@ -59,10 +59,10 @@ public:
 		return x.get_size() * y.get_size();
 	}
 	double get_x(size_t ix) const {
-		return x.get_min() * pow(x.get_ratio(), (double)ix);
+		return x.get_min() * pow(x.get_ratio(), (double) ix);
 	}
 	double get_y(size_t iy) const {
-		return y.get_min() * pow(y.get_ratio(), (double)iy);
+		return y.get_min() * pow(y.get_ratio(), (double) iy);
 	}
 	double &get(size_t ix, size_t iy) {
 		return sigma[ix * y.get_size() + iy];

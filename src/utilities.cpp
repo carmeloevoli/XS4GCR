@@ -34,8 +34,8 @@ double wsigma_cc(int IZ, int IA, int JZ, int JA, double T_n) {
 }
 
 double yieldx_cc(int IZ, int IA, int JZ, int JA, double T_n) {
-  float cs_mb;
-  float T_n_MeV = (float)T_n / MeV;
-  yieldx_(&IZ, &IA, &JZ, &JA, &T_n_MeV, &cs_mb);
-  return (double)cs_mb * mbarn;
+	float cs_mb;
+	float T_n_MeV = (float) T_n / MeV;
+	yieldx_(&IZ, &IA, &JZ, &JA, &T_n_MeV, &cs_mb);
+	return (double) cs_mb * mbarn;
 }

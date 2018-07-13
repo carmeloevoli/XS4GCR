@@ -21,7 +21,7 @@ template<typename T>
 class Linear_Interpol {
 public:
 	Linear_Interpol(T xa_, T xb_, T ya_, T yb_) :
-		xa(xa_), xb(xb_), ya(ya_), yb(yb_) {
+			xa(xa_), xb(xb_), ya(ya_), yb(yb_) {
 	}
 	virtual ~Linear_Interpol() {
 	}
@@ -92,7 +92,7 @@ void set_sigma_cc();
 extern "C" double wsigma_(int*, int*, int*, int*, double*);
 double wsigma_cc(int IZ, int IA, int JZ, int JA, double T_n);
 
-extern "C" void yieldx_(int*,int*,int*,int*,float*,float*);
+extern "C" void yieldx_(int*, int*, int*, int*, float*, float*);
 double yieldx_cc(int IZ, int IA, int JZ, int JA, double T_n);
 
 #endif /* INCLUDE_UTILITIES_H_ */

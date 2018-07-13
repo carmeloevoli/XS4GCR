@@ -26,5 +26,3 @@ double DRAGON2_Proton_Xsecs::get_inelastic(const TARGET& target, const double& T
 		return Tripathi99::inelastic_sigma(4, 2, 1, 1, T);
 	}
 }
-
-

@@ -55,6 +55,7 @@ public:
 	}
 };
 
-} /* namespace Ghelfi2016 */
+}
+/* namespace Ghelfi2016 */
 
 #endif /* INCLUDE_LIS_H_ */

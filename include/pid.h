@@ -7,113 +7,113 @@
 
 class PID {
 public:
-    PID() {
-        set(0, 0);
-    }
+	PID() {
+		set(0, 0);
+	}
 
-    PID(const int &Z_, const int &A_) {
-        assert(A_ >= 0);
-        set(Z_, A_);
-    }
+	PID(const int &Z_, const int &A_) {
+		assert(A_ >= 0);
+		set(Z_, A_);
+	}
 
-    virtual ~PID() {
-    }
+	virtual ~PID() {
+	}
 
-    void set(const int &Z_, const int &A_) {
-        Z = Z_;
-        A = A_;
-        id = A * 1000 + Z;
-    }
+	void set(const int &Z_, const int &A_) {
+		Z = Z_;
+		A = A_;
+		id = A * 1000 + Z;
+	}
 
-    int get_Z() const {
-        return Z;
-    }
+	int get_Z() const {
+		return Z;
+	}
 
-    int get_A() const {
-        return A;
-    }
+	int get_A() const {
+		return A;
+	}
 
-    int get_id() const {
-        return id;
-    }
+	int get_id() const {
+		return id;
+	}
 
-    bool operator==(const PID &other) const {
-        return id == other.id;
-    }
+	bool operator==(const PID &other) const {
+		return id == other.id;
+	}
 
-    bool operator!=(const PID &other) const {
-        return id != other.id;
-    }
+	bool operator!=(const PID &other) const {
+		return id != other.id;
+	}
 
-    bool operator<(const PID &other) const {
-        return id < other.id;
-    }
+	bool operator<(const PID &other) const {
+		return id < other.id;
+	}
 
-    bool with_Z(const int &Z_) const {
-        return Z == Z_;
-    }
+	bool with_Z(const int &Z_) const {
+		return Z == Z_;
+	}
 
-    bool with_A(const int &A_) const {
-        return A == A_;
-    }
+	bool with_A(const int &A_) const {
+		return A == A_;
+	}
 
-    bool is_lepton() const {
-        return A == 0;
-    }
+	bool is_lepton() const {
+		return A == 0;
+	}
 
-    bool is_electron() const {
-        return A == 0 && Z == -1;
-    }
+	bool is_electron() const {
+		return A == 0 && Z == -1;
+	}
 
-    bool is_positron() const {
-        return A == 0 && Z == 1;
-    }
+	bool is_positron() const {
+		return A == 0 && Z == 1;
+	}
 
-    bool is_H() const {
-        return (Z == 1);
-    }
+	bool is_H() const {
+		return (Z == 1);
+	}
 
-    bool is_He() const {
-        return (Z == 2);
-    }
+	bool is_He() const {
+		return (Z == 2);
+	}
 
-    friend std::ostream &operator<<(std::ostream &stream, const PID &pid) {
-        stream << "(" << pid.get_A() << "," << pid.get_Z() << ")";
-        return stream;
-    }
+	friend std::ostream &operator<<(std::ostream &stream, const PID &pid) {
+		stream << "(" << pid.get_A() << "," << pid.get_Z() << ")";
+		return stream;
+	}
 
-    std::string to_string() const {
-        std::string ss;
-        ss = "(" + std::to_string(Z) + "," + std::to_string(A) + ")";
-        return ss;
-    }
+	std::string to_string() const {
+		std::string ss;
+		ss = "(" + std::to_string(Z) + "," + std::to_string(A) + ")";
+		return ss;
+	}
 
 protected:
-    int Z;
-    int A;
-    int id;
+	int Z;
+	int A;
+	int id;
 };
 
-class TARGET : public PID {
+class TARGET: public PID {
 public:
-    TARGET(const int &Z_) {
-        assert(Z_ == 1 || Z_ == 2);
-        set(Z_);
-    }
+	TARGET(const int &Z_) {
+		assert(Z_ == 1 || Z_ == 2);
+		set(Z_);
+	}
 
-    void set(const int &Z_) {
-        Z = Z_;
-        A = (Z_ == 1) ? Z_ : 2 * Z_;
-        id = A * 1000 + Z;
-    }
+	void set(const int &Z_) {
+		Z = Z_;
+		A = (Z_ == 1) ? Z_ : 2 * Z_;
+		id = A * 1000 + Z;
+	}
 
-    bool is_H() const {
-        return Z == 1;
-    }
+	bool is_H() const {
+		return Z == 1;
+	}
 
-    bool is_He() const {
-        return Z == 2;
-    }
+	bool is_He() const {
+		return Z == 2;
+	}
 };
 
 typedef std::pair<PID, PID> channel;
