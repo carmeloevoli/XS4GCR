@@ -1,8 +1,6 @@
 DOXYFILE = doxygen/Doxyfile.in
 PROJECT_LOGO = doxygen/thumbnail-logo.jpg
 INPUT = src \ 
-        src/models \
 	include \
-	include/models \
 	examples \
         doxygen 

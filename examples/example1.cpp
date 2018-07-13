@@ -1,8 +1,19 @@
 #include "d2xsec.h"
 
-int main(/* Get fragmentation timescale for C */) {
+/**
+ * @example example_1.cpp
+ * In this example the Carbon fragmentation timescale
+ * is computed as a function of kinetic energy per nucleon
+ *
+ * @remark Options available for inelastic xsec : Tripathi99, CROSEC
+ * @remark Local ISM number density : 1 cm$^{-3}$
+ * @remark Helium fraction in number : 0.11
+ *
+ * @see https://arxiv.org/abs/1711.09616
+ */
+int main() {
 	D2XSEC xsec;
-	xsec.set_total_inelastic("Tripathi99"); // alternative model: CROSEC
+	xsec.set_total_inelastic("Tripathi99");
 	auto x_in = xsec.create_total_inelastic();
 
 	PID C(6, 12);
