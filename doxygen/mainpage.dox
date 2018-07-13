@@ -5,15 +5,15 @@
 
 \version 1.0
 
-Welcome to the documentation of D2MW. 
+Documentation of D2XSECS. 
             
 This documentation is a work in progress - only some part of the code has been documented and we welcome any input to documenting it further. 
 
 This code is part of the <a href="www.dragonproject.org">DRAGON</a> DRAGON project.
 
-\section about What is D2MW?
+\section about What is D2XSECS?
 
-D2MW is a DRAGON2 interface to compute the astrophysical ingredients described in the Appendix C of <a href="https://arxiv.org/abs/1607.07886">arXiv:1607.07886</a> 
+D2XSECS is a DRAGON2 interface to compute the relevant cross sections as described in <a href="https://arxiv.org/abs/1711.09616">arXiv:1711.09616</a> 
 
 \section installation Installation
 
@@ -32,16 +32,13 @@ If you want to install locally this documentation you need doxygen installed
 make doc
 \endcode
 
-\section todos D2MW todos
-
-\todo Implement magnetic field models
-\todo Implement source models
-
 \section changelog Change Log
 
 \since 1.0
 
-- Models for gas distribution:
+- Models for inelastic cross section
+- Models for anti-matter production: antiprotons, positrons
+- Models for secondary protons and tertiary antiprotons
 - Doxygen documentation
 
 */
