@@ -57,7 +57,7 @@ private:
 	std::shared_ptr<Proton_Xsecs> proton_xsecs;
 	std::shared_ptr<Secondary_Leptons> secondary_leptons;
 	std::shared_ptr<Secondary_Antiprotons> secondary_antiprotons;
-	//std::shared_ptr<Decay_Chart> decay_chart;
+	std::shared_ptr<Decay_Chart> decay_chart;
 };
 
 } // namespace DRAGON2

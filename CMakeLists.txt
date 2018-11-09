@@ -101,6 +101,12 @@ target_link_libraries (xsec_example2 D2XSEC ${D2XSEC_LIBRARIES})
 add_executable(xsec_example3 examples/example3.cpp )
 target_link_libraries (xsec_example3 D2XSEC ${D2XSEC_LIBRARIES})
 
+add_executable(xsec_example4 examples/example4.cpp )
+target_link_libraries (xsec_example4 D2XSEC ${D2XSEC_LIBRARIES})
+
+add_executable(xsec_example5 examples/example5.cpp )
+target_link_libraries (xsec_example5 D2XSEC ${D2XSEC_LIBRARIES})
+
 # show summary
 message (STATUS "CMAKE_SYSTEM .......... = ${CMAKE_SYSTEM}")
 message (STATUS "BUILD_SHARED_LIBS ..... = ${BUILD_SHARED_LIBS}")
