@@ -3,11 +3,12 @@
 namespace DRAGON2 {
 
 void DRAGON2_Decay_Chart::print() {
-	std::cout << "Using DRAGON2 decay chart: REF" << std::endl;
+	std::cout << "Using DRAGON2 decay chart" << std::endl;
 }
 
 DRAGON2_Decay_Chart::DRAGON2_Decay_Chart() {
-	read_table("data/isotope_decays.txt");
+	assert(file_exist(table_filename));
+	read_table(table_filename);
 }
 
 void DRAGON2_Decay_Chart::add_unstable_isotope(std::string line) {

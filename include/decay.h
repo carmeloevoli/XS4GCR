@@ -66,6 +66,7 @@ protected:
 	void add_unstable_isotope(std::string line);
 	void read_table(std::string filename);
 
+	std::string table_filename = "data/isotope_decays.txt";
 	std::map<PID, decay_params> chart;
 };
 

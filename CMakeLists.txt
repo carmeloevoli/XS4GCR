@@ -17,7 +17,7 @@ message("-- Downloading data file from repository ~ 3 MB")
 file(DOWNLOAD
         https://www.dropbox.com/s/rq11j6aqhuykxjd/data.tar.gz?dl=0
         ${CMAKE_BINARY_DIR}/data.tar.gz
-        EXPECTED_MD5 e21706bf28af0504b0faae05c14b98cf)
+        EXPECTED_MD5 3e4b0b3cbca30667638729a0ad7cfedb)
 message("-- Extracting data file")
 execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf ${CMAKE_BINARY_DIR}/data.tar.gz WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
