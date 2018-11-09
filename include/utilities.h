@@ -97,6 +97,8 @@ double wsigma_cc(int IZ, int IA, int JZ, int JA, double T_n);
 extern "C" void yieldx_(int*, int*, int*, int*, float*, float*);
 double yieldx_cc(int IZ, int IA, int JZ, int JA, double T_n);
 
+double Ferrando1998_He2H(const double& T_n, const int& Z_I, const int& Z_F);
+
 } // namespace DRAGON2
 
 #endif /* INCLUDE_UTILITIES_H_ */

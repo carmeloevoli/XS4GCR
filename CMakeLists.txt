@@ -65,26 +65,36 @@ endif (DOXYGEN_FOUND)
 
 # add source files
 set( D2XSEC_SRCS
-        src/d2xsec.cpp
+        src/antiproton_tables.cpp
         src/antiprotons.cpp
+        src/d2xsec.cpp
         src/decay.cpp
+        src/DiMauro2015.cpp
+        src/Duperray03.cpp
         src/grid.cpp
         src/inelastic.cpp
         src/leptons.cpp
         src/protons.cpp
-        src/utilities.cpp
+        src/spallation.cpp
         src/TanNg83.cpp
         src/Tripathi99.cpp
-        src/Duperray03.cpp
-        src/DiMauro2015.cpp
-        src/antiproton_tables.cpp
+        src/utilities.cpp
+        src/Webber2003_table.cpp
         )
 
 set( D2XSEC_HDRS
-        include/axis.h
-        include/pid.h
         include/antiproton_tables.h
         include/antiprotons.h
+        include/axis.h
+        include/d2xsec.h
+        include/decay.h
+        include/DiMauro2015.h
+        include/Duperray03.h
+        include/grid.h
+        include/inelastic.h
+        include/interpolator.h
+        include/leptons.h
+        include/pid.h
         )
 
 # make library
@@ -106,6 +116,9 @@ target_link_libraries (xsec_example4 D2XSEC ${D2XSEC_LIBRARIES})
 
 add_executable(xsec_example5 examples/example5.cpp )
 target_link_libraries (xsec_example5 D2XSEC ${D2XSEC_LIBRARIES})
+
+add_executable(xsec_example6 examples/example6.cpp )
+target_link_libraries (xsec_example6 D2XSEC ${D2XSEC_LIBRARIES})
 
 # show summary
 message (STATUS "CMAKE_SYSTEM .......... = ${CMAKE_SYSTEM}")

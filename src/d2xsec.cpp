@@ -26,14 +26,11 @@ std::shared_ptr<Proton_Xsecs> D2XSEC::create_proton_xsecs() {
 	return proton_xsecs->clone();
 }
 
-std::shared_ptr<Secondary_Leptons> D2XSEC::create_secondary_leptons(
-		const PID& lepton) {
+std::shared_ptr<Secondary_Leptons> D2XSEC::create_secondary_leptons(const PID& lepton) {
 	if (secondary_leptons_model == "Kamae2006") {
-		secondary_leptons = std::make_shared<Kamae2006_Secondary_Leptons>(
-				lepton);
+		secondary_leptons = std::make_shared<Kamae2006_Secondary_Leptons>(lepton);
 	} else if (secondary_leptons_model == "HuangPohl2007") {
-		secondary_leptons = std::make_shared<HuangPohl2007_Secondary_Leptons>(
-				lepton);
+		secondary_leptons = std::make_shared<HuangPohl2007_Secondary_Leptons>(lepton);
 	} else {
 		assert(secondary_leptons_model == "Kamae2006");
 		return 0;
@@ -42,13 +39,11 @@ std::shared_ptr<Secondary_Leptons> D2XSEC::create_secondary_leptons(
 	return secondary_leptons->clone();
 }
 
-std::shared_ptr<Secondary_Antiprotons> D2XSEC::create_secondary_antiprotons(
-		generators g) {
+std::shared_ptr<Secondary_Antiprotons> D2XSEC::create_secondary_antiprotons(generators g) {
 	if (secondary_antiprotons_model == "TanNg83") {
 		secondary_antiprotons = std::make_shared<TanNg1983_antiprotons>();
 	} else if (secondary_antiprotons_model == "DiMauro2015") {
-		secondary_antiprotons =
-				std::make_shared<DiMauro_Secondary_Antiprotons>();
+		secondary_antiprotons = std::make_shared<DiMauro_Secondary_Antiprotons>();
 	} else if (secondary_antiprotons_model == "Winkler2017") {
 		secondary_antiprotons = std::make_shared<Winkler2017_antiprotons>();
 	} else if (secondary_antiprotons_model == "Feng2016") {
@@ -59,6 +54,16 @@ std::shared_ptr<Secondary_Antiprotons> D2XSEC::create_secondary_antiprotons(
 	}
 	secondary_antiprotons->print();
 	return secondary_antiprotons->clone();
+}
+
+std::shared_ptr<Spallation> D2XSEC::create_secondary_nuclei() {
+	if (secondary_nuclei_model == "Webber1993") {
+		secondary_nuclei = std::make_shared<Webber1993_Spallation>();
+	} else {
+		assert(secondary_nuclei_model == "Webber1993");
+	}
+	secondary_nuclei->print();
+	return secondary_nuclei->clone();
 }
 
 std::shared_ptr<Decay_Chart> D2XSEC::create_decay_chart() {
