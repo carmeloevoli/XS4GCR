@@ -3,31 +3,40 @@
 namespace DRAGON2 {
 
 channel convert_id(const int& id_) {
-        int id = id_;
-        int A_i = id / 1000000;
-        id -= A_i * 1000000;
-        int Z_i = id / 10000;
-        id -= Z_i * 10000;
-        int A_f = id / 100;
-        id -= A_f * 100;
-        int Z_f = id;
-        assert(id - Z_f == 0);
-        return channel(PID(Z_i, A_i), PID(Z_f, A_f));
+	int id = id_;
+	int A_i = id / 1000000;
+	id -= A_i * 1000000;
+	int Z_i = id / 10000;
+	id -= Z_i * 10000;
+	int A_f = id / 100;
+	id -= A_f * 100;
+	int Z_f = id;
+	assert(id - Z_f == 0);
+	return channel(PID(Z_i, A_i), PID(Z_f, A_f));
 }
 
 Webber2003_table::Webber2003_table() {
 }
 
+double Webber2003_table::get(const channel& ch, const double& T_n) {
+	if (spallation_map.find(ch) == spallation_map.end()) {
+		return -1;
+	} else {
+		assert(spallation_map.count(ch) == 1);
+		return get_from_grid(ch, T_n);
+	}
+}
+
 double Webber2003_table::get_from_grid(const channel& ch, const double& T_n) {
-	if (T_n > T_n_grid.back())
+	if (T_n > T_n_grid.back()) {
 		return spallation_map.at(ch).back();
-	else if (T_n >= T_n_grid.front()) {
+	} else if (T_n >= T_n_grid.front()) {
 		size_t i = std::upper_bound(T_n_grid.begin(), T_n_grid.end(), T_n) - T_n_grid.begin();
-		Linear_Interpol<double> L(T_n_grid.at(i - 1), T_n_grid.at(i), spallation_map.at(ch).at(i - 1),
+		LinearInterpol<double> L(T_n_grid.at(i - 1), T_n_grid.at(i), spallation_map.at(ch).at(i - 1),
 				spallation_map.at(ch).at(i));
 		return L.get(T_n);
-	}
-	return -1;
+	} else
+		return -1;
 }
 
 void Webber2003_table::read_data_file() {
@@ -56,7 +65,4 @@ void Webber2003_table::read_data_file() {
 }
 
 } // namespace DRAGON2
-
-
-
 

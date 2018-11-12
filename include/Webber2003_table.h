@@ -15,6 +15,9 @@ namespace DRAGON2 {
 class Webber2003_table {
 public:
 	Webber2003_table();
+	double get(const channel& ch, const double& T_n);
+
+private:
 	void read_data_file();
 	double get_from_grid(const channel& ch, const double& T_n);
 
