@@ -20,12 +20,12 @@ const T& min(const T& a, const T& b) {
 }
 
 template<typename T>
-class Linear_Interpol {
+class LinearInterpol {
 public:
-	Linear_Interpol(T xa_, T xb_, T ya_, T yb_) :
+	LinearInterpol(T xa_, T xb_, T ya_, T yb_) :
 			xa(xa_), xb(xb_), ya(ya_), yb(yb_) {
 	}
-	virtual ~Linear_Interpol() {
+	virtual ~LinearInterpol() {
 	}
 	T get(const T& x) {
 		return (ya + (yb - ya) * (x - xa) / (xb - xa));

@@ -12,7 +12,7 @@ double grid::get_interpolated(const double& x_) const {
 		return 0;
 	} else {
 		size_t i = x.get_idx(x_);
-		Linear_Interpol<double> L(log(x.at(i)), log(x.at(i + 1)), getlog(i), getlog(i + 1));
+		LinearInterpol<double> L(log(x.at(i)), log(x.at(i + 1)), getlog(i), getlog(i + 1));
 		return L.get(x_);
 	}
 }
