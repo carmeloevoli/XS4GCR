@@ -71,6 +71,7 @@ set( D2XSEC_SRCS
         src/decay.cpp
         src/DiMauro2015.cpp
         src/Duperray03.cpp
+        src/ghost_tree.cpp
         src/grid.cpp
         src/inelastic.cpp
         src/leptons.cpp
@@ -90,6 +91,7 @@ set( D2XSEC_HDRS
         include/decay.h
         include/DiMauro2015.h
         include/Duperray03.h
+        include/ghost_tree.h
         include/grid.h
         include/inelastic.h
         include/interpolator.h
