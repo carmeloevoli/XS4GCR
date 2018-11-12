@@ -80,7 +80,7 @@ public:
 	}
 
 	friend std::ostream &operator<<(std::ostream &stream, const PID &pid) {
-		stream << "(" << pid.get_A() << "," << pid.get_Z() << ")";
+		stream << "(" << pid.get_Z() << "," << pid.get_A() << ")";
 		return stream;
 	}
 
@@ -117,8 +117,6 @@ public:
 		return Z == 2;
 	}
 };
-
-typedef std::pair<PID, PID> channel;
 
 static const PID He4 = PID(2, 4);
 static const PID He3 = PID(2, 3);
@@ -158,6 +156,8 @@ static const PID S34 = PID(16, 34);
 static const PID S36 = PID(16, 36);
 static const PID Cl35 = PID(17, 35);
 static const PID Cl37 = PID(17, 37);
+
+using channel = std::pair<PID, PID>;
 
 } // namespace DRAGON2
 

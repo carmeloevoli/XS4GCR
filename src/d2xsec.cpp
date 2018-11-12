@@ -59,6 +59,8 @@ std::shared_ptr<Secondary_Antiprotons> D2XSEC::create_secondary_antiprotons(gene
 std::shared_ptr<Spallation> D2XSEC::create_secondary_nuclei() {
 	if (secondary_nuclei_model == "Webber1993") {
 		secondary_nuclei = std::make_shared<Webber1993_Spallation>();
+	} else if (secondary_nuclei_model == "Webber2003") {
+		secondary_nuclei = std::make_shared<Webber2003_Spallation>();
 	} else {
 		assert(secondary_nuclei_model == "Webber1993");
 	}

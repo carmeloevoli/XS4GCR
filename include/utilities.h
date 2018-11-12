@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <fstream>
+#include <iostream>
 #include <string>
 
 #include "mks.h"
@@ -81,6 +82,8 @@ protected:
 bool file_exist(const std::string& filename);
 
 size_t count_file_lines(const std::string& filename);
+
+int str_to_Z(const std::string& Z_str);
 
 extern "C" double sighad_(int*, double*, double*, double*, double*, double*);
 double sighad_cc(int IS, double PA, double PZ, double TA, double TZ, double T);

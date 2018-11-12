@@ -3,7 +3,10 @@
 
 #include <cassert>
 #include <iostream>
+#include <vector>
+#include <utility>
 
+#include "ghost_tree.h"
 #include "pid.h"
 #include "utilities.h"
 //#include "Webber2003_table.h"
@@ -37,6 +40,21 @@ public:
 
 protected:
 	double direct(const channel& ch, const double& T_n);
+};
+
+class Webber2003_Spallation: public Spallation {
+public:
+	Webber2003_Spallation();
+	void print() override;
+	std::shared_ptr<Spallation> clone() override;
+	double get(const channel& ch, const TARGET& target, const double& T_n, bool do_ghosts = true) override;
+
+protected:
+	void init();
+	double direct(const channel& ch, const double& T_n);
+	double with_ghosts(const channel& ch, const double& T_n);
+	std::string ghostlist_filename = "data/ghost_list.txt";
+	GhostTree ghostTree;
 };
 
 } // namespace DRAGON2
