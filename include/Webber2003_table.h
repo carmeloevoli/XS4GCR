@@ -1,7 +1,9 @@
 #ifndef INCLUDE_WEBBER2003_TABLE_H_
 #define INCLUDE_WEBBER2003_TABLE_H_
 
+#include <algorithm>
 #include <cassert>
+#include <iterator>
 #include <map>
 #include <string>
 #include <vector>

@@ -1,4 +1,5 @@
 #include "ghost_tree.h"
+#include <limits>
 
 namespace DRAGON2 {
 

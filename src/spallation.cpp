@@ -9,11 +9,11 @@ Webber2003_Spallation::Webber2003_Spallation() {
 }
 
 void Webber1993_Spallation::print() {
-	std::cout << " - using Webber1998 spallation model: REF" << '\n';
+	std::cout << "# using Webber1998 spallation model: REF" << '\n';
 }
 
 void Webber2003_Spallation::print() {
-	std::cout << " - using Webber2003 spallation model: REF" << '\n';
+	std::cout << "# using Webber2003 spallation model: REF" << '\n';
 }
 
 void Webber1993_Spallation::init() {

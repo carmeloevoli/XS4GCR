@@ -1,12 +1,13 @@
 #ifndef INCLUDE_UTILITIES_H_
 #define INCLUDE_UTILITIES_H_
 
+#include <cassert>
 #include <cmath>
 #include <fstream>
 #include <iostream>
 #include <string>
 
-#include "mks.h"
+#include "mks.h" // TODO convert to cgs
 
 namespace DRAGON2 {
 

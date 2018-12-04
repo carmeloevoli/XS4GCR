@@ -18,17 +18,15 @@
 int main() {
 	DRAGON2::D2XSEC xsec;
 
-	xsec.set_secondary_nuclei("Webber2003");
+	xsec.set_secondary_nuclei("Webber1993");
 	auto x_in = xsec.create_secondary_nuclei();
 
 	DRAGON2::TARGET H_ISM(1), He_ISM(2);
-	DRAGON2::channel ch(DRAGON2::C12, DRAGON2::PID(4, 8));
+	DRAGON2::channel ch(DRAGON2::C12, DRAGON2::Li6);
 
-	double T_n = 10 * GeV;
 	std::cout << std::scientific;
-	std::cout << T_n / GeV << "\t" << x_in->get(ch, H_ISM, T_n)  << "\n";
-	//for (double T_n = 0.1 * GeV; T_n < 10 * GeV; T_n *= 1.1)
-	//	std::cout << T_n / GeV << "\t" << x_in->get(ch, H_ISM, T_n, false) / mbarn << "\n";
+	for (double T_n = MeV; T_n < 1.1 * TeV; T_n *= 1.1)
+		std::cout << T_n / GeV << "\t" << x_in->get(ch, H_ISM, T_n, false) / mbarn << "\n";
 
 	return 0;
 }
