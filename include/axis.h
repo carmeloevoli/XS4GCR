@@ -52,7 +52,7 @@ protected:
 	T min_value;
 	T max_value;
 	T ratio;
-	size_t size;
+	size_t size = 0;
 };
 
 } // namespace DRAGON2

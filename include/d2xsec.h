@@ -10,6 +10,7 @@
 #include "inelastic.h"
 #include "leptons.h"
 #include "spallation.h"
+#include "Evoli2018.h"
 #include "protons.h"
 
 namespace DRAGON2 {

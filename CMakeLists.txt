@@ -1,7 +1,7 @@
 project(D2XSECS Fortran C  CXX)
 cmake_minimum_required(VERSION 2.8)
 
-set( CMAKE_VERBOSE_MAKEFILE on )
+set( CMAKE_VERBOSE_MAKEFILE off )
 set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" )
 set( CMAKE_fortran_COMPILER "gfortran" )
 get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
@@ -15,14 +15,18 @@ option(BUILD_DOC "Build documentation" OFF)
 # download data files
 message("-- Downloading data file from repository ~ 3 MB")
 file(DOWNLOAD
-        https://www.dropbox.com/s/rq11j6aqhuykxjd/data.tar.gz?dl=0
+        https://www.dropbox.com/s/9opsirwlvyi2sxi/data.tar.gz?dl=0
         ${CMAKE_BINARY_DIR}/data.tar.gz
-        EXPECTED_MD5 3e4b0b3cbca30667638729a0ad7cfedb)
+        EXPECTED_MD5 e15a00ef242302c725bea30bbcd3b152)
 message("-- Extracting data file")
 execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf ${CMAKE_BINARY_DIR}/data.tar.gz WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # include
-include_directories( "${CMAKE_SOURCE_DIR}/include" )
+include_directories( "${CMAKE_SOURCE_DIR}/include" 
+					 "${CMAKE_SOURCE_DIR}/include/antiprotons"
+					 "${CMAKE_SOURCE_DIR}/include/inelastic"
+					 "${CMAKE_SOURCE_DIR}/include/leptons"
+					 "${CMAKE_SOURCE_DIR}/include/spallation"  )
 
 # cparamlib (provided)
 add_subdirectory(libs/cparamlib)
@@ -65,37 +69,45 @@ endif (DOXYGEN_FOUND)
 
 # add source files
 set( D2XSEC_SRCS
-        src/antiproton_tables.cpp
-        src/antiprotons.cpp
+        src/antiprotons/antiproton_tables.cpp
+        src/antiprotons/antiprotons.cpp
+        src/antiprotons/DiMauro2015.cpp
+        src/antiprotons/Duperray03.cpp
+        src/antiprotons/TanNg83.cpp
+        src/inelastic/inelastic.cpp
+        src/inelastic/Tripathi99.cpp
+        src/leptons/leptons.cpp
+        src/spallation/Evoli2018.cpp
+        src/spallation/Evoli2018_table.cpp
+        src/spallation/ghost_tree.cpp
+        src/spallation/spallation.cpp
+        src/spallation/Webber2003_table.cpp
         src/d2xsec.cpp
         src/decay.cpp
-        src/DiMauro2015.cpp
-        src/Duperray03.cpp
-        src/ghost_tree.cpp
         src/grid.cpp
-        src/inelastic.cpp
-        src/leptons.cpp
         src/protons.cpp
-        src/spallation.cpp
-        src/TanNg83.cpp
-        src/Tripathi99.cpp
         src/utilities.cpp
-        src/Webber2003_table.cpp
         )
 
 set( D2XSEC_HDRS
-        include/antiproton_tables.h
-        include/antiprotons.h
+        include/antiprotons/antiproton_tables.h
+        include/antiprotons/antiprotons.h
+        include/antiprotons/DiMauro2015.h
+        include/antiprotons/Duperray03.h
+        include/antiprotons/TanNg83.h
+        include/inelastic/inelastic.h
+        include/inelastic/Tripathi99.h
+        include/leptons/leptons.h
+        include/spallation/Evoli2018.h
+        include/spallation/Evoli2018_table.h
+        include/spallation/ghost_tree.h
+        include/spallation/spallation.h
+        include/spallation/Webber2003_table.h
         include/axis.h
         include/d2xsec.h
         include/decay.h
-        include/DiMauro2015.h
-        include/Duperray03.h
-        include/ghost_tree.h
         include/grid.h
-        include/inelastic.h
         include/interpolator.h
-        include/leptons.h
         include/pid.h
         )
 
