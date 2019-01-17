@@ -156,6 +156,7 @@ static const PID S34 = PID(16, 34);
 static const PID S36 = PID(16, 36);
 static const PID Cl35 = PID(17, 35);
 static const PID Cl37 = PID(17, 37);
+static const PID Fe56 = PID(26, 56);
 
 using channel = std::pair<PID, PID>;
 
