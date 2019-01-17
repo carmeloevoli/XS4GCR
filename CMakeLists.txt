@@ -64,7 +64,7 @@ if (DOXYGEN_FOUND)
 		COMMENT "Generating API documentation with Doxygen" VERBATIM
 	)
 else (DOXYGEN_FOUND)
-  message("Doxygen need to be installed to generate the doxygen documentation")
+    message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
 
 # add source files
@@ -78,7 +78,7 @@ set( D2XSEC_SRCS
         src/inelastic/Tripathi99.cpp
         src/leptons/leptons.cpp
         src/spallation/Evoli2018.cpp
-        src/spallation/Evoli2018_table.cpp
+        src/spallation/fitting_functions.cpp
         src/spallation/ghost_tree.cpp
         src/spallation/spallation.cpp
         src/spallation/Webber2003_table.cpp
@@ -99,7 +99,7 @@ set( D2XSEC_HDRS
         include/inelastic/Tripathi99.h
         include/leptons/leptons.h
         include/spallation/Evoli2018.h
-        include/spallation/Evoli2018_table.h
+        include/spallation/fitting_functions.h
         include/spallation/ghost_tree.h
         include/spallation/spallation.h
         include/spallation/Webber2003_table.h
@@ -133,6 +133,9 @@ target_link_libraries (xsec_example5 D2XSEC ${D2XSEC_LIBRARIES})
 
 add_executable(xsec_example6 examples/example6.cpp )
 target_link_libraries (xsec_example6 D2XSEC ${D2XSEC_LIBRARIES})
+
+add_executable(sandbox examples/sandbox.cpp )
+target_link_libraries (sandbox D2XSEC ${D2XSEC_LIBRARIES})
 
 # show summary
 message (STATUS "CMAKE_SYSTEM .......... = ${CMAKE_SYSTEM}")

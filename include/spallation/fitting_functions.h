@@ -1,5 +1,5 @@
-#ifndef INCLUDE_EVOLI2018_TABLE_H_
-#define INCLUDE_EVOLI2018_TABLE_H_
+#ifndef INCLUDE_FITTING_FUNCTIONS_H_
+#define INCLUDE_FITTING_FUNCTIONS_H_
 
 #include <algorithm>
 #include <cassert>
@@ -33,19 +33,19 @@ protected:
 	double Delta;
 };
 
-class Evoli2018_table {
+class FittingFunctions {
 public:
-	Evoli2018_table();
-	Evoli2018_table(const std::string& filename);
+	FittingFunctions();
+	FittingFunctions(const std::string& filename);
 	double get(const channel& ch, const double& T_n) const;
-	virtual ~Evoli2018_table();
-
-private:
-	void read_data_file();
+	virtual ~FittingFunctions();
 
 	bool is_present(channel ch) const {
 		return !(functions.find(ch) == functions.end());
 	}
+
+private:
+	void read_data_file();
 
 protected:
 	double T_h = 2. * GeV;
@@ -55,4 +55,4 @@ protected:
 
 } // namespace DRAGON2
 
-#endif /* INCLUDE_EVOLI2018_TABLE_H_ */
+#endif /* INCLUDE_FITTING_FUNCTIONS_H_ */

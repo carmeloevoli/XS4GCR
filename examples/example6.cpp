@@ -20,6 +20,8 @@ int main() {
 
 	DRAGON2::TARGET H_ISM(1), He_ISM(2);
 
+	DRAGON2::PID proj = DRAGON2::N14;
+
 	std::vector<DRAGON2::PID> fragments { DRAGON2::Li6, DRAGON2::Li7, DRAGON2::Be7, DRAGON2::Be9,
 			DRAGON2::Be10, DRAGON2::B10, DRAGON2::B11 };
 
@@ -28,11 +30,10 @@ int main() {
 	for (double T_n = 100. * MeV; T_n < 2e4 * GeV; T_n *= 1.1) {
 		std::cout << T_n / GeV << "\t";
 		for (auto& fragment : fragments) {
-			DRAGON2::channel ch(DRAGON2::O16, fragment);
+			DRAGON2::channel ch(proj, fragment);
 			std::cout << x_in->get(ch, H_ISM, T_n, true) / mbarn << "\t";
 		}
 		std::cout << "\n";
 	}
 	return 0;
 }
-

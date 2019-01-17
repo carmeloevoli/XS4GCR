@@ -3,7 +3,8 @@
 
 #include "ghost_tree.h"
 #include "spallation.h"
-#include "Evoli2018_table.h"
+#include "fit_data.h"
+#include "fitting_functions.h"
 
 namespace DRAGON2 {
 
@@ -18,10 +19,13 @@ protected:
 	void init();
 	double direct(const channel& ch, const double& T_n);
 	double with_ghosts(const channel& ch, const double& T_n);
+	double bestfit_normalization(const channel& ch);
 	std::string ghostlist_filename = "data/ghost_list.txt";
 	std::string paramsfit_filename = "data/spallatation_fit_params.txt";
-	Evoli2018_table fittingFormulae;
+	std::string fitdata_filename = "data/xsecs_data_GALPROP.txt";
+	FittingFunctions fittingFunctions;
 	GhostTree ghostTree;
+	FitData fitData;
 };
 
 } // namespace DRAGON2

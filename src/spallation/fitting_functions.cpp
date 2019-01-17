@@ -1,4 +1,4 @@
-#include "Evoli2018_table.h"
+#include "fitting_functions.h"
 
 namespace DRAGON2 {
 
@@ -39,19 +39,19 @@ double SigmaFunction::get(const double& T) const {
 	return value;
 }
 
-Evoli2018_table::Evoli2018_table() {
+FittingFunctions::FittingFunctions() {
 	data_filename = "data/spallatation_fit_params.txt";
 }
 
-Evoli2018_table::Evoli2018_table(const std::string& filename) {
+FittingFunctions::FittingFunctions(const std::string& filename) {
 	data_filename = filename;
 	read_data_file();
 }
 
-Evoli2018_table::~Evoli2018_table() {
+FittingFunctions::~FittingFunctions() {
 }
 
-void Evoli2018_table::read_data_file() {
+void FittingFunctions::read_data_file() {
 	std::ifstream infile(data_filename.c_str());
 	infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	int Z_p, A_p, Z_c, A_c, counter = 0;
@@ -70,7 +70,7 @@ void Evoli2018_table::read_data_file() {
 }
 
 
-double Evoli2018_table::get(const channel& ch, const double& T_n) const {
+double FittingFunctions::get(const channel& ch, const double& T_n) const {
 	auto it = functions.find(ch);
 	if (it != functions.end()) {
 		return (it->second).get(T_n);

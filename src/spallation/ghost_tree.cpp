@@ -9,7 +9,7 @@ GhostTree::GhostTree() {
 GhostTree::GhostTree(std::string filename_) :
 		filename(filename_) {
 	read_ghosts();
-	plot_ghosts();
+	//plot_ghosts();
 }
 
 GhostTree::~GhostTree() {
