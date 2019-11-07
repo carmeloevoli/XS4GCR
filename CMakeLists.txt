@@ -5,8 +5,8 @@ set( CMAKE_VERBOSE_MAKEFILE off )
 set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" )
 set( CMAKE_fortran_COMPILER "gfortran" )
 get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
-set( CMAKE_C_COMPILER "gcc-8" )
-set( CMAKE_CXX_COMPILER "g++-8" )
+set( CMAKE_C_COMPILER "gcc-9" )
+set( CMAKE_CXX_COMPILER "g++-9" )
 set( CMAKE_CXX_FLAGS "-O2 -ftree-vectorize -std=c++11" )
 set( D2XSEC_INCLUDES )
 set( D2XSEC_LIBRARIES )
@@ -17,7 +17,7 @@ message("-- Downloading data file from repository ~ 3 MB")
 file(DOWNLOAD
         https://www.dropbox.com/s/9opsirwlvyi2sxi/data.tar.gz?dl=0
         ${CMAKE_BINARY_DIR}/data.tar.gz
-        EXPECTED_MD5 e15a00ef242302c725bea30bbcd3b152)
+        EXPECTED_MD5 cec222ed0255d84bfcb5f384c5570c52)
 message("-- Extracting data file")
 execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf ${CMAKE_BINARY_DIR}/data.tar.gz WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
