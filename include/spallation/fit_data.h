@@ -18,11 +18,6 @@ public:
 
 	FitData(const std::string& fname) : filename(fname) {
 		read_data();
-		std::cout << channel_exists(std::make_pair(O16, C12)) << "\n";
-		auto d = get_data(std::make_pair(O16, C12));
-		for (auto& d_ : d)
-			std::cout << d_.T / GeV << " " << d_.sigma / mbarn << "\n";
-		std::cout << channel_exists(std::make_pair(N14, He4)) << "\n";
 	}
 
 	virtual ~FitData() {
@@ -36,13 +31,14 @@ public:
 	};
 
 	void read_data() {
-		int Z_i, A_i, Z_f, A_f;
+		int Z_proj, A_proj, Z_frag, A_frag;
 		double T, s, serr;
 		std::string label;
 		std::ifstream datafile(filename.c_str());
-		while (datafile >> Z_i >> A_i >> Z_f >> A_f >> T >> s >> serr >> label) {
-			auto ch = std::make_pair(PID(Z_i, A_i), PID(Z_f, A_f));
-			data_struct data { ch, T * GeV, s * mbarn, serr * mbarn };
+		datafile.ignore(512, '\n');
+		while (datafile >> Z_proj >> A_proj >> Z_frag >> A_frag >> T >> s >> serr >> label) {
+			auto ch = std::make_pair(PID(Z_proj, A_proj), PID(Z_frag, A_frag));
+			data_struct data { ch, T * MKS::GeV, s * MKS::mbarn, serr * MKS::mbarn };
 			Data.push_back(data);
 		}
 		datafile.close();

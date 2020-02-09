@@ -48,7 +48,7 @@ private:
 	void read_data_file();
 
 protected:
-	double T_h = 2. * GeV;
+	double T_h = 2. * MKS::GeV;
 	std::string data_filename;
 	std::map<channel, SigmaFunction> functions;
 };

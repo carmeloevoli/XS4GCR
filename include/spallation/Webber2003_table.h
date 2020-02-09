@@ -30,8 +30,8 @@ protected:
     size_t n_headers = 4;
     size_t n_reactions = 4657;
     size_t Tn_size = 41;
-    double Tn_min = 0.01 * GeV;
-    double Tn_max = 10 * GeV;
+    double Tn_min = 0.01 * MKS::GeV;
+    double Tn_max = 10 * MKS::GeV;
 };
 
 } // namespace DRAGON2

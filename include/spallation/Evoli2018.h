@@ -21,7 +21,7 @@ protected:
 	double with_ghosts(const channel& ch, const double& T_n);
 	double bestfit_normalization(const channel& ch);
 	std::string ghostlist_filename = "data/ghost_list.txt";
-	std::string paramsfit_filename = "data/spallatation_fit_params.txt";
+	std::string paramsfit_filename = "data/Evoli2019_fragmentation_fitparams.txt";
 	std::string fitdata_filename = "data/xsecs_data_GALPROP.txt";
 	FittingFunctions fittingFunctions;
 	GhostTree ghostTree;
