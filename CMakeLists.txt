@@ -137,6 +137,9 @@ target_link_libraries (xsec_example6 D2XSEC ${D2XSEC_LIBRARIES})
 add_executable(sandbox examples/sandbox.cpp )
 target_link_libraries (sandbox D2XSEC ${D2XSEC_LIBRARIES})
 
+add_executable(D2-table examples/D2-table.cpp )
+target_link_libraries (D2-table D2XSEC ${D2XSEC_LIBRARIES})
+
 # show summary
 message (STATUS "CMAKE_SYSTEM .......... = ${CMAKE_SYSTEM}")
 message (STATUS "BUILD_SHARED_LIBS ..... = ${BUILD_SHARED_LIBS}")
