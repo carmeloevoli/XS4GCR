@@ -7,6 +7,8 @@
 #define pow4(A) ((A)*(A)*(A)*(A))
 #define pow5(A) ((A)*(A)*(A)*(A)*(A))
 
+namespace MKS {
+
 // MKS units
 static const double meter = 1;
 static const double kilogram = 1;
@@ -109,5 +111,7 @@ static const double Gpc = gigaparsec;
 // useful quantities
 static const double He_correction_xsec = pow(4.0, 2.0 / 3.0);
 static const double f_He = 0.11;
+
+} // namespace MKS
 
 #endif /* INCLUDE_MKS_H_ */

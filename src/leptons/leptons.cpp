@@ -3,9 +3,9 @@
 namespace DRAGON2 {
 
 double Secondary_Leptons::annihilation_xsec(const PID& target, const double& T_positron) const {
-	double Gamma = 1.0 + T_positron / electron_mass_c2;
+	double Gamma = 1.0 + T_positron / MKS::electron_mass_c2;
 	double logGamma = std::log(Gamma + sqrt(pow2(Gamma) - 1));
-	double value = target.get_Z() * M_PI * pow2(electron_radius) / (Gamma + 1.);
+	double value = target.get_Z() * M_PI * pow2(MKS::electron_radius) / (Gamma + 1.);
 	value *= (pow2(Gamma) + 4 * Gamma + 1) / (pow2(Gamma) - 1) * logGamma - (Gamma + 3) / sqrt(pow2(Gamma) - 1);
 	return value;
 }
@@ -37,14 +37,14 @@ double Kamae2006_Secondary_Leptons::get_cparamlib_sigma(const PID& lepton_, cons
 	} else {
 		assert(lepton_.is_lepton());
 	}
-	double dsigma_dlogT = sigma_incl_tot(par, (T_lepton_GeV_ + electron_mass_c2), min(T_proton_GeV_, 1e5), &parameters);
-	return dsigma_dlogT / T_lepton_GeV_ * (mbarn / GeV);
+	double dsigma_dlogT = sigma_incl_tot(par, (T_lepton_GeV_ + MKS::electron_mass_c2), min(T_proton_GeV_, 1e5), &parameters);
+	return dsigma_dlogT / T_lepton_GeV_ * (MKS::mbarn / MKS::GeV);
 }
 
 double Kamae2006_Secondary_Leptons::He_function(const double& T_n, const double& T_lepton) const {
 	PID electron(-1, 0), positron(1, 0);
-	double sigma_plus = get_cparamlib_sigma(positron, T_n / GeV, T_lepton / GeV);
-	double sigma_minus = get_cparamlib_sigma(electron, T_n / GeV, T_lepton / GeV);
+	double sigma_plus = get_cparamlib_sigma(positron, T_n / MKS::GeV, T_lepton / MKS::GeV);
+	double sigma_minus = get_cparamlib_sigma(electron, T_n / MKS::GeV, T_lepton / MKS::GeV);
 	double value = 1;
 	if (sigma_plus > 0 && sigma_minus > 0)
 		value /= .25 * sigma_plus / sigma_minus + .25 * sigma_minus / sigma_plus;
@@ -54,7 +54,7 @@ double Kamae2006_Secondary_Leptons::He_function(const double& T_n, const double&
 double Kamae2006_Secondary_Leptons::get(const PID& projectile, const TARGET& target, const double& T_n,
 		const double& T_lepton) const {
 	assert(projectile == PID(1, 1) || projectile == PID(2, 4));
-	double sigma_pp = get_cparamlib_sigma(lepton, T_n / GeV, T_lepton / GeV);
+	double sigma_pp = get_cparamlib_sigma(lepton, T_n / MKS::GeV, T_lepton / MKS::GeV);
 	if (projectile.is_H() && target.is_H()) {
 		return sigma_pp;
 	} else if (projectile.is_He() && target.is_He()) {
@@ -90,9 +90,9 @@ double HuangPohl2007_Secondary_Leptons::get(const PID& projectile, const TARGET&
 	if (target.is_He())
 		return 0;
 	if (projectile.is_H()) {
-		return dsigma_dT_H.get_interpolated(T_lepton, T_n + proton_mass_c2);
+		return dsigma_dT_H.get_interpolated(T_lepton, T_n + MKS::proton_mass_c2);
 	} else {
-		return dsigma_dT_He.get_interpolated(T_lepton, T_n + proton_mass_c2);
+		return dsigma_dT_He.get_interpolated(T_lepton, T_n + MKS::proton_mass_c2);
 	}
 }
 
@@ -153,7 +153,7 @@ void HuangPohl2007_Secondary_Leptons::read_data_file() {
 	std::vector<double> prod_xsec_p = read_production_file(prodxsec_p_datafile, E_proj_size);
 	std::vector<double> prod_xsec_he = read_production_file(prodxsec_he_datafile, E_proj_size);
 	std::cout << "... reading model from data files" << std::endl;
-	double units = mbarn / GeV;
+	double units = MKS::mbarn / MKS::GeV;
 	for (size_t ix = 0; ix < T_lepton_size; ++ix) {
 		for (size_t iy = 0; iy < E_proj_size; ++iy) {
 			if (lepton.is_electron()) {

@@ -17,14 +17,14 @@ std::shared_ptr<Total_Inelastic> Letaw1983_Total_Inelastic::clone() {
 
 double Letaw1983_Total_Inelastic::get(const PID& projectile, const TARGET& target, const double& T_n) const {
 	assert(projectile != PID(1, 1));
-	double value = 45 * mbarn * pow(projectile.get_A(), 0.7);
+	double value = 45 * MKS::mbarn * pow(projectile.get_A(), 0.7);
 	value *= (1.0 + 0.016 * sin(5.3 - 2.63 * log(projectile.get_A())));
-	if (T_n < 5.0 * GeV)
-		value *= 1.0 - 0.62 * exp(-T_n / 0.2 / GeV) * sin(1.58 / pow(T_n / GeV, 0.28));
+	if (T_n < 5.0 * MKS::GeV)
+		value *= 1.0 - 0.62 * exp(-T_n / 0.2 / MKS::GeV) * sin(1.58 / pow(T_n / MKS::GeV, 0.28));
 	if (projectile.with_Z(2))
 		value *= 0.8;
 	if (projectile.with_Z(4))
-		value *= 1.0 + 0.75 * exp(-T_n / 0.075 / GeV);
+		value *= 1.0 + 0.75 * exp(-T_n / 0.075 / MKS::GeV);
 	return value;
 }
 
@@ -87,8 +87,8 @@ double CROSEC_Total_Inelastic::set_energy_within_range(const double& T_n) const 
 double CROSEC_Total_Inelastic::get(const PID& projectile, const TARGET& target, const double& T_n) const {
 	assert(projectile != PID(1, 1));
 	double TA = projectile.get_A(), TZ = projectile.get_Z(); // target nucleus mass and charge numbers (4.0<=A2<=239.0)
-	double T = set_energy_within_range(T_n) / MeV; // projectile particle kinetic energy (MEV; 14(20)MEV<T<1TEV)
-	double value = sighad_cc(IS, PA, PZ, TA, TZ, T) * mbarn;
+	double T = set_energy_within_range(T_n) / MKS::MeV; // projectile particle kinetic energy (MEV; 14(20)MEV<T<1TEV)
+	double value = sighad_cc(IS, PA, PZ, TA, TZ, T) * MKS::mbarn;
 	value *= (target.is_He()) ? 2.1 * pow(projectile.get_A(), .055) : 1;
 	return value;
 }

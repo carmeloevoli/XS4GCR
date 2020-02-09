@@ -14,7 +14,8 @@ public:
 	}
 
 	double get(const double &s_GeV) {
-		return Zt + Bt * pow2(log(s_GeV / smt)) + Y1t * pow(smt / s_GeV, eta1t) - Y2t * pow(smt / s_GeV, eta2t);
+		return Zt + Bt * pow2(log(s_GeV / smt)) + Y1t * pow(smt / s_GeV, eta1t)
+				- Y2t * pow(smt / s_GeV, eta2t);
 	}
 
 private:
@@ -39,7 +40,8 @@ public:
 	}
 
 	double get(const double &s_GeV) {
-		return Ze + Be * pow(log(s_GeV / sme), 2.) + Y1e * pow(sme / s_GeV, eta1e) - Y2e * pow(sme / s_GeV, eta2e);
+		return Ze + Be * pow(log(s_GeV / sme), 2.) + Y1e * pow(sme / s_GeV, eta1e)
+				- Y2e * pow(sme / s_GeV, eta2e);
 	}
 
 private:
@@ -87,12 +89,12 @@ double sigma_invariant(const double &sqrt_s, const double &X_r, const double &p_
 		sigma_total sigmatot;
 		sigma_elastic sigmaele;
 		fitting_func func;
-		double sqrt_s_GeV = std::min(sqrt_s / GeV, 1e3);
-		double p_T_GeVc = std::min(p_T / GeV_c, 1e3);
+		double sqrt_s_GeV = std::min(sqrt_s / MKS::GeV, 1e3);
+		double p_T_GeVc = std::min(p_T / MKS::GeV_c, 1e3);
 		double sigma_inelastic = sigmatot.get(pow2(sqrt_s_GeV)) - sigmaele.get(pow2(sqrt_s_GeV));
 		value = sigma_inelastic * func.get(X_r, sqrt_s_GeV, p_T_GeVc);
 	}
-	return std::max(value, 0.) * mbarn * pow3(c_light) / pow2(GeV);
+	return std::max(value, 0.) * MKS::mbarn * pow3(MKS::c_light) / pow2(MKS::GeV);
 }
 
 double sigma_func(double eta, void *params) {
@@ -102,11 +104,11 @@ double sigma_func(double eta, void *params) {
 	double E_ap = db_params[1];
 	double p_ap = db_params[2];
 
-	double gamma_cm = sqrt_s / 2 / proton_mass_c2;
-	double betagamma_cm = std::sqrt(s - 4 * proton_mass_c2_2) / 2 / proton_mass_c2;
-	double E_ap_cm = gamma_cm * E_ap - betagamma_cm * p_ap * c_light * std::tanh(eta);
+	double gamma_cm = sqrt_s / 2 / MKS::proton_mass_c2;
+	double betagamma_cm = std::sqrt(s - 4 * MKS::proton_mass_c2_2) / 2 / MKS::proton_mass_c2;
+	double E_ap_cm = gamma_cm * E_ap - betagamma_cm * p_ap * MKS::c_light * std::tanh(eta);
 	double X_r = 2 * sqrt_s * E_ap_cm;
-	X_r /= s - 8 * proton_mass_c2_2;
+	X_r /= s - 8 * MKS::proton_mass_c2_2;
 	double p_T = p_ap / std::cosh(eta);
 
 	return (X_r > 1) ? 0 : sigma_invariant(sqrt_s, X_r, p_T) / pow2(std::cosh(eta));
@@ -114,12 +116,12 @@ double sigma_func(double eta, void *params) {
 
 double dsigma_dT(double T_p, double T_ap) {
 	double result = 0, error = 0;
-	double s = 2 * T_p * proton_mass_c2 + 4 * proton_mass_c2 * proton_mass_c2;
+	double s = 2 * T_p * MKS::proton_mass_c2 + 4 * MKS::proton_mass_c2 * MKS::proton_mass_c2;
 	double sqrt_s = std::sqrt(s);
-	double p_ap = std::sqrt(T_ap * T_ap + 2 * proton_mass_c2 * T_ap) / c_light;
-	if (sqrt_s > 4 * proton_mass_c2) {
+	double p_ap = std::sqrt(T_ap * T_ap + 2 * MKS::proton_mass_c2 * T_ap) / MKS::c_light;
+	if (sqrt_s > 4 * MKS::proton_mass_c2) {
 		gsl_integration_workspace *w = gsl_integration_workspace_alloc(LIMIT);
-		double params[3] = { sqrt_s, (T_ap + proton_mass_c2), p_ap };
+		double params[3] = { sqrt_s, (T_ap + MKS::proton_mass_c2), p_ap };
 		gsl_function F;
 		F.function = &sigma_func;
 		F.params = &params;
@@ -127,7 +129,7 @@ double dsigma_dT(double T_p, double T_ap) {
 		gsl_integration_workspace_free(w);
 	}
 	double neutron_factor = 2.3;
-	return neutron_factor * 2 * M_PI * p_ap * result / pow2(c_light);
+	return neutron_factor * 2 * M_PI * p_ap * result / pow2(MKS::c_light);
 }
 
 } /* namespace DiMauro2015 */

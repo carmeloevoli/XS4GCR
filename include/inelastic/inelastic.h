@@ -73,7 +73,7 @@ protected:
     std::string data_filename = "data/barpol.txt";
     int IS = 2; // calculation of non-elastic cross-sections
     double PA = 1, PZ = 1; // projectile mass and charge numbers (for pions PA<0.2)
-    double T_n_min = 20. * MeV, T_n_max = TeV;
+    double T_n_min = 20. * MKS::MeV, T_n_max = MKS::TeV;
 };
 
 } // namespace DRAGON2

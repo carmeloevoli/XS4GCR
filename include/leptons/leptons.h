@@ -76,11 +76,11 @@ private:
 	std::string eplus_he_datafile = "data/espectra_eplus.decay.he.matrix.data";
 	std::string prodxsec_p_datafile = "data/prodxsection.p.matrix.data";
 	std::string prodxsec_he_datafile = "data/prodxsection.he.matrix.data";
-	double E_proj_min = 1.24 * pow(1.05, 1.) * GeV;
-	double E_proj_max = 1.24 * pow(1.05, 374.) * GeV;
+	double E_proj_min = 1.24 * pow(1.05, 1.) * MKS::GeV;
+	double E_proj_max = 1.24 * pow(1.05, 374.) * MKS::GeV;
 	size_t E_proj_size = 374;
-	double T_lepton_min = 1.058950e-02 * GeV;
-	double T_lepton_max = 9.443313e+07 * GeV;
+	double T_lepton_min = 1.058950e-02 * MKS::GeV;
+	double T_lepton_max = 9.443313e+07 * MKS::GeV;
 	size_t T_lepton_size = 201;
 	grid2d dsigma_dT_H;
 	grid2d dsigma_dT_He;

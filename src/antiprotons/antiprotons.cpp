@@ -5,24 +5,24 @@ namespace DRAGON2 {
 double Secondary_Antiprotons::get_total_inelastic(const TARGET& target, const double& T_ap) {
 	double value = 0;
 	if (target.is_H()) {
-		double E_GeV = (T_ap + proton_mass_c2) / GeV;
-		double R_GV = std::sqrt(E_GeV * E_GeV - proton_mass_c2 * proton_mass_c2);
+		double E_GeV = (T_ap + MKS::proton_mass_c2) / MKS::GeV;
+		double R_GV = std::sqrt(E_GeV * E_GeV - MKS::proton_mass_c2 * MKS::proton_mass_c2);
 		value = a[0] + a[1] * log(R_GV) + a[2] * pow2(log(R_GV)) + a[3] * pow(R_GV, -alpha);
 	} else { // duperray2003
 		double sigma_0 = 45 * pow(4, 0.7) * (1. + 0.016 * std::sin(5.3 - 2.63 * std::log(4.)));
-		double E_inc = T_ap / MeV;
+		double E_inc = T_ap / MKS::MeV;
 		value = sigma_0 * (1. - 0.62 * std::exp(-E_inc / 200) * std::sin(10.9 * std::pow(E_inc, -0.28)));
 	}
-	return value * mbarn;
+	return value * MKS::mbarn;
 }
 
 double Secondary_Antiprotons::get_annihilating_inelastic(const TARGET& target, const double& T_ap) {
-	double E_GeV = (T_ap + proton_mass_c2) / GeV;
-	double R_GV = std::sqrt(E_GeV * E_GeV - proton_mass_c2 * proton_mass_c2);
+	double E_GeV = (T_ap + MKS::proton_mass_c2) / MKS::GeV;
+	double R_GV = std::sqrt(E_GeV * E_GeV - MKS::proton_mass_c2 * MKS::proton_mass_c2);
 	double value = b[0] + b[1] * log(R_GV) + b[2] * pow2(log(R_GV)) + b[3] * pow(R_GV, -alpha);
 	if (target.is_He())
 		value *= get_total_inelastic(target, T_ap) / get_total_inelastic(TARGET(1), T_ap);
-	return value * mbarn;
+	return value * MKS::mbarn;
 }
 
 double Secondary_Antiprotons::get_non_annihilating_inelastic(const TARGET& target, const double& T_ap) {
@@ -81,7 +81,7 @@ Winkler2017_antiprotons::Winkler2017_antiprotons() :
 		data_filename("data/Winkler2017_antiprotons.txt"), table(std::make_pair(132, 251)) {
 	set_model_name("Winkler2017");
 	assert(file_exist(data_filename));
-	table.read_data_file(data_filename, GeV, mbarn / GeV);
+	table.read_data_file(data_filename, MKS::GeV, MKS::mbarn / MKS::GeV);
 }
 
 void Winkler2017_antiprotons::print() const {
@@ -111,7 +111,7 @@ Feng2016_antiprotons::Feng2016_antiprotons(generators g) :
 		filename = "data/Feng2016_QGSJET04_antiprotons.txt";
 	else
 		assert(generator == EPOS);
-	table.read_data_file(filename, GeV, barn / GeV);
+	table.read_data_file(filename, MKS::GeV, MKS::barn / MKS::GeV);
 }
 
 void Feng2016_antiprotons::print() const {

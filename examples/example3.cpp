@@ -30,15 +30,15 @@ void get_fragmentation_timescale(std::string filename) {
 	xsec.set_proton_xsecs("DRAGON2");
 	auto x_pr = xsec.create_proton_xsecs();
 	DRAGON2::TARGET H_ISM(1), He_ISM(2);
-	double n_gas = 1. / cm3;
+	double n_gas = 1. / MKS::cm3;
 	std::ofstream outfile(filename);
 	outfile << std::scientific;
-	for (double T = 0.1 * GeV; T < 1e4 * GeV; T *= 1.1) {
-		double v = c_light * sqrt(1 - pow2(proton_mass_c2) / pow2(T + proton_mass_c2));
-		double sigma_total = x_pr->get_inelastic(H_ISM, T) + f_He * x_pr->get_inelastic(He_ISM, T);
+	for (double T = 0.1 * MKS::GeV; T < 1e4 * MKS::GeV; T *= 1.1) {
+		double v = MKS::c_light * sqrt(1 - pow2(MKS::proton_mass_c2) / pow2(T + MKS::proton_mass_c2));
+		double sigma_total = x_pr->get_inelastic(H_ISM, T) + MKS::f_He * x_pr->get_inelastic(He_ISM, T);
 		double t_f = 1. / (v * n_gas * sigma_total);
 		double t_f_H = 1. / (v * n_gas * x_pr->get_inelastic(H_ISM, T));
-		outfile << T / GeV << " " << t_f / Myr << " " << t_f_H / Myr << "\n";
+		outfile << T / MKS::GeV << " " << t_f / MKS::Myr << " " << t_f_H / MKS::Myr << "\n";
 	}
 	outfile.close();
 }
@@ -61,10 +61,10 @@ void get_secondary_production(const double& T_proj, std::string filename) {
 	auto x_pr = xsec.create_proton_xsecs();
 	DRAGON2::TARGET H_ISM(1), He_ISM(2);
 	std::ofstream outfile(filename);
-	for (double T_sec = 0.1 * GeV; T_sec < T_proj; T_sec *= 1.1) {
+	for (double T_sec = 0.1 * MKS::GeV; T_sec < T_proj; T_sec *= 1.1) {
 		double sigma_H = x_pr->get_inelastic(H_ISM, T_proj) / T_proj;
-		sigma_H += f_He * x_pr->get_inelastic(He_ISM, T_proj) / T_proj;
-		outfile << std::scientific << T_sec / GeV << " " << sigma_H / mbarn << "\n";
+		sigma_H += MKS::f_He * x_pr->get_inelastic(He_ISM, T_proj) / T_proj;
+		outfile << std::scientific << T_sec / MKS::GeV << " " << sigma_H / MKS::mbarn << "\n";
 	}
 	outfile.close();
 }
@@ -74,6 +74,6 @@ void get_secondary_production(const double& T_proj, std::string filename) {
  */
 int main() {
 	get_fragmentation_timescale("output/xsec_frag_protons.txt");
-	get_secondary_production(100 * GeV, "output/xsec_secondary_protons.txt");
+	get_secondary_production(100 * MKS::GeV, "output/xsec_secondary_protons.txt");
 	return 0;
 }

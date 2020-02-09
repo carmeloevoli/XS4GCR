@@ -45,7 +45,7 @@ public:
 	double get_inelastic(const TARGET &target, const double &T_n) const override;
 
 private:
-	double T_threshold = 0.2797 * GeV;
+	double T_threshold = 0.2797 * MKS::GeV;
 };
 
 } // namespace DRAGON2

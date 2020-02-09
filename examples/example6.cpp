@@ -27,11 +27,11 @@ int main() {
 
 	std::cout << std::scientific;
 
-	for (double T_n = 100. * MeV; T_n < 2e4 * GeV; T_n *= 1.1) {
-		std::cout << T_n / GeV << "\t";
+	for (double T_n = 100. * MKS::MeV; T_n < 2e4 * MKS::GeV; T_n *= 1.1) {
+		std::cout << T_n / MKS::GeV << "\t";
 		for (auto& fragment : fragments) {
 			DRAGON2::channel ch(proj, fragment);
-			std::cout << x_in->get(ch, H_ISM, T_n, true) / mbarn << "\t";
+			std::cout << x_in->get(ch, H_ISM, T_n, true) / MKS::mbarn << "\t";
 		}
 		std::cout << "\n";
 	}

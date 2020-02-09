@@ -18,7 +18,7 @@
 void print_decay_properties(std::shared_ptr<DRAGON2::Decay_Chart> decays, DRAGON2::PID particle) {
 	if (decays->get_halftime(particle) > 0) {
 		std::cout << particle << " decays in "
-				<< decays->get_halftime(DRAGON2::Be10) / year
+				<< decays->get_halftime(DRAGON2::Be10) / MKS::year
 				<< " years with mode " << decays->get_mode(DRAGON2::Be10)
 				<< "\n";
 	} else {

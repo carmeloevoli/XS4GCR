@@ -3,7 +3,7 @@
 namespace Tripathi99 {
 
 double get_wilson_rms_radius(const int& A) {
-	double factor = std::sqrt(5. / 3.) * fm;
+	double factor = std::sqrt(5. / 3.) * MKS::fm;
 
 	double radius;
 	if (A > 26) {
@@ -17,18 +17,18 @@ double get_wilson_rms_radius(const int& A) {
 }
 
 double get_wilson_radius(const int& A) {
-	double r_0 = 0.85 * fm;
+	double r_0 = 0.85 * MKS::fm;
 	double r = get_wilson_rms_radius(A);
 	return 1.29 * std::sqrt(r * r - r_0 * r_0);
 }
 
 double inelastic_sigma(int A_p, int Z_p, int A_t, int Z_t, double T_n) {
 	assert(A_p > 0 && A_t > 0);
-	const double r_0 = 1.1 * fm;
-	double f_A = pow2(A_p) + pow2(A_t) + 2 * A_p * A_t * (1. + T_n / proton_mass_c2);
-	double E_cm_mev = proton_mass_c2 * std::sqrt(f_A);
-	E_cm_mev /= MeV;
-	double Tn_mev = T_n / MeV;
+	const double r_0 = 1.1 * MKS::fm;
+	double f_A = pow2(A_p) + pow2(A_t) + 2 * A_p * A_t * (1. + T_n / MKS::proton_mass_c2);
+	double E_cm_mev = MKS::proton_mass_c2 * std::sqrt(f_A);
+	E_cm_mev /= MKS::MeV;
+	double Tn_mev = T_n / MKS::MeV;
 
 	if (E_cm_mev <= (0.8 + 0.04 * Z_t) * A_p) {
 		return 0.;
@@ -38,7 +38,7 @@ double inelastic_sigma(int A_p, int Z_p, int A_t, int Z_t, double T_n) {
 	double r_rms_t = get_wilson_rms_radius(A_t);
 	double r_p = 1.29 * r_rms_p;
 	double r_t = 1.29 * r_rms_t;
-	double Radius = (r_p + r_t) / fm;
+	double Radius = (r_p + r_t) / MKS::fm;
 	Radius += 1.2 * (pow(A_p, 1. / 3.) + pow(A_t, 1. / 3.)) / pow(E_cm_mev, 1. / 3.);
 	double B = 1.44 * Z_p * Z_t / Radius;
 

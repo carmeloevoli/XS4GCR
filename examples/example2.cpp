@@ -31,11 +31,11 @@ int main() {
 
 	auto x_leptons = xsec.create_secondary_leptons(positron);
 
-	double T_n_proj = 100 * GeV;
+	double T_n_proj = 100 * MKS::GeV;
 
-	for (double T_lepton = 1 * GeV; T_lepton < T_n_proj; T_lepton *= 1.1) {
-		std::cout << T_lepton / GeV << " ";
-		std::cout << x_leptons->get(H, H_ISM, T_n_proj, T_lepton) / (mbarn / GeV) << "\t";
-		std::cout << x_leptons->get(He, H_ISM, T_n_proj, T_lepton) / (mbarn / GeV) << "\n";
+	for (double T_lepton = 1 * MKS::GeV; T_lepton < T_n_proj; T_lepton *= 1.1) {
+		std::cout << T_lepton / MKS::GeV << " ";
+		std::cout << x_leptons->get(H, H_ISM, T_n_proj, T_lepton) / (MKS::mbarn / MKS::GeV) << "\t";
+		std::cout << x_leptons->get(He, H_ISM, T_n_proj, T_lepton) / (MKS::mbarn / MKS::GeV) << "\n";
 	}
 }
