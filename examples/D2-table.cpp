@@ -11,10 +11,10 @@ int main() {
 	TARGET H_ISM(1);
 
 	std::vector<PID> particles = { Fe56, S32, Si28, Mg24, Ne20, O18, O17, O16, N15, N14, C14, C13,
-			C12, B11, B10, Be10, Be9, Be7, Li7, Li6 };
+			C12, B11, B10, Be10, Be9, Be7, Li7, Li6, He4, He3 };
 
 	std::fstream txtfile;
-	txtfile.open("crxsecs_fragmentation_Evoli2019_cumulative.txt", std::ios_base::out);
+	txtfile.open("crxsecs_fragmentation_Evoli2019_direct.txt", std::ios_base::out);
 	txtfile.precision(3);
 
 	double E_min = 10. * MKS::MeV;
@@ -42,7 +42,7 @@ int main() {
 						<< fragment.get_Z() << " " << fragment.get_A() << " ";
 				for (size_t i = 0; i < E_size; ++i) {
 					channel ch(projectile, fragment);
-					txtfile << x_in->get(ch, H_ISM, E.at(i), true) / MKS::mbarn;
+					txtfile << x_in->get(ch, H_ISM, E.at(i), false) / MKS::mbarn;
 					if (i < E_size - 1)
 						txtfile << " ";
 				}
