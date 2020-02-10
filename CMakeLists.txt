@@ -12,15 +12,6 @@ set( D2XSEC_INCLUDES )
 set( D2XSEC_LIBRARIES )
 option(BUILD_DOC "Build documentation" OFF)
 
-# download data files
-message("-- Downloading data file from repository ~ 3 MB")
-file(DOWNLOAD
-        https://www.dropbox.com/s/9opsirwlvyi2sxi/data.tar.gz?dl=0
-        ${CMAKE_BINARY_DIR}/data.tar.gz
-        EXPECTED_MD5 cec222ed0255d84bfcb5f384c5570c52)
-message("-- Extracting data file")
-execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf ${CMAKE_BINARY_DIR}/data.tar.gz WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
-
 # include
 include_directories( "${CMAKE_SOURCE_DIR}/include" 
 					 "${CMAKE_SOURCE_DIR}/include/antiprotons"
