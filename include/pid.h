@@ -118,6 +118,7 @@ public:
 	}
 };
 
+static const PID H3 = PID(1, 3);
 static const PID He4 = PID(2, 4);
 static const PID He3 = PID(2, 3);
 static const PID Li6 = PID(3, 6);
