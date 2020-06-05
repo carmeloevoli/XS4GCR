@@ -1,10 +1,14 @@
-# D2XSECS
+# XS4GCR
 
-D2XSECS implements the cross-sections for galactic cosmic ray propagation models as described in arXiv:1711.09616.
+XS4GCR implements the cross-sections for galactic cosmic ray propagation models
+
+References:
+- arXiv:1904.10220 
+- arXiv:1711.09616
 
 ### Installation
 
-- D2XSECS requires GSL library and C, C++, Fortran compilers. 
+- XS4GCR requires GSL library and C, C++, Fortran compilers. 
 
 - We provide some examples of using, each of them can be installed this way:
 ```
@@ -17,7 +21,7 @@ make xsec_example1
 
 - Code documentation is in progress. 
 
-- D2XSECS documentation requires Doxygen installed.
+- XS4GCR documentation requires Doxygen installed.
 
 - To create:
 ```
@@ -27,6 +31,6 @@ make doc
 
 ### Data
 
-- Data files necessary for D2XSECS are downloaded from a Dropbox repository during installation.
+- Data files necessary for XS4GCR are downloaded from a Dropbox repository during installation.
 
 - Data size is approximately 10 Mb
