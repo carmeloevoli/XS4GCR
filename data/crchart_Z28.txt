@@ -21,7 +21,8 @@
  9  19  19F   STABLE
 10  20  20Ne  STABLE  
 10  21  21Ne  STABLE
-10  22  22Ne  STABLE  
+10  22  22Ne  BETA+FED  
+11  22  22Na  BETA+     4.8 Myr ref: Martinez-Pinedo & Vogel (1998)  
 11  23  23Na  STABLE
 12  24  24Mg  STABLE
 12  25  25Mg  STABLE
