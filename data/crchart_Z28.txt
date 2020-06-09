@@ -72,7 +72,7 @@
 25  53  53Mn  STABLE    
 24  54  54Cr  STABLE  
 26  54  54Fe  BETA-FED  
-25  54  54Mn  BETA-     0.494 Myr ref: Martinez-Pinedo & Vogel (1998).
+25  54  54Mn  BETA-     0.63 Myr ref: Wuosmaa (1998).
 25  55  55Mn  STABLE   
 26  55  55Fe  STABLE       
 26  56  56Fe  BETA+FED
