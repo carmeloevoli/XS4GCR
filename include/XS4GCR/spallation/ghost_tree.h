@@ -23,16 +23,18 @@ class GhostTree {
     explicit GhostTree(std::string filename_);
     virtual ~GhostTree();
     size_t n_parents(PID child);
-    void read_ghosts();
-    void plot_ghosts();
-
     bool is_present(PID child) { return !(tree.find(child) == tree.end()); }
-
     Parents& get_parents(PID child) { return tree.at(child); }
+
+   private:
+    bool isGhost(double tau_value, std::string tau_units) const;
+    void plot_ghosts() const;
+    void read_ghosts();
 
    protected:
     std::string filename;
     Tree tree;
+    double halfLife_max = MKS::kyr;
 };
 
 }  // namespace XS4GCR

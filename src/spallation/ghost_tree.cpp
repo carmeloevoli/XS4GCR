@@ -18,30 +18,58 @@ GhostTree::GhostTree(std::string filename_) : filename(filename_) {
 
 GhostTree::~GhostTree() {}
 
-void GhostTree::read_ghosts() {  // TODO(CE) add a minimum time
+bool GhostTree::isGhost(double tau_value, std::string tau_units) const {
+    double halfLife = tau_value;
+    if (tau_units == "ms")
+        halfLife *= 1e-3 * MKS::sec;
+    else if (tau_units == "s")
+        halfLife *= MKS::sec;
+    else if (tau_units == "m")
+        halfLife *= 60. * MKS::sec;
+    else if (tau_units == "h")
+        halfLife *= 3600. * MKS::sec;
+    else if (tau_units == "d")
+        halfLife *= 24. * 3600. * MKS::sec;
+    else if (tau_units == "y")
+        halfLife *= MKS::year;
+    else
+        assert(tau_units == "s");
+    return halfLife < halfLife_max;
+}
+
+void GhostTree::read_ghosts() {
     std::ifstream infile(filename.c_str());
     infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::string Z_c_str, Z_p_str;
-    int Z_c, A_c, Z_p, A_p, counter = 0;
-    double branching, decay_time;
-    while (infile >> Z_p_str >> A_p >> Z_c_str >> A_c >> branching >> decay_time) {
-        Z_c = str_to_Z(Z_c_str);
-        Z_p = str_to_Z(Z_p_str);
-        counter++;
-        Child child(Z_c, A_c);
-        Parent parent = std::make_pair(PID(Z_p, A_p), branching / 100.);
-        if (is_present(child)) {
-            tree.at(child).push_back(parent);
-        } else {
-            Parents parents{parent};
-            tree.insert(std::make_pair(child, parents));
+    std::string Z_c_str;
+    std::string Z_p_str;
+    std::string tau_units;
+    int Z_c;
+    int A_c;
+    int Z_p;
+    int A_p;
+    size_t counter = 0;
+    double branching;
+    double tau_value;
+    while (infile >> Z_p_str >> A_p >> Z_c_str >> A_c >> branching >> tau_value >> tau_units) {
+        if (isGhost(tau_value, tau_units)) {
+            Z_c = str_to_Z(Z_c_str);
+            Z_p = str_to_Z(Z_p_str);
+            counter++;
+            Child child(Z_c, A_c);
+            Parent parent = std::make_pair(PID(Z_p, A_p), branching / 100.);
+            if (is_present(child)) {
+                tree.at(child).push_back(parent);
+            } else {
+                Parents parents{parent};
+                tree.insert(std::make_pair(child, parents));
+            }
         }
     }
     infile.close();
-    std::cout << " - read " << counter << " ghost reactions!\n";
+    std::cout << " - read " << counter << " ghost reactions\n";
 }
 
-void GhostTree::plot_ghosts() {
+void GhostTree::plot_ghosts() const {
     for (auto& node : tree) {
         std::cout << node.first << " <- ";
         for (auto& parent : node.second)
