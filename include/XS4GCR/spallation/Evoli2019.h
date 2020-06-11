@@ -1,6 +1,6 @@
 // Copyright (c) 2017 Carmelo Evoli - MIT License
-#ifndef INCLUDE_XS4GCR_SPALLATION_EVOLI2018_H_
-#define INCLUDE_XS4GCR_SPALLATION_EVOLI2018_H_
+#ifndef INCLUDE_XS4GCR_SPALLATION_EVOLI2019_H_
+#define INCLUDE_XS4GCR_SPALLATION_EVOLI2019_H_
 
 #include <memory>
 #include <string>
@@ -12,9 +12,9 @@
 
 namespace XS4GCR {
 
-class Evoli2018_Spallation : public Spallation {
+class Evoli2019_Spallation : public Spallation {
    public:
-    Evoli2018_Spallation();
+    Evoli2019_Spallation();
     void print() override;
     std::shared_ptr<Spallation> clone() override;
     double get(const channel& ch, const TARGET& target, const double& T_n,
@@ -35,4 +35,4 @@ class Evoli2018_Spallation : public Spallation {
 
 }  // namespace XS4GCR
 
-#endif  // INCLUDE_XS4GCR_SPALLATION_EVOLI2018_H_
+#endif  // INCLUDE_XS4GCR_SPALLATION_EVOLI2019_H_

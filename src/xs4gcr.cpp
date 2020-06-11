@@ -63,7 +63,7 @@ std::shared_ptr<Spallation> XSECS::create_secondary_nuclei() {
     if (secondary_nuclei_model == "Webber1993") {
         secondary_nuclei = std::make_shared<Webber1993_Spallation>();
     } else if (secondary_nuclei_model == "Evoli2018") {
-        secondary_nuclei = std::make_shared<Evoli2018_Spallation>();
+        secondary_nuclei = std::make_shared<Evoli2019_Spallation>();
     } else {
         assert(secondary_nuclei_model == "Webber1993");
     }
