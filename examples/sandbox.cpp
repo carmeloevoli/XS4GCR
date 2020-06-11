@@ -1,6 +1,7 @@
-#include "d2xsec.h"
+// Copyright (c) 2017 Carmelo Evoli - MIT License
+#include "XS4GCR/xs4gcr.h"
 
 int main() {
-	DRAGON2::D2XSEC xsec;
-	return 0;
+    XS4GCR::XSECS xsec;
+    return 0;
 }

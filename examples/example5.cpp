@@ -1,4 +1,4 @@
-#include "d2xsec.h"
+#include "../include/xs4gcr.h"
 #include "pid.h"
 
 /**
@@ -15,11 +15,11 @@
  *
  * @param particle identifier
  */
-void print_decay_properties(std::shared_ptr<DRAGON2::Decay_Chart> decays, DRAGON2::PID particle) {
+void print_decay_properties(std::shared_ptr<XS4GCR::Decay_Chart> decays, XS4GCR::PID particle) {
 	if (decays->get_halftime(particle) > 0) {
 		std::cout << particle << " decays in "
-				<< decays->get_halftime(DRAGON2::Be10) / MKS::year
-				<< " years with mode " << decays->get_mode(DRAGON2::Be10)
+				<< decays->get_halftime(XS4GCR::Be10) / MKS::year
+				<< " years with mode " << decays->get_mode(XS4GCR::Be10)
 				<< "\n";
 	} else {
 		std::cout << particle << " is stable (as far as we know).\n";
@@ -30,10 +30,10 @@ void print_decay_properties(std::shared_ptr<DRAGON2::Decay_Chart> decays, DRAGON
  * @brief Main function for example5
  */
 int main() {
-	DRAGON2::D2XSEC xsec;
+	XS4GCR::D2XSEC xsec;
 	auto decays = xsec.create_decay_chart();
-	print_decay_properties(decays, DRAGON2::Be10);
-	print_decay_properties(decays, DRAGON2::B10);
+	print_decay_properties(decays, XS4GCR::Be10);
+	print_decay_properties(decays, XS4GCR::B10);
 	return 0;
 }
 

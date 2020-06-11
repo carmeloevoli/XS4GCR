@@ -1,4 +1,4 @@
-#include "d2xsec.h"
+#include "../include/xs4gcr.h"
 #include "lis.h"
 
 /**
@@ -26,10 +26,10 @@
  * @param filename output file name
  */
 void get_fragmentation_timescale(std::string filename) {
-	DRAGON2::D2XSEC xsec;
+	XS4GCR::D2XSEC xsec;
 	xsec.set_proton_xsecs("DRAGON2");
 	auto x_pr = xsec.create_proton_xsecs();
-	DRAGON2::TARGET H_ISM(1), He_ISM(2);
+	XS4GCR::TARGET H_ISM(1), He_ISM(2);
 	double n_gas = 1. / MKS::cm3;
 	std::ofstream outfile(filename);
 	outfile << std::scientific;
@@ -56,10 +56,10 @@ void get_fragmentation_timescale(std::string filename) {
  * @param filename output file name
  */
 void get_secondary_production(const double& T_proj, std::string filename) {
-	DRAGON2::D2XSEC xsec;
+	XS4GCR::D2XSEC xsec;
 	xsec.set_proton_xsecs("DRAGON2");
 	auto x_pr = xsec.create_proton_xsecs();
-	DRAGON2::TARGET H_ISM(1), He_ISM(2);
+	XS4GCR::TARGET H_ISM(1), He_ISM(2);
 	std::ofstream outfile(filename);
 	for (double T_sec = 0.1 * MKS::GeV; T_sec < T_proj; T_sec *= 1.1) {
 		double sigma_H = x_pr->get_inelastic(H_ISM, T_proj) / T_proj;

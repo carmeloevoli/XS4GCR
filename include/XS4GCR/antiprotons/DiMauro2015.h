@@ -1,12 +1,14 @@
-#ifndef INCLUDE_DIMAURO15_H_
-#define INCLUDE_DIMAURO15_H_
+// Copyright (c) 2017 Carmelo Evoli - MIT License
+#ifndef INCLUDE_XS4GCR_ANTIPROTONS_DIMAURO2015_H_
+#define INCLUDE_XS4GCR_ANTIPROTONS_DIMAURO2015_H_
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
+
+#include "XS4GCR/mks.h"
+#include "XS4GCR/utilities.h"
 #include "gsl/gsl_integration.h"
-#include "mks.h"
-#include "utilities.h"
 
 namespace DiMauro2015 {
 
@@ -16,4 +18,4 @@ double sigma_invariant(const double &sqrt_s, const double &X_r, const double &p_
 
 } /* namespace DiMauro2015 */
 
-#endif /* INCLUDE_DIMAURO15_H_ */
+#endif  // INCLUDE_XS4GCR_ANTIPROTONS_DIMAURO2015_H_

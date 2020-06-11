@@ -1,11 +1,13 @@
-#ifndef INCLUDE_TANNG83_H_
-#define INCLUDE_TANNG83_H_
+// Copyright (c) 2017 Carmelo Evoli - MIT License
+#ifndef INCLUDE_XS4GCR_ANTIPROTONS_TANNG83_H_
+#define INCLUDE_XS4GCR_ANTIPROTONS_TANNG83_H_
 
 #include <cassert>
 #include <iostream>
+
+#include "XS4GCR/mks.h"
+#include "XS4GCR/utilities.h"
 #include "gsl/gsl_integration.h"
-#include "mks.h"
-#include "utilities.h"
 
 namespace TanNg83 {
 
@@ -15,4 +17,4 @@ double sigma_invariant(const double& sqrt_s, const double& X_r, const double& p_
 
 } /* namespace TanNg83 */
 
-#endif /* INCLUDE_TANNG83_H_ */
+#endif  // INCLUDE_XS4GCR_ANTIPROTONS_TANNG83_H_

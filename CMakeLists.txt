@@ -1,4 +1,4 @@
-project(D2XSECS Fortran C  CXX)
+project(XS4GCR Fortran C CXX)
 cmake_minimum_required(VERSION 2.8)
 
 set( CMAKE_VERBOSE_MAKEFILE off )
@@ -8,32 +8,28 @@ get_filename_component (Fortran_COMPILER_NAME ${CMAKE_Fortran_COMPILER} NAME)
 set( CMAKE_C_COMPILER "gcc-9" )
 set( CMAKE_CXX_COMPILER "g++-9" )
 set( CMAKE_CXX_FLAGS "-O2 -ftree-vectorize -std=c++11" )
-set( D2XSEC_INCLUDES )
-set( D2XSEC_LIBRARIES )
+set( XS4GCR_INCLUDES )
+set( XS4GCR_LIBRARIES )
 option(BUILD_DOC "Build documentation" OFF)
 
 # include
-include_directories( "${CMAKE_SOURCE_DIR}/include" 
-					 "${CMAKE_SOURCE_DIR}/include/antiprotons"
-					 "${CMAKE_SOURCE_DIR}/include/inelastic"
-					 "${CMAKE_SOURCE_DIR}/include/leptons"
-					 "${CMAKE_SOURCE_DIR}/include/spallation"  )
+include_directories( "${CMAKE_SOURCE_DIR}/include" )
 
 # cparamlib (provided)
 add_subdirectory(libs/cparamlib)
-list(APPEND D2XSEC_LIBRARIES cparamlib)
-list(APPEND D2XSEC_INCLUDES libs/cparamlib/include)
+list(APPEND XS4GCR_LIBRARIES cparamlib)
+list(APPEND XS4GCR_INCLUDES libs/cparamlib/include)
 
 # fortran codes (provided)
 add_subdirectory(libs/external_codes)
-list(APPEND D2XSEC_LIBRARIES external_codes)
+list(APPEND XS4GCR_LIBRARIES external_codes)
 
 # GSL (external)
 find_package(GSL)
 if(GSL_FOUND)
     set(HAVE_LIBGSL 1)
-    list(APPEND D2XSEC_INCLUDES ${GSL_INCLUDE_DIR})
-    list(APPEND D2XSEC_LIBRARIES ${GSL_LIBRARIES})
+    list(APPEND XS4GCR_INCLUDES ${GSL_INCLUDE_DIR})
+    list(APPEND XS4GCR_LIBRARIES ${GSL_LIBRARIES})
 else(GSL_FOUND)
     message(FATAL_ERROR "Require GSL: set GSL_HOME")
 endif(GSL_FOUND)
@@ -58,8 +54,12 @@ else (DOXYGEN_FOUND)
     message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
 
+# copy data files in build
+file(GLOB XS4GCR_DATA "data/*.txt")
+file(COPY ${XS4GCR_DATA} DESTINATION ${PROJECT_BINARY_DIR}/data)
+
 # add source files
-set( D2XSEC_SRCS
+set( XS4GCR_SRCS
         src/antiprotons/antiproton_tables.cpp
         src/antiprotons/antiprotons.cpp
         src/antiprotons/DiMauro2015.cpp
@@ -73,63 +73,41 @@ set( D2XSEC_SRCS
         src/spallation/ghost_tree.cpp
         src/spallation/spallation.cpp
         src/spallation/Webber2003_table.cpp
-        src/d2xsec.cpp
         src/decay.cpp
         src/grid.cpp
         src/protons.cpp
         src/utilities.cpp
-        )
-
-set( D2XSEC_HDRS
-        include/antiprotons/antiproton_tables.h
-        include/antiprotons/antiprotons.h
-        include/antiprotons/DiMauro2015.h
-        include/antiprotons/Duperray03.h
-        include/antiprotons/TanNg83.h
-        include/inelastic/inelastic.h
-        include/inelastic/Tripathi99.h
-        include/leptons/leptons.h
-        include/spallation/Evoli2018.h
-        include/spallation/fitting_functions.h
-        include/spallation/ghost_tree.h
-        include/spallation/spallation.h
-        include/spallation/Webber2003_table.h
-        include/axis.h
-        include/d2xsec.h
-        include/decay.h
-        include/grid.h
-        include/interpolator.h
-        include/pid.h
+        src/xs4gcr.cpp
         )
 
 # make library
-include_directories (include ${D2XSEC_INCLUDES})
-add_library( D2XSEC ${D2XSEC_SRCS} ${D2XSEC_INCLUDES} )
+include_directories (include ${XS4GCR_INCLUDES})
+add_library( XS4GCR ${XS4GCR_SRCS} ${XS4GCR_INCLUDES} )
 
 # make executables
-add_executable(xsec_example1 examples/example1.cpp ${D2XSEC_HDRS})
-target_link_libraries (xsec_example1 D2XSEC ${D2XSEC_LIBRARIES})
+add_executable(xsec_inelastic examples/inelastic.cpp)
+target_link_libraries (xsec_inelastic XS4GCR ${XS4GCR_LIBRARIES})
 
-add_executable(xsec_example2 examples/example2.cpp )
-target_link_libraries (xsec_example2 D2XSEC ${D2XSEC_LIBRARIES})
+add_executable(xsec_secleptons examples/secleptons.cpp )
+target_link_libraries (xsec_secleptons XS4GCR ${XS4GCR_LIBRARIES})
 
-add_executable(xsec_example3 examples/example3.cpp )
-target_link_libraries (xsec_example3 D2XSEC ${D2XSEC_LIBRARIES})
+add_executable(xsec_secantiprotons examples/secantiprotons.cpp )
+target_link_libraries (xsec_secantiprotons XS4GCR ${XS4GCR_LIBRARIES})
 
-add_executable(xsec_example4 examples/example4.cpp )
-target_link_libraries (xsec_example4 D2XSEC ${D2XSEC_LIBRARIES})
+#add_executable(xsec_example4 examples/example4.cpp )
+#target_link_libraries (xsec_example4 XS4GCR ${XS4GCR_LIBRARIES})
 
-add_executable(xsec_example5 examples/example5.cpp )
-target_link_libraries (xsec_example5 D2XSEC ${D2XSEC_LIBRARIES})
+#add_executable(xsec_example5 examples/example5.cpp )
+#target_link_libraries (xsec_example5 XS4GCR ${XS4GCR_LIBRARIES})
 
-add_executable(xsec_example6 examples/example6.cpp )
-target_link_libraries (xsec_example6 D2XSEC ${D2XSEC_LIBRARIES})
+#add_executable(xsec_example6 examples/example6.cpp )
+#target_link_libraries (xsec_example6 XS4GCR ${XS4GCR_LIBRARIES})
 
 add_executable(sandbox examples/sandbox.cpp )
-target_link_libraries (sandbox D2XSEC ${D2XSEC_LIBRARIES})
+target_link_libraries (sandbox XS4GCR ${XS4GCR_LIBRARIES})
 
-add_executable(D2-table examples/D2-table.cpp )
-target_link_libraries (D2-table D2XSEC ${D2XSEC_LIBRARIES})
+#add_executable(D2-table examples/D2-table.cpp )
+#target_link_libraries (D2-table XS4GCR ${XS4GCR_LIBRARIES})
 
 # show summary
 message (STATUS "CMAKE_SYSTEM .......... = ${CMAKE_SYSTEM}")
@@ -137,5 +115,5 @@ message (STATUS "BUILD_SHARED_LIBS ..... = ${BUILD_SHARED_LIBS}")
 message (STATUS "CMAKE_CXX_COMPILER .... = ${CMAKE_CXX_COMPILER}")
 message (STATUS "CMAKE_CXX_FLAGS ....... = ${CMAKE_CXX_FLAGS}")
 message (STATUS "CMAKE_INCLUDE_PATH .... = ${CMAKE_INCLUDE_PATH}")
-message (STATUS "D2XSEC_INCLUDES ....... = ${D2XSEC_INCLUDES}")
-message (STATUS "D2XSEC_LIBRARIES ...... = ${D2XSEC_LIBRARIES}")
+message (STATUS "XS4GCR_INCLUDES ....... = ${XS4GCR_INCLUDES}")
+message (STATUS "XS4GCR_LIBRARIES ...... = ${XS4GCR_LIBRARIES}")

@@ -1,8 +1,8 @@
-#include "d2xsec.h"
 #include <fstream>
 #include <iomanip>
+#include "../include/xs4gcr.h"
 
-using namespace DRAGON2;
+using namespace XS4GCR;
 
 int main() {
 	D2XSEC xsec;

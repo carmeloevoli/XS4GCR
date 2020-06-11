@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-namespace DRAGON2 {
+namespace XS4GCR {
 
 template<typename T>
 class log_axis {

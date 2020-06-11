@@ -5,7 +5,7 @@
 #include <map>
 #include <sstream>
 
-namespace DRAGON2 {
+namespace XS4GCR {
 
 class PID {
 public:
