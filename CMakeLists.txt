@@ -68,7 +68,7 @@ set( XS4GCR_SRCS
         src/inelastic/inelastic.cpp
         src/inelastic/Tripathi99.cpp
         src/leptons/leptons.cpp
-        src/spallation/Evoli2018.cpp
+        src/spallation/Evoli2019.cpp
         src/spallation/fitting_functions.cpp
         src/spallation/ghost_tree.cpp
         src/spallation/spallation.cpp
@@ -106,8 +106,8 @@ target_link_libraries (xsec_secantiprotons XS4GCR ${XS4GCR_LIBRARIES})
 add_executable(sandbox examples/sandbox.cpp )
 target_link_libraries (sandbox XS4GCR ${XS4GCR_LIBRARIES})
 
-#add_executable(D2-table examples/D2-table.cpp )
-#target_link_libraries (D2-table XS4GCR ${XS4GCR_LIBRARIES})
+add_executable(frag-table examples/frag-table.cpp )
+target_link_libraries (frag-table XS4GCR ${XS4GCR_LIBRARIES})
 
 # show summary
 message (STATUS "CMAKE_SYSTEM .......... = ${CMAKE_SYSTEM}")
