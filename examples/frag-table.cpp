@@ -9,34 +9,16 @@
 #include "XS4GCR/pid.h"
 #include "XS4GCR/xs4gcr.h"
 
-int main() {
+void write_table(const std::vector<XS4GCR::PID>& particles, const std::string& filename,
+                 bool doGhosts) {
     XS4GCR::XSECS xsec;
     xsec.set_secondary_nuclei("Evoli2018");
     auto x_in = xsec.create_secondary_nuclei();
+
     XS4GCR::TARGET H_ISM(1);
 
-    //    double E = 10. * MKS::GeV;
-    //    XS4GCR::channel ch(XS4GCR::C12, XS4GCR::B10);
-    //    std::cout << E << " " << x_in->get(ch, H_ISM, E, true) << "\n";
-
-    std::vector<XS4GCR::PID> particles;
-
-    std::string filename = "data/crchart_Z28.txt";
-    std::ifstream infile(filename.c_str());
-    infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    int Z;
-    int A;
-    while (!infile.eof()) {
-        infile >> Z;
-        infile >> A;
-        infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        auto pid = XS4GCR::PID(Z, A);
-        particles.push_back(pid);
-    }
-    std::cout << " - read my particle chart with " << particles.size() << " nuclei\n";
-
     std::fstream txtfile;
-    txtfile.open("crxsecs_fragmentation_Evoli2019_direct.txt", std::ios_base::out);
+    txtfile.open(filename, std::ios_base::out);
     txtfile.precision(3);
 
     double E_min = 10. * MKS::MeV;
@@ -61,7 +43,7 @@ int main() {
                         << fragment.get_Z() << " " << fragment.get_A() << " ";
                 for (size_t i = 0; i < E_size; ++i) {
                     XS4GCR::channel ch(projectile, fragment);
-                    txtfile << x_in->get(ch, H_ISM, E.at(i), false) / MKS::mbarn;
+                    txtfile << x_in->get(ch, H_ISM, E.at(i), doGhosts) / MKS::mbarn;
                     if (i < E_size - 1) txtfile << " ";
                 }
                 txtfile << "\n";
@@ -69,5 +51,26 @@ int main() {
         }
     }
     std::cout << " - computed " << counter << " reactions\n";
+}
+
+int main() {
+    std::vector<XS4GCR::PID> particles;
+
+    std::string filename = "data/crchart_Z28.txt";
+    std::ifstream infile(filename.c_str());
+    infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    int Z;
+    int A;
+    while (!infile.eof()) {
+        infile >> Z;
+        infile >> A;
+        infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        auto pid = XS4GCR::PID(Z, A);
+        particles.push_back(pid);
+    }
+    std::cout << " - read my particle chart with " << particles.size() << " nuclei\n";
+
+    write_table(particles, "crxsecs_fragmentation_Evoli2019_direct.txt", false);
+    // write_table(particles, "crxsecs_fragmentation_Evoli2019_cumulative.txt", true);
     return 0;
 }
