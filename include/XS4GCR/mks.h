@@ -1,11 +1,12 @@
-#ifndef INCLUDE_MKS_H_
-#define INCLUDE_MKS_H_
+// Copyright (c) 2017 Carmelo Evoli - MIT License
+#ifndef INCLUDE_XS4GCR_MKS_H_
+#define INCLUDE_XS4GCR_MKS_H_
 
 #include <cmath>
-#define pow2(A) ((A)*(A))
-#define pow3(A) ((A)*(A)*(A))
-#define pow4(A) ((A)*(A)*(A)*(A))
-#define pow5(A) ((A)*(A)*(A)*(A)*(A))
+#define pow2(A) ((A) * (A))
+#define pow3(A) ((A) * (A) * (A))
+#define pow4(A) ((A) * (A) * (A) * (A))
+#define pow5(A) ((A) * (A) * (A) * (A) * (A))
 
 namespace MKS {
 
@@ -112,6 +113,6 @@ static const double Gpc = gigaparsec;
 static const double He_correction_xsec = pow(4.0, 2.0 / 3.0);
 static const double f_He = 0.11;
 
-} // namespace MKS
+}  // namespace MKS
 
-#endif /* INCLUDE_MKS_H_ */
+#endif  // INCLUDE_XS4GCR_MKS_H_
