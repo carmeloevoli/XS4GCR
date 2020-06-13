@@ -1,121 +1,132 @@
-#ifndef D2XSECS_PID_H
-#define D2XSECS_PID_H
+// Copyright (c) 2017 Carmelo Evoli - MIT License
+#ifndef INCLUDE_XS4GCR_PID_H_
+#define INCLUDE_XS4GCR_PID_H_
 
 #include <cassert>
 #include <map>
 #include <sstream>
+#include <string>
+#include <utility>
 
 namespace XS4GCR {
 
 class PID {
-public:
-	PID() {
-		set(0, 0);
-	}
+   public:
+    PID() { set(0, 0); }
 
-	PID(const int &Z_, const int &A_) {
-		assert(A_ >= 0);
-		set(Z_, A_);
-	}
+    PID(const int &Z_, const int &A_) {
+        assert(A_ >= 0);
+        set(Z_, A_);
+    }
 
-	virtual ~PID() {
-	}
+    PID(const std::string &Z_name, const int &A_) {
+        assert(A_ >= 0);
+        int Z_ = str_to_Z(Z_name);
+        set(Z_, A_);
+    }
 
-	void set(const int &Z_, const int &A_) {
-		Z = Z_;
-		A = A_;
-		id = A * 1000 + Z;
-	}
+    virtual ~PID() {}
 
-	int get_Z() const {
-		return Z;
-	}
+    void set(const int &Z_, const int &A_) {
+        Z = Z_;
+        A = A_;
+        id = A * 1000 + Z;
+    }
 
-	int get_A() const {
-		return A;
-	}
+    int get_Z() const { return Z; }
 
-	int get_id() const {
-		return id;
-	}
+    int get_A() const { return A; }
 
-	bool operator==(const PID &other) const {
-		return id == other.id;
-	}
+    int get_id() const { return id; }
 
-	bool operator!=(const PID &other) const {
-		return id != other.id;
-	}
+    bool operator==(const PID &other) const { return id == other.id; }
 
-	bool operator<(const PID &other) const {
-		return id < other.id;
-	}
+    bool operator!=(const PID &other) const { return id != other.id; }
 
-	bool with_Z(const int &Z_) const {
-		return Z == Z_;
-	}
+    bool operator<(const PID &other) const { return id < other.id; }
 
-	bool with_A(const int &A_) const {
-		return A == A_;
-	}
+    bool with_Z(const int &Z_) const { return Z == Z_; }
 
-	bool is_lepton() const {
-		return A == 0;
-	}
+    bool with_A(const int &A_) const { return A == A_; }
 
-	bool is_electron() const {
-		return A == 0 && Z == -1;
-	}
+    bool is_lepton() const { return A == 0; }
 
-	bool is_positron() const {
-		return A == 0 && Z == 1;
-	}
+    bool is_electron() const { return A == 0 && Z == -1; }
 
-	bool is_H() const {
-		return (Z == 1);
-	}
+    bool is_positron() const { return A == 0 && Z == 1; }
 
-	bool is_He() const {
-		return (Z == 2);
-	}
+    bool is_H() const { return (Z == 1); }
 
-	friend std::ostream &operator<<(std::ostream &stream, const PID &pid) {
-		stream << "(" << pid.get_Z() << "," << pid.get_A() << ")";
-		return stream;
-	}
+    bool is_He() const { return (Z == 2); }
 
-	std::string to_string() const {
-		std::string ss;
-		ss = "(" + std::to_string(Z) + "," + std::to_string(A) + ")";
-		return ss;
-	}
+    friend std::ostream &operator<<(std::ostream &stream, const PID &pid) {
+        stream << "(" << pid.get_Z() << "," << pid.get_A() << ")";
+        return stream;
+    }
 
-protected:
-	int Z;
-	int A;
-	int id;
+    std::string to_string() const {
+        std::string ss;
+        ss = "(" + std::to_string(Z) + "," + std::to_string(A) + ")";
+        return ss;
+    }
+
+    int str_to_Z(std::string name) {
+        std::map<std::string, int> Z_table;
+        Z_table["H"] = 1;
+        Z_table["He"] = 2;
+        Z_table["Li"] = 3;
+        Z_table["Be"] = 4;
+        Z_table["B"] = 5;
+        Z_table["C"] = 6;
+        Z_table["N"] = 7;
+        Z_table["O"] = 8;
+        Z_table["F"] = 9;
+        Z_table["Ne"] = 10;
+        Z_table["Na"] = 11;
+        Z_table["Mg"] = 12;
+        Z_table["Al"] = 13;
+        Z_table["Si"] = 14;
+        Z_table["P"] = 15;
+        Z_table["S"] = 16;
+        Z_table["Cl"] = 17;
+        Z_table["Ar"] = 18;
+        Z_table["K"] = 19;
+        Z_table["Ca"] = 20;
+        Z_table["Sc"] = 21;
+        Z_table["Ti"] = 22;
+        Z_table["V"] = 23;
+        Z_table["Cr"] = 24;
+        Z_table["Mn"] = 25;
+        Z_table["Fe"] = 26;
+        Z_table["Co"] = 27;
+        Z_table["Ni"] = 28;
+        auto iterator = Z_table.find(name.c_str());
+        assert(iterator != Z_table.end());
+        return iterator->second;
+    }
+
+   protected:
+    int Z;
+    int A;
+    int id;
 };
 
-class TARGET: public PID {
-public:
-	TARGET(const int &Z_) {
-		assert(Z_ == 1 || Z_ == 2);
-		set(Z_);
-	}
+class TARGET : public PID {
+   public:
+    explicit TARGET(const int &Z_) {
+        assert(Z_ == 1 || Z_ == 2);
+        set(Z_);
+    }
 
-	void set(const int &Z_) {
-		Z = Z_;
-		A = (Z_ == 1) ? Z_ : 2 * Z_;
-		id = A * 1000 + Z;
-	}
+    void set(const int &Z_) {
+        Z = Z_;
+        A = (Z_ == 1) ? Z_ : 2 * Z_;
+        id = A * 1000 + Z;
+    }
 
-	bool is_H() const {
-		return Z == 1;
-	}
+    bool is_H() const { return Z == 1; }
 
-	bool is_He() const {
-		return Z == 2;
-	}
+    bool is_He() const { return Z == 2; }
 };
 
 static const PID H3 = PID(1, 3);
@@ -183,6 +194,6 @@ static const PID Fe56 = PID(26, 56);
 
 using channel = std::pair<PID, PID>;
 
-} // namespace DRAGON2
+}  // namespace XS4GCR
 
-#endif
+#endif  // INCLUDE_XS4GCR_PID_H_
