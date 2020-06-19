@@ -1,7 +1,12 @@
 # Dirs
-.idea/
 build/
 cmake-build-debug/
+.DS_Store
+
+# Eclipse stuff
+.cproject
+.project
+.settings/
 
 # Compiled Object files
 *.slo
