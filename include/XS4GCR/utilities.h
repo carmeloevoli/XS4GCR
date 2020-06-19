@@ -57,21 +57,25 @@ class BiLinear_Interpol {
     }
     virtual ~BiLinear_Interpol() {}
     T get(const T& x, const T& y) const {
-        T x2x1, y2y1, x2x, y2y, yy1, xx1;
-        x2x1 = x2 - x1;
-        y2y1 = y2 - y1;
-        x2x = x2 - x;
-        y2y = y2 - y;
-        yy1 = y - y1;
-        xx1 = x - x1;
-        T q = q11 * x2x * y2y + q21 * xx1 * y2y + q12 * x2x * yy1 + q22 * xx1 * yy1;
+        auto x2x1 = x2 - x1;
+        auto y2y1 = y2 - y1;
+        auto x2x = x2 - x;
+        auto y2y = y2 - y;
+        auto yy1 = y - y1;
+        auto xx1 = x - x1;
+        auto q = q11 * x2x * y2y + q21 * xx1 * y2y + q12 * x2x * yy1 + q22 * xx1 * yy1;
         return 1.0 / (x2x1 * y2y1) * q;
     }
 
    protected:
-    T x1 = 0, x2 = 0;
-    T y1 = 0, y2 = 0;
-    T q11 = 0, q21 = 0, q12 = 0, q22 = 0;
+    T x1 = 0;
+    T x2 = 0;
+    T y1 = 0;
+    T y2 = 0;
+    T q11 = 0;
+    T q21 = 0;
+    T q12 = 0;
+    T q22 = 0;
 };
 
 bool file_exist(const std::string& filename);
@@ -79,6 +83,8 @@ bool file_exist(const std::string& filename);
 size_t count_file_lines(const std::string& filename);
 
 int str_to_Z(const std::string& Z_str);
+
+std::string Z_to_str(const int& Z);
 
 extern "C" double sighad_(int*, double*, double*, double*, double*, double*);
 double sighad_cc(int IS, double PA, double PZ, double TA, double TZ, double T);

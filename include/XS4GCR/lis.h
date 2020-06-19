@@ -11,7 +11,6 @@ namespace Ghelfi2016 {
 class LIS {
    public:
     virtual ~LIS() {}
-    virtual void init() = 0;
     double get(const double& T_n) const {
         double log_J_LIS = 0;
         if (T_n < T_threshold) {

@@ -18,8 +18,10 @@ DRAGON2_Decay_Chart::DRAGON2_Decay_Chart() {
 
 void DRAGON2_Decay_Chart::add_unstable_isotope(std::string line) {
     std::istringstream ss(line);
-    int A_, Z_;
-    double tau_, tau_naked_;
+    int A_;
+    int Z_;
+    double tau_;
+    double tau_naked_;
     std::string mode_;
     ss >> A_ >> Z_ >> tau_ >> tau_naked_ >> mode_;
     decay_mode mode;

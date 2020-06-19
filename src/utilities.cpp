@@ -2,6 +2,7 @@
 #include "XS4GCR/utilities.h"
 
 #include <fstream>
+#include <iostream>
 #include <string>
 
 namespace XS4GCR {
@@ -20,69 +21,136 @@ bool file_exist(const std::string& filename) {
 }
 
 int str_to_Z(const std::string& Z_str) {
-    if (Z_str == "H")
+    if (Z_str == "H") {
         return 1;
-    else if (Z_str == "He")
+    } else if (Z_str == "He") {
         return 2;
-    else if (Z_str == "Li")
+    } else if (Z_str == "Li") {
         return 3;
-    else if (Z_str == "Be")
+    } else if (Z_str == "Be") {
         return 4;
-    else if (Z_str == "B")
+    } else if (Z_str == "B") {
         return 5;
-    else if (Z_str == "C")
+    } else if (Z_str == "C") {
         return 6;
-    else if (Z_str == "N")
+    } else if (Z_str == "N") {
         return 7;
-    else if (Z_str == "O")
+    } else if (Z_str == "O") {
         return 8;
-    else if (Z_str == "F")
+    } else if (Z_str == "F") {
         return 9;
-    else if (Z_str == "Ne")
+    } else if (Z_str == "Ne") {
         return 10;
-    else if (Z_str == "Na")
+    } else if (Z_str == "Na") {
         return 11;
-    else if (Z_str == "Mg")
+    } else if (Z_str == "Mg") {
         return 12;
-    else if (Z_str == "Al")
+    } else if (Z_str == "Al") {
         return 13;
-    else if (Z_str == "Si")
+    } else if (Z_str == "Si") {
         return 14;
-    else if (Z_str == "P")
+    } else if (Z_str == "P") {
         return 15;
-    else if (Z_str == "S")
+    } else if (Z_str == "S") {
         return 16;
-    else if (Z_str == "Cl")
+    } else if (Z_str == "Cl") {
         return 17;
-    else if (Z_str == "Ar")
+    } else if (Z_str == "Ar") {
         return 18;
-    else if (Z_str == "K")
+    } else if (Z_str == "K") {
         return 19;
-    else if (Z_str == "Ca")
+    } else if (Z_str == "Ca") {
         return 20;
-    else if (Z_str == "Sc")
+    } else if (Z_str == "Sc") {
         return 21;
-    else if (Z_str == "Ti")
+    } else if (Z_str == "Ti") {
         return 22;
-    else if (Z_str == "V")
+    } else if (Z_str == "V") {
         return 23;
-    else if (Z_str == "Cr")
+    } else if (Z_str == "Cr") {
         return 24;
-    else if (Z_str == "Mn")
+    } else if (Z_str == "Mn") {
         return 25;
-    else if (Z_str == "Fe")
+    } else if (Z_str == "Fe") {
         return 26;
-    else if (Z_str == "Co")
+    } else if (Z_str == "Co") {
         return 27;
-    else if (Z_str == "Ni")
+    } else if (Z_str == "Ni") {
         return 28;
-    else if (Z_str == "Cu")
+    } else if (Z_str == "Cu") {
         return 29;
-    else if (Z_str == "Zn")
+    } else if (Z_str == "Zn") {
         return 30;
-    else {
+    } else {
         assert(Z_str == "H");
         return -1;
+    }
+}
+
+std::string Z_to_str(const int& Z) {
+    if (Z == 1) {
+        return "H";
+    } else if (Z == 2) {
+        return "He";
+    } else if (Z == 3) {
+        return "Li";
+    } else if (Z == 4) {
+        return "Be";
+    } else if (Z == 5) {
+        return "B";
+    } else if (Z == 6) {
+        return "C";
+    } else if (Z == 7) {
+        return "N";
+    } else if (Z == 8) {
+        return "O";
+    } else if (Z == 9) {
+        return "F";
+    } else if (Z == 10) {
+        return "Ne";
+    } else if (Z == 11) {
+        return "Na";
+    } else if (Z == 12) {
+        return "Mg";
+    } else if (Z == 13) {
+        return "Al";
+    } else if (Z == 14) {
+        return "Si";
+    } else if (Z == 15) {
+        return "P";
+    } else if (Z == 16) {
+        return "S";
+    } else if (Z == 17) {
+        return "Cl";
+    } else if (Z == 18) {
+        return "Ar";
+    } else if (Z == 19) {
+        return "K";
+    } else if (Z == 20) {
+        return "Ca";
+    } else if (Z == 21) {
+        return "Sc";
+    } else if (Z == 22) {
+        return "Ti";
+    } else if (Z == 23) {
+        return "V";
+    } else if (Z == 24) {
+        return "Cr";
+    } else if (Z == 25) {
+        return "Mn";
+    } else if (Z == 26) {
+        return "Fe";
+    } else if (Z == 27) {
+        return "Co";
+    } else if (Z == 28) {
+        return "Ni";
+    } else if (Z == 29) {
+        return "Cu";
+    } else if (Z == 30) {
+        return "Zn";
+    } else {
+        assert(Z == 1);
+        return "none";
     }
 }
 

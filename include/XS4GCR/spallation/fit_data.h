@@ -29,8 +29,13 @@ class FitData {
     };
 
     void read_data() {
-        int Z_proj, A_proj, Z_frag, A_frag;
-        double T, s, serr;
+        int Z_proj;
+        int A_proj;
+        int Z_frag;
+        int A_frag;
+        double T;
+        double s;
+        double serr;
         std::string label;
         std::ifstream datafile(filename.c_str());
         datafile.ignore(512, '\n');

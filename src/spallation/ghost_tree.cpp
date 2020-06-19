@@ -60,7 +60,8 @@ void GhostTree::read_ghosts() {
             if (is_present(child)) {
                 tree.at(child).push_back(parent);
             } else {
-                Parents parents{parent};
+                Parents parents;
+                parents.push_back(parent);
                 tree.insert(std::make_pair(child, parents));
             }
         }
