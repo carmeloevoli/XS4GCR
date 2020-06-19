@@ -12,7 +12,7 @@
 void write_table(const std::vector<XS4GCR::PID>& particles, const std::string& filename,
                  bool doGhosts) {
     XS4GCR::XSECS xsec;
-    xsec.set_secondary_nuclei("Evoli2018");
+    xsec.set_secondary_nuclei("Evoli2019");
     auto x_in = xsec.create_secondary_nuclei();
 
     XS4GCR::TARGET H_ISM(1);
@@ -71,6 +71,6 @@ int main() {
     std::cout << " - read my particle chart with " << particles.size() << " nuclei\n";
 
     write_table(particles, "crxsecs_fragmentation_Evoli2019_direct.txt", false);
-    // write_table(particles, "crxsecs_fragmentation_Evoli2019_cumulative.txt", true);
+    write_table(particles, "crxsecs_fragmentation_Evoli2019_cumulative.txt", true);
     return 0;
 }

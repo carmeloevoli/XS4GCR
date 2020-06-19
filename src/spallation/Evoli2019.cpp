@@ -1,6 +1,7 @@
 // Copyright (c) 2017 Carmelo Evoli - MIT License
 #include "XS4GCR/spallation/Evoli2019.h"
 
+#include <algorithm>
 #include <memory>
 #include <utility>
 
@@ -11,7 +12,7 @@ namespace XS4GCR {
 Evoli2019_Spallation::Evoli2019_Spallation() {}
 
 void Evoli2019_Spallation::print() {
-    std::cout << "# using Evoli2018 spallation model: Phys. Rev. D 99, 103023 (2019)" << '\n';
+    std::cout << "# using Evoli2019 spallation model: Phys. Rev. D 99, 103023 (2019)" << '\n';
 }
 
 void Evoli2019_Spallation::init() {
@@ -65,18 +66,20 @@ double Evoli2019_Spallation::bestfit_normalization(const channel& ch) {
 }
 
 double Evoli2019_Spallation::direct(const channel& ch, const double& T_n) {
+    double value = 0;
     if (fittingFunctions.is_present(ch)) {
-        return fittingFunctions.get(ch, T_n);
+        value = fittingFunctions.get(ch, T_n);
     } else {
         double norm = 1.;
         if (fitData.channel_exists(ch)) norm = bestfit_normalization(ch);
         PID proj = ch.first;
         PID frag = ch.second;
         if (frag.get_Z() <= 3)
-            return norm * yieldx_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
+            value = norm * yieldx_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
         else
-            return norm * wsigma_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
+            value = norm * wsigma_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
     }
+    return std::max(value, 0.);
 }
 
 double Evoli2019_Spallation::with_ghosts(const channel& ch, const double& T_n) {

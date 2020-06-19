@@ -11,7 +11,8 @@
 #include "XS4GCR/inelastic/inelastic.h"
 #include "XS4GCR/leptons/leptons.h"
 #include "XS4GCR/protons.h"
-#include "XS4GCR/spallation/Evoli2018.h"
+#include "XS4GCR/spallation/Evoli2019.h"
+#include "XS4GCR/spallation/Webber1993.h"
 #include "XS4GCR/spallation/spallation.h"
 
 namespace XS4GCR {
