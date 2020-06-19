@@ -72,6 +72,7 @@ set( XS4GCR_SRCS
         src/spallation/fitting_functions.cpp
         src/spallation/ghost_tree.cpp
         src/spallation/spallation.cpp
+        src/spallation/Webber1993.cpp
         src/spallation/Webber2003_table.cpp
         src/decay.cpp
         src/grid.cpp
