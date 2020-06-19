@@ -39,8 +39,8 @@ void write_table(const std::vector<XS4GCR::PID>& particles, const std::string& f
         for (auto& fragment : particles) {
             if (projectile.get_A() > fragment.get_A()) {
                 counter++;
-                txtfile << projectile.get_Z() << " " << projectile.get_A() << " "
-                        << fragment.get_Z() << " " << fragment.get_A() << " ";
+                txtfile << fragment.get_Z() << " " << fragment.get_A() << " ";
+                txtfile << projectile.get_Z() << " " << projectile.get_A() << " ";
                 for (size_t i = 0; i < E_size; ++i) {
                     XS4GCR::channel ch(projectile, fragment);
                     txtfile << x_in->get(ch, H_ISM, E.at(i), doGhosts) / MKS::mbarn;
