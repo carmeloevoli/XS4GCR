@@ -16,13 +16,13 @@ void Evoli2019_Spallation::print() {
 }
 
 void Evoli2019_Spallation::init() {
-    assert(file_exist(fitdata_filename));
+    assert(Utils::file_exist(fitdata_filename));
     fitData = FitData(fitdata_filename);
-    assert(file_exist(paramsfit_filename));
+    assert(Utils::file_exist(paramsfit_filename));
     fittingFunctions = FittingFunctions(paramsfit_filename);
-    assert(file_exist(ghostlist_filename));
+    assert(Utils::file_exist(ghostlist_filename));
     ghostTree = GhostTree(ghostlist_filename);
-    set_sigma_cc();
+    Utils::set_sigma_cc();
 }
 
 std::shared_ptr<Spallation> Evoli2019_Spallation::clone() {
@@ -50,11 +50,11 @@ double Evoli2019_Spallation::bestfit_normalization(const channel& ch) {
         for (auto d : data) {
             double model = 0;
             if (frag.get_Z() <= 3)
-                model =
-                    norm * yieldx_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), d.T);
+                model = norm * Utils::yieldx_cc(proj.get_Z(), proj.get_A(), frag.get_Z(),
+                                                frag.get_A(), d.T);
             else
-                model =
-                    norm * wsigma_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), d.T);
+                model = norm * Utils::wsigma_cc(proj.get_Z(), proj.get_A(), frag.get_Z(),
+                                                frag.get_A(), d.T);
             chi2 += pow2(d.sigma - model) / pow2(d.sigma_err);
         }
         if (chi2 < bestfit.first) {
@@ -75,9 +75,11 @@ double Evoli2019_Spallation::direct(const channel& ch, const double& T_n) {
         PID proj = ch.first;
         PID frag = ch.second;
         if (frag.get_Z() <= 3)
-            value = norm * yieldx_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
+            value = norm *
+                    Utils::yieldx_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
         else
-            value = norm * wsigma_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
+            value = norm *
+                    Utils::wsigma_cc(proj.get_Z(), proj.get_A(), frag.get_Z(), frag.get_A(), T_n);
     }
     return std::max(value, 0.);
 }

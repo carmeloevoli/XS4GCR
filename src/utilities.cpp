@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-namespace XS4GCR {
+namespace Utils {
 
 size_t count_file_lines(const std::string& filename) {
     size_t count = 0;
@@ -187,4 +187,4 @@ double Ferrando1998_He2H(const double& T_n, const int& Z_I, const int& Z_F) {
     return std::exp(mu_E * std::pow(fabs(Z_I - Z_F - fZI_Z * delta_E), 1.43));
 }
 
-}  // namespace XS4GCR
+}  // namespace Utils

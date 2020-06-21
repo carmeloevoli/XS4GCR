@@ -74,7 +74,7 @@ set( XS4GCR_SRCS
         src/spallation/spallation.cpp
         src/spallation/Webber1993.cpp
         src/spallation/Webber2003_table.cpp
-        src/decay.cpp
+        src/cr_chart.cpp
         src/grid.cpp
         src/protons.cpp
         src/utilities.cpp
@@ -95,8 +95,8 @@ target_link_libraries (xsec_secleptons XS4GCR ${XS4GCR_LIBRARIES})
 add_executable(xsec_secantiprotons examples/secantiprotons.cpp )
 target_link_libraries (xsec_secantiprotons XS4GCR ${XS4GCR_LIBRARIES})
 
-#add_executable(xsec_example4 examples/example4.cpp )
-#target_link_libraries (xsec_example4 XS4GCR ${XS4GCR_LIBRARIES})
+add_executable(decay examples/decay.cpp )
+target_link_libraries (decay XS4GCR ${XS4GCR_LIBRARIES})
 
 #add_executable(xsec_example5 examples/example5.cpp )
 #target_link_libraries (xsec_example5 XS4GCR ${XS4GCR_LIBRARIES})

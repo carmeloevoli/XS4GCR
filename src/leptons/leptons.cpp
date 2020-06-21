@@ -48,7 +48,7 @@ double Kamae2006_Secondary_Leptons::get_cparamlib_sigma(const PID& lepton_,
         assert(lepton_.is_lepton());
     }
     double dsigma_dlogT = sigma_incl_tot(par, (T_lepton_GeV_ + MKS::electron_mass_c2),
-                                         min(T_proton_GeV_, 1e5), &parameters);
+                                         std::min(T_proton_GeV_, 1e5), &parameters);
     return dsigma_dlogT / T_lepton_GeV_ * (MKS::mbarn / MKS::GeV);
 }
 
@@ -109,12 +109,12 @@ double HuangPohl2007_Secondary_Leptons::get(const PID& projectile, const TARGET&
 }
 
 void HuangPohl2007_Secondary_Leptons::check_datafiles_exist() {
-    assert(file_exist(eminus_p_datafile));
-    assert(file_exist(eminus_he_datafile));
-    assert(file_exist(eplus_p_datafile));
-    assert(file_exist(eplus_he_datafile));
-    assert(file_exist(prodxsec_p_datafile));
-    assert(file_exist(prodxsec_he_datafile));
+    assert(Utils::file_exist(eminus_p_datafile));
+    assert(Utils::file_exist(eminus_he_datafile));
+    assert(Utils::file_exist(eplus_p_datafile));
+    assert(Utils::file_exist(eplus_he_datafile));
+    assert(Utils::file_exist(prodxsec_p_datafile));
+    assert(Utils::file_exist(prodxsec_he_datafile));
 }
 
 void HuangPohl2007_Secondary_Leptons::resize_sigma_grids() {

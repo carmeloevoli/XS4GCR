@@ -1,4 +1,4 @@
-#Z   A  Name  Mode       tau_half  comment
+#Z   A  Name  Mode     tau_half  comment
  1   1  1H    STABLE    
  1   2  2H    STABLE
  2   3  3He   STABLE

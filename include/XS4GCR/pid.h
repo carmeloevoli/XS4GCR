@@ -19,7 +19,7 @@ class PID {
     PID(const int &Z, const int &A) { set(Z, A); }
 
     PID(const std::string &Z_name, const int &A) {
-        auto Z = str_to_Z(Z_name);
+        auto Z = Utils::str_to_Z(Z_name);
         set(Z, A);
     }
 
@@ -32,7 +32,7 @@ class PID {
         m_A = A;
         m_id = A * 1000 + Z;
         if (Z > 0)
-            m_name = Z_to_str(Z);
+            m_name = Utils::Z_to_str(Z);
         else
             m_name = "empty";
     }

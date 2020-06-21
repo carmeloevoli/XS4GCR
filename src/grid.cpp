@@ -13,7 +13,7 @@ double grid::get_interpolated(const double& x_) const {
         return 0;
     } else {
         size_t i = x.get_idx(x_);
-        LinearInterpol<double> L(log(x.at(i)), log(x.at(i + 1)), getlog(i), getlog(i + 1));
+        Utils::LinearInterpol<double> L(log(x.at(i)), log(x.at(i + 1)), getlog(i), getlog(i + 1));
         return L.get(x_);
     }
 }
@@ -31,7 +31,7 @@ double grid2d::get_interpolated(const double& x_, const double& y_) const {
     } else {
         size_t i = x.get_idx(x_);
         size_t j = y.get_idx(y_);
-        BiLinear_Interpol<double> B;
+        Utils::BiLinear_Interpol<double> B;
         B.set_xy(log(x.at(i)), log(x.at(i + 1)), log(y.at(j)), log(y.at(j + 1)));
         B.set_q(getlog(i, j), getlog(i + 1, j), getlog(i, j + 1), getlog(i + 1, j + 1));
         return exp(B.get(log(x_), log(y_)));

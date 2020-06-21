@@ -9,17 +9,7 @@
 
 #include "XS4GCR/mks.h"  // TODO(CE) convert to cgs
 
-namespace XS4GCR {
-
-template <class T>
-const T& max(const T& a, const T& b) {
-    return (a < b) ? b : a;
-}
-
-template <class T>
-const T& min(const T& a, const T& b) {
-    return (a < b) ? a : b;
-}
+namespace Utils {
 
 template <typename T>
 class LinearInterpol {
@@ -103,6 +93,6 @@ double yieldx_cc(int IZ, int IA, int JZ, int JA, double T_n);
 
 double Ferrando1998_He2H(const double& T_n, const int& Z_I, const int& Z_F);
 
-}  // namespace XS4GCR
+}  // namespace Utils
 
 #endif  // INCLUDE_XS4GCR_UTILITIES_H_

@@ -83,7 +83,7 @@ double DiMauro_Secondary_Antiprotons::get(const PID& particle, const TARGET& tar
 Winkler2017_antiprotons::Winkler2017_antiprotons()
     : data_filename("data/Winkler2017_antiprotons.txt"), table(std::make_pair(132, 251)) {
     set_model_name("Winkler2017");
-    assert(file_exist(data_filename));
+    assert(Utils::file_exist(data_filename));
     table.read_data_file(data_filename, MKS::GeV, MKS::mbarn / MKS::GeV);
 }
 

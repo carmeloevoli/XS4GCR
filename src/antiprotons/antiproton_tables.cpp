@@ -44,7 +44,7 @@ double antiproton_tables::dsigma_dT(const double &T_proj_, const double &T_ap_, 
 
 void antiproton_tables::read_data_file(const std::string &filename, const double &energy_units,
                                        const double &units) {
-    assert(count_file_lines(filename) == T_proj_size * T_ap_size + 1);
+    assert(Utils::count_file_lines(filename) == T_proj_size * T_ap_size + 1);
     std::ifstream infile(filename, std::ios::in);
     assert(infile.is_open());
     infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

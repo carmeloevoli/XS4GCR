@@ -52,8 +52,8 @@ void GhostTree::read_ghosts() {
     double tau_value;
     while (infile >> Z_p_str >> A_p >> Z_c_str >> A_c >> branching >> tau_value >> tau_units) {
         if (isGhost(tau_value, tau_units)) {
-            Z_c = str_to_Z(Z_c_str);
-            Z_p = str_to_Z(Z_p_str);
+            Z_c = Utils::str_to_Z(Z_c_str);
+            Z_p = Utils::str_to_Z(Z_p_str);
             counter++;
             Child child(Z_c, A_c);
             Parent parent = std::make_pair(PID(Z_p, A_p), branching / 100.);

@@ -69,9 +69,9 @@ std::shared_ptr<Total_Inelastic> CROSEC_Total_Inelastic::clone() {
 }
 
 void CROSEC_Total_Inelastic::init() {
-    assert(file_exist(data_filename));
+    assert(Utils::file_exist(data_filename));
     int ISS = -1;
-    sigtap_cc(ISS);
+    Utils::sigtap_cc(ISS);
 }
 
 double CROSEC_Total_Inelastic::set_energy_within_range(const double& T_n) const {
@@ -90,7 +90,7 @@ double CROSEC_Total_Inelastic::get(const PID& projectile, const TARGET& target,
     double TZ = projectile.get_Z();  // target nucleus mass and charge numbers (4.0<=A2<=239.0)
     double T = set_energy_within_range(T_n) /
                MKS::MeV;  // projectile particle kinetic energy (MEV; 14(20)MEV<T<1TEV)
-    double value = sighad_cc(IS, PA, PZ, TA, TZ, T) * MKS::mbarn;
+    double value = Utils::sighad_cc(IS, PA, PZ, TA, TZ, T) * MKS::mbarn;
     value *= (target.is_He()) ? 2.1 * pow(projectile.get_A(), .055) : 1;
     return value;
 }

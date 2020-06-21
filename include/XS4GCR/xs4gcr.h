@@ -7,7 +7,7 @@
 #include <string>
 
 #include "XS4GCR/antiprotons/antiprotons.h"
-#include "XS4GCR/decay.h"
+#include "XS4GCR/cr_chart.h"
 #include "XS4GCR/inelastic/inelastic.h"
 #include "XS4GCR/leptons/leptons.h"
 #include "XS4GCR/protons.h"
@@ -27,7 +27,7 @@ class XSECS {
     std::shared_ptr<Proton_Xsecs> create_proton_xsecs();
     std::shared_ptr<Secondary_Antiprotons> create_secondary_antiprotons(generators g = EPOS);
     std::shared_ptr<Secondary_Leptons> create_secondary_leptons(const PID &lepton);
-    std::shared_ptr<Decay_Chart> create_decay_chart();
+    std::shared_ptr<CosmicRayChart> create_decay_chart();
     std::shared_ptr<Spallation> create_secondary_nuclei();
 
     inline void set_total_inelastic(const std::string &model_name) {
@@ -59,7 +59,7 @@ class XSECS {
     std::shared_ptr<Proton_Xsecs> proton_xsecs;
     std::shared_ptr<Secondary_Leptons> secondary_leptons;
     std::shared_ptr<Secondary_Antiprotons> secondary_antiprotons;
-    std::shared_ptr<Decay_Chart> decay_chart;
+    std::shared_ptr<CosmicRayChart> decay_chart;
     std::shared_ptr<Spallation> secondary_nuclei;
 };
 

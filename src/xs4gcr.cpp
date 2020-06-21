@@ -71,8 +71,8 @@ std::shared_ptr<Spallation> XSECS::create_secondary_nuclei() {
     return secondary_nuclei->clone();
 }
 
-std::shared_ptr<Decay_Chart> XSECS::create_decay_chart() {
-    decay_chart = std::make_shared<DRAGON2_Decay_Chart>();
+std::shared_ptr<CosmicRayChart> XSECS::create_decay_chart() {
+    decay_chart = std::make_shared<DefaultCosmicRayChart>();
     decay_chart->print();
     return decay_chart->clone();
 }

@@ -38,8 +38,9 @@ double Webber2003_table::get_from_grid(const channel& ch, const double& T_n) {
         return spallation_map.at(ch).back();
     } else if (T_n >= T_n_grid.front()) {
         size_t i = std::upper_bound(T_n_grid.begin(), T_n_grid.end(), T_n) - T_n_grid.begin();
-        LinearInterpol<double> L(T_n_grid.at(i - 1), T_n_grid.at(i),
-                                 spallation_map.at(ch).at(i - 1), spallation_map.at(ch).at(i));
+        Utils::LinearInterpol<double> L(T_n_grid.at(i - 1), T_n_grid.at(i),
+                                        spallation_map.at(ch).at(i - 1),
+                                        spallation_map.at(ch).at(i));
         return L.get(T_n);
     } else {
         return -1;
