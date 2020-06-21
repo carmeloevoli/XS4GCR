@@ -1,0 +1,90 @@
+#Z    A   name       mode   half-life  comment
+ 1    1     1H     STABLE          -1    
+ 1    2     2H     STABLE          -1 
+ 2    3    3He     STABLE          -1 
+ 2    4    4He     STABLE          -1 
+ 3    6    6Li     STABLE          -1 
+ 3    7    7Li     STABLE          -1  
+ 4    7    7Be     STABLE          -1     
+ 4    9    9Be     STABLE          -1 
+ 5   10    10B   BETA-FED          -1 
+ 4   10   10Be      BETA-        1510  ref in DB
+ 5   11    11B     STABLE          -1 
+ 6   12    12C     STABLE          -1 
+ 6   13    13C     STABLE          -1 
+ 7   14    14N   BETA-FED          -1 
+ 6   14    14C      BETA-         5.7  ref in DB
+ 7   15    15N     STABLE          -1 
+ 8   16    16O     STABLE          -1 
+ 8   17    17O     STABLE          -1 
+ 8   18    18O     STABLE          -1 
+ 9   19    19F     STABLE          -1 
+10   20   20Ne     STABLE          -1 
+10   21   21Ne     STABLE          -1 
+10   22   22Ne   BETA+FED          -1 
+11   22   22Na      BETA+        4800  Martinez-Pinedo & Vogel (1998)  
+11   23   23Na     STABLE          -1 
+12   24   24Mg     STABLE          -1 
+12   25   25Mg     STABLE          -1 
+12   26   26Mg   BETA+FED          -1 
+13   26   26Al      BETA+         910  Martinez-Pinedo & Vogel (1998)  
+13   27   27Al     STABLE          -1 
+14   28   28Si     STABLE          -1 
+14   29   29Si     STABLE          -1 
+14   30   30Si     STABLE          -1 
+15   31    31P     STABLE          -1 
+16   32    32S     STABLE          -1 
+16   33    33S     STABLE          -1 
+16   34    34S     STABLE          -1 
+17   35   35Cl     STABLE          -1 
+16   36    36S     STABLE          -1  Observationally Stable 
+18   36   36Ar   BETA-FED          -1   
+17   36   36Cl      BETA-         307  ref in DB
+17   37   37Cl     STABLE          -1 
+18   37   37Ar     STABLE          -1 
+18   38   38Ar     STABLE          -1 
+19   39    39K     STABLE          -1 
+18   40   40Ar     STABLE          -1 
+20   40   40Ca     STABLE          -1 
+19   40    40K     STABLE          -1  Observationally Stable
+19   41    41K     STABLE          -1 
+20   41   41Ca     STABLE          -1 
+20   42   42Ca     STABLE          -1 
+20   43   43Ca     STABLE          -1  
+20   44   44Ca     STABLE          -1 
+22   44   44Ti     STABLE          -1 
+21   45   45Sc     STABLE          -1 
+22   46   46Ti     STABLE          -1 
+20   46   46Ca     STABLE          -1 
+22   47   47Ti     STABLE          -1 
+22   48   48Ti     STABLE          -1 
+20   48   48Ca     STABLE          -1  Observationally Stable 
+24   48   48Cr     STABLE          -1  It could have a beta decay but still not measured  
+22   49   49Ti     STABLE          -1  
+23   49    49V     STABLE          -1 
+22   50   50Ti     STABLE          -1 
+24   50   50Cr     STABLE          -1  Observationally Stable
+23   50    50V     STABLE          -1  Observationally Stable
+23   51    51V     STABLE          -1 
+24   51   51Cr     STABLE          -1 
+24   52   52Cr     STABLE          -1 
+24   53   53Cr     STABLE          -1 
+25   53   53Mn     STABLE          -1 
+24   54   54Cr     STABLE          -1 
+26   54   54Fe   BETA-FED          -1 
+25   54   54Mn      BETA-         630  Wuosmaa (1998)
+25   55   55Mn     STABLE          -1 
+26   55   55Fe     STABLE          -1 
+26   56   56Fe   BETA+FED          -1 
+28   56   56Ni      BETA+          51  Lund Fisker et al. (1999)
+26   57   57Fe     STABLE          -1 
+27   57   57Co     STABLE          -1 
+26   58   58Fe     STABLE          -1 
+28   58   58Ni     STABLE          -1 
+27   59   59Co     STABLE          -1 
+28   59   59Ni     STABLE          -1  The beta+ mode is strongly suppressed
+28   60   60Ni   BETA-FED          -1 
+26   60   60Fe      BETA-        2600   
+28   61   61Ni     STABLE          -1 
+28   62   62Ni     STABLE          -1 
+28   64   64Ni     STABLE          -1 
