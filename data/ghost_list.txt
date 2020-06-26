@@ -116,7 +116,6 @@ Ne 30 Na 28    8.9     7.3 ms
 Na 20 Ne 20     80       0 ms
 Na 20 O  16     20       0 ms
 Na 21 Ne 21    100       0 ms
-Na 22 Ne 22    100       0 ms
 Na 24 Mg 24    100  14.997 h
 Na 25 Mg 25    100    59.1 s
 Na 26 Mg 26    100 1.07128 s
