@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <memory>
 #include <vector>
 
 #include "XS4GCR/mks.h"
@@ -175,4 +176,30 @@ double inelastic_sigma(int A_p, int Z_p, int A_t, int Z_t, double T_n) {
     return std::max(0., value);
 }
 
-} /* namespace Tripathi99 */
+}  // namespace Tripathi99
+
+namespace XS4GCR {
+
+Tripathi99_Total_Inelastic::Tripathi99_Total_Inelastic() { set_model_name("Tripathi+99"); }
+
+void Tripathi99_Total_Inelastic::print() const {
+    std::cout << "# Using Tripathi+99 total inelastic model:" << std::endl;
+    std::cout << "# REF1" << std::endl;
+}
+
+std::shared_ptr<Total_Inelastic> Tripathi99_Total_Inelastic::clone() {
+    return std::make_shared<Tripathi99_Total_Inelastic>(*this);
+}
+
+double Tripathi99_Total_Inelastic::get(const PID& projectile, const TARGET& target,
+                                       const double& T_n) const {
+    assert(projectile != PID(1, 1));
+    int A_p = (target.is_H()) ? 1 : 4;
+    int Z_p = (target.is_H()) ? 1 : 2;
+    int A_t = projectile.get_A();
+    int Z_t = projectile.get_Z();
+
+    return Tripathi99::inelastic_sigma(A_p, Z_p, A_t, Z_t, T_n);
+}
+
+}  // namespace XS4GCR
