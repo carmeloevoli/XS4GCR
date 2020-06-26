@@ -20,18 +20,12 @@ class CosmicRayChart {
     virtual ~CosmicRayChart() = default;
 
     virtual void print() = 0;
+    virtual void init() = 0;
     virtual std::shared_ptr<CosmicRayChart> clone() = 0;
-    virtual double get_halftime(PID particle) const = 0;
-    virtual std::string get_mode(PID particle) const = 0;
-};
 
-class DefaultCosmicRayChart : public CosmicRayChart {
-   public:
-    DefaultCosmicRayChart();
-    void print() override;
-    std::shared_ptr<CosmicRayChart> clone() override;
-    double get_halftime(PID particle) const override;
-    std::string get_mode(PID particle) const override;
+    double get_halftime(PID particle) const;
+    std::string get_mode(PID particle) const;
+    std::vector<PID> get_particle_list() const;
 
     struct decay_params {
         double tau_half;
@@ -39,11 +33,22 @@ class DefaultCosmicRayChart : public CosmicRayChart {
     };
 
    protected:
+    std::map<PID, decay_params> m_chart;
+};
+
+class DefaultCosmicRayChart : public CosmicRayChart {
+   public:
+    DefaultCosmicRayChart();
+    void print() override;
+    void init() override;
+    std::shared_ptr<CosmicRayChart> clone() override;
+
+   protected:
     void add_isotope(const std::string& line);
     void read_table();
 
+   protected:
     const std::string m_chart_filename = "data/crchart_Z28_2020.txt";
-    std::map<PID, decay_params> m_chart;
 };
 
 }  // namespace XS4GCR

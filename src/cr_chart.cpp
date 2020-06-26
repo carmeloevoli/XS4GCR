@@ -1,20 +1,23 @@
 // Copyright (c) 2017 Carmelo Evoli - MIT License
 #include "XS4GCR/cr_chart.h"
 
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <memory>
 #include <string>
 #include <utility>
+#include <vector>
 
 namespace XS4GCR {
 
-void DefaultCosmicRayChart::print() { std::cout << "Using default decay chart" << std::endl; }
-
-DefaultCosmicRayChart::DefaultCosmicRayChart() {
-    assert(Utils::file_exist(m_chart_filename));
-    read_table();
+void DefaultCosmicRayChart::print() {
+    std::cout << "# using Default cosmic-ray chart" << std::endl;
 }
+
+void DefaultCosmicRayChart::init() { read_table(); }
+
+DefaultCosmicRayChart::DefaultCosmicRayChart() { assert(Utils::file_exist(m_chart_filename)); }
 
 void DefaultCosmicRayChart::read_table() {
     std::string line;
@@ -25,6 +28,7 @@ void DefaultCosmicRayChart::read_table() {
                 add_isotope(line);
             }
     }
+    std::cout << " - read CR chart with " << m_chart.size() << " isotopes.\n";
 }
 
 void DefaultCosmicRayChart::add_isotope(const std::string& line) {
@@ -35,6 +39,7 @@ void DefaultCosmicRayChart::add_isotope(const std::string& line) {
     std::string mode;
     double tau;
     ss >> Z >> A >> name >> mode >> tau;
+    tau *= MKS::kyr;
     Decay_mode decay_mode;
     if (mode == "STABLE") {
         decay_mode = STABLE;
@@ -62,7 +67,7 @@ std::shared_ptr<CosmicRayChart> DefaultCosmicRayChart::clone() {
     return std::make_shared<DefaultCosmicRayChart>(*this);
 }
 
-double DefaultCosmicRayChart::get_halftime(PID particle) const {
+double CosmicRayChart::get_halftime(PID particle) const {
     auto it = m_chart.find(particle);
     if (it != m_chart.end()) {
         return it->second.tau_half;
@@ -72,7 +77,7 @@ double DefaultCosmicRayChart::get_halftime(PID particle) const {
     }
 }
 
-std::string DefaultCosmicRayChart::get_mode(PID particle) const {
+std::string CosmicRayChart::get_mode(PID particle) const {
     auto it = m_chart.find(particle);
     if (it != m_chart.end()) {
         auto mode = it->second.mode;
@@ -91,6 +96,13 @@ std::string DefaultCosmicRayChart::get_mode(PID particle) const {
         std::cout << "Particle " << particle << " not found.\n";
         return "none";
     }
+}
+
+std::vector<PID> CosmicRayChart::get_particle_list() const {
+    std::vector<PID> list;
+    for (auto p : m_chart) list.push_back(p.first);
+    std::sort(list.begin(), list.end());
+    return list;
 }
 
 }  // namespace XS4GCR

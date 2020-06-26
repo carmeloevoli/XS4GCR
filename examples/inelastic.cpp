@@ -22,7 +22,8 @@ int main() {
     auto x_in = xsec.create_total_inelastic();
 
     XS4GCR::PID C(6, 12);
-    XS4GCR::TARGET H_ISM(1), He_ISM(2);
+    XS4GCR::TARGET H_ISM(1);
+    XS4GCR::TARGET He_ISM(2);
 
     double f_He = 0.11;
     double n_gas = 1.0 / pow3(MKS::cm);

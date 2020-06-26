@@ -44,42 +44,60 @@ if (DOXYGEN_FOUND)
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
     message("Doxygen build started")
 	
-	# note the option DOC to build the docs with make doc
-	add_custom_target(doc
+    # note the option DOC to build the docs with make doc
+    add_custom_target(doc
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-		COMMENT "Generating API documentation with Doxygen" VERBATIM
-	)
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen" VERBATIM
+    )
 else (DOXYGEN_FOUND)
     message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
 
-# copy data files in build
-file(GLOB XS4GCR_DATA "data/*.txt")
-file(COPY ${XS4GCR_DATA} DESTINATION ${PROJECT_BINARY_DIR}/data)
+# copy data files in the working dir    
+set(XS4GCR_DATA
+    data/Evoli2019_fragmentation_fitparams.txt
+    data/WNEWTR_082693.CDR.txt
+    data/barpol.txt
+    data/crchart_Z28_2020.txt
+    data/ghost_list.txt
+    data/isotope_decays.txt
+    data/xsec_spallation_Webber2003.txt
+    data/xsecs_data_full.txt
+    )
+
+foreach(_script ${XS4GCR_DATA})
+    configure_file(
+        ${PROJECT_SOURCE_DIR}/${_script}
+        ${PROJECT_BINARY_DIR}/${_script}
+        COPYONLY
+    )
+endforeach()
 
 # add source files
-set( XS4GCR_SRCS
-        src/antiprotons/antiproton_tables.cpp
-        src/antiprotons/antiprotons.cpp
-        src/antiprotons/DiMauro2015.cpp
-        src/antiprotons/Duperray03.cpp
-        src/antiprotons/TanNg83.cpp
-        src/inelastic/inelastic.cpp
-        src/inelastic/Tripathi99.cpp
-        src/leptons/leptons.cpp
-        src/spallation/Evoli2019.cpp
-        src/spallation/fitting_functions.cpp
-        src/spallation/ghost_tree.cpp
-        src/spallation/spallation.cpp
-        src/spallation/Webber1993.cpp
-        src/spallation/Webber2003_table.cpp
-        src/cr_chart.cpp
-        src/grid.cpp
-        src/protons.cpp
-        src/utilities.cpp
-        src/xs4gcr.cpp
-        )
+set(XS4GCR_SRCS
+    src/antiprotons/antiproton_tables.cpp
+    src/antiprotons/antiprotons.cpp
+    src/antiprotons/DiMauro2015.cpp
+    src/antiprotons/Duperray03.cpp
+    src/antiprotons/TanNg83.cpp
+    src/inelastic/CROSEC.cpp
+    src/inelastic/inelastic.cpp
+    src/inelastic/Letaw1983.cpp
+    src/inelastic/Tripathi99.cpp
+    src/leptons/leptons.cpp
+    src/spallation/Evoli2019.cpp
+    src/spallation/fitting_functions.cpp
+    src/spallation/ghost_tree.cpp
+    src/spallation/spallation.cpp
+    src/spallation/Webber1993.cpp
+    src/spallation/Webber2003_table.cpp
+    src/cr_chart.cpp
+    src/grid.cpp
+    src/protons.cpp
+    src/utilities.cpp
+    src/xs4gcr.cpp
+    )
 
 # make library
 include_directories (include ${XS4GCR_INCLUDES})
@@ -107,8 +125,8 @@ target_link_libraries (decay XS4GCR ${XS4GCR_LIBRARIES})
 add_executable(sandbox examples/sandbox.cpp )
 target_link_libraries (sandbox XS4GCR ${XS4GCR_LIBRARIES})
 
-add_executable(frag-table examples/frag-table.cpp )
-target_link_libraries (frag-table XS4GCR ${XS4GCR_LIBRARIES})
+add_executable(frag_table examples/frag_table.cpp )
+target_link_libraries (frag_table XS4GCR ${XS4GCR_LIBRARIES})
 
 # show summary
 message (STATUS "CMAKE_SYSTEM .......... = ${CMAKE_SYSTEM}")

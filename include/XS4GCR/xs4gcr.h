@@ -8,6 +8,9 @@
 
 #include "XS4GCR/antiprotons/antiprotons.h"
 #include "XS4GCR/cr_chart.h"
+#include "XS4GCR/inelastic/CROSEC.h"
+#include "XS4GCR/inelastic/Letaw1983.h"
+#include "XS4GCR/inelastic/Tripathi99.h"
 #include "XS4GCR/inelastic/inelastic.h"
 #include "XS4GCR/leptons/leptons.h"
 #include "XS4GCR/protons.h"

@@ -47,10 +47,6 @@ class PID {
 
     bool operator<(const PID &other) const { return m_id < other.m_id; }
 
-    bool with_Z(const int &Z) const { return m_Z == Z; }
-
-    bool with_A(const int &A) const { return m_A == A; }
-
     bool is_lepton() const { return m_A == 0; }
 
     bool is_electron() const { return m_A == 0 && m_Z == -1; }
