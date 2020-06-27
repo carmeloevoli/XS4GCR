@@ -1,16 +1,16 @@
 ## XS4GCR
 
-XS4GCR computes all the relevant cross-sections for galactic cosmic ray propagation models
+XS4GCR computes the relevant cross-sections for galactic cosmic ray propagation models.
 
 ### Installation
 
 - XS4GCR requires GSL library and C, C++, Fortran compilers. 
 
-- We provide some examples of using, each of them can be installed this way:
+- We provide some examples of using. You can install all of them this way:
 ```
 mkdir build ; cd build 
 cmake .. 
-make xsec_example1 
+make all 
 ```
 
 ### Documentation
