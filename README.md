@@ -1,10 +1,6 @@
-# XS4GCR
+## XS4GCR
 
-XS4GCR implements the cross-sections for galactic cosmic ray propagation models
-
-References:
-- arXiv:1904.10220 
-- arXiv:1711.09616
+XS4GCR computes all the relevant cross-sections for galactic cosmic ray propagation models
 
 ### Installation
 
@@ -31,6 +27,10 @@ make doc
 
 ### Data
 
-- Data files necessary for XS4GCR are downloaded from a Dropbox repository during installation.
-
 - Data size is approximately 10 Mb
+
+### References
+
+- arXiv:1904.10220 
+
+- arXiv:1711.09616
