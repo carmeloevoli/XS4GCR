@@ -22,7 +22,7 @@
 10   20   20Ne     STABLE          -1 
 10   21   21Ne     STABLE          -1 
 10   22   22Ne   BETA+FED          -1 
-11   22   22Na      BETA+        4800  Martinez-Pinedo & Vogel (1998)  
+11   22   22Na      BETA+         4.8  Martinez-Pinedo & Vogel (1998)  
 11   23   23Na     STABLE          -1 
 12   24   24Mg     STABLE          -1 
 12   25   25Mg     STABLE          -1 
