@@ -27,7 +27,7 @@ double Secondary_Antiprotons::get_annihilating_inelastic(const TARGET& target, c
     double R_GV = std::sqrt(E_GeV * E_GeV - MKS::proton_mass_c2 * MKS::proton_mass_c2);
     double value = b[0] + b[1] * log(R_GV) + b[2] * pow2(log(R_GV)) + b[3] * pow(R_GV, -alpha);
     if (target.is_He())
-        value *= get_total_inelastic(target, T_ap) / get_total_inelastic(TARGET(1), T_ap);
+        value *= get_total_inelastic(target, T_ap) / get_total_inelastic(H_ISM, T_ap);
     return value * MKS::mbarn;
 }
 

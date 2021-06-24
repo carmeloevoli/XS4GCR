@@ -77,15 +77,17 @@ class PID {
 
 class TARGET : public PID {
    public:
-    explicit TARGET(const int &Z) { set(Z); }
-
-    void set(const int &Z) {
-        assert(Z == 1 || Z == 2);
-        m_Z = Z;
-        m_A = (Z == 1) ? Z : 2 * Z;
-        m_id = m_A * 1000 + m_Z;
+    enum GasType { H, He };
+    explicit TARGET(GasType type) {
+        if (type == GasType::H)
+            set(1, 1);
+        else if (type == GasType::He)
+            set(2, 4);
     }
 };
+
+static const auto H_ISM = TARGET(TARGET::GasType::H);
+static const auto He_ISM = TARGET(TARGET::GasType::He);
 
 using channel = std::pair<PID, PID>;
 
