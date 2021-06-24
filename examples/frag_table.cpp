@@ -13,8 +13,6 @@
 void write_table(const std::shared_ptr<XS4GCR::Spallation>& sigma,
                  const std::shared_ptr<XS4GCR::CosmicRayChart>& chart, const std::string& filename,
                  bool doGhosts) {
-    XS4GCR::TARGET H_ISM(1);
-
     std::fstream txtfile;
     txtfile.open(filename, std::ios_base::out);
     txtfile.precision(3);
@@ -42,7 +40,7 @@ void write_table(const std::shared_ptr<XS4GCR::Spallation>& sigma,
                 txtfile << projectile.get_Z() << " " << projectile.get_A() << " ";
                 for (size_t i = 0; i < E_size; ++i) {
                     XS4GCR::channel ch(projectile, fragment);
-                    txtfile << sigma->get(ch, H_ISM, E.at(i), doGhosts) / MKS::mbarn;
+                    txtfile << sigma->get(ch, XS4GCR::H_ISM, E.at(i), doGhosts) / MKS::mbarn;
                     if (i < E_size - 1) txtfile << " ";
                 }
                 txtfile << "\n";

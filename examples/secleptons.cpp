@@ -31,17 +31,13 @@ int main() {
     XS4GCR::PID positron(1, 0);
     XS4GCR::PID H(1, 1);
     XS4GCR::PID He(2, 4);
-    XS4GCR::TARGET H_ISM(1);
-    XS4GCR::TARGET He_ISM(2);
 
-    auto x_leptons = xsec.create_secondary_leptons(positron);
-
-    double T_n_proj = 100 * MKS::GeV;
-
+    const auto x_leptons = xsec.create_secondary_leptons(positron);
+    const double T_n_proj = 100 * MKS::GeV;
+    const double units = MKS::mbarn / MKS::GeV;
     for (double T_lepton = 1 * MKS::GeV; T_lepton < T_n_proj; T_lepton *= 1.1) {
         std::cout << T_lepton / MKS::GeV << " ";
-        std::cout << x_leptons->get(H, H_ISM, T_n_proj, T_lepton) / (MKS::mbarn / MKS::GeV) << "\t";
-        std::cout << x_leptons->get(He, H_ISM, T_n_proj, T_lepton) / (MKS::mbarn / MKS::GeV)
-                  << "\n";
+        std::cout << x_leptons->get(H, XS4GCR::H_ISM, T_n_proj, T_lepton) / units << "\t";
+        std::cout << x_leptons->get(He, XS4GCR::H_ISM, T_n_proj, T_lepton) / units << "\n";
     }
 }

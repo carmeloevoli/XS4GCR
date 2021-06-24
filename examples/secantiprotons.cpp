@@ -33,15 +33,13 @@ void get_secondary_production(std::string model, std::string filename) {
     XS4GCR::XSECS xsec;
     xsec.set_secondary_antiprotons(model);
     auto x_ap = xsec.create_secondary_antiprotons();
-    XS4GCR::TARGET H_ISM(1);
-    XS4GCR::TARGET He_ISM(2);
     std::ofstream outfile(filename);
     outfile << std::scientific;
     double T_proj = 100 * MKS::GeV;
     for (double T_ap = 0.1 * MKS::GeV; T_ap <= T_proj; T_ap *= 1.1) {
-        double sigma_pp = x_ap->get(XS4GCR::PID(1, 1), H_ISM, T_proj, T_ap);
-        double sigma_phe = x_ap->get(XS4GCR::PID(1, 1), He_ISM, T_proj, T_ap);
-        double sigma_hep = x_ap->get(XS4GCR::PID(2, 4), H_ISM, T_proj, T_ap);
+        double sigma_pp = x_ap->get(XS4GCR::PID(1, 1), XS4GCR::H_ISM, T_proj, T_ap);
+        double sigma_phe = x_ap->get(XS4GCR::PID(1, 1), XS4GCR::He_ISM, T_proj, T_ap);
+        double sigma_hep = x_ap->get(XS4GCR::PID(2, 4), XS4GCR::H_ISM, T_proj, T_ap);
         outfile << T_ap / MKS::GeV << "\t";
         outfile << sigma_pp / MKS::mbarn << "\t" << sigma_phe / MKS::mbarn << "\t"
                 << sigma_hep / MKS::mbarn << "\n";
@@ -64,13 +62,11 @@ void get_tertiary_production(std::string model, std::string filename) {
     XS4GCR::XSECS xsec;
     xsec.set_secondary_antiprotons(model);
     auto x_ap = xsec.create_secondary_antiprotons();
-    XS4GCR::TARGET H_ISM(1);
-    XS4GCR::TARGET He_ISM(2);
     std::ofstream outfile(filename);
     outfile << std::scientific;
     double T_proj = 100 * MKS::GeV;
     for (double T_ap = 0.1 * MKS::GeV; T_ap < 1e4 * MKS::GeV; T_ap *= 1.1) {
-        double sigma_H = x_ap->get_non_annihilating_inelastic(H_ISM, T_proj);
+        double sigma_H = x_ap->get_non_annihilating_inelastic(XS4GCR::H_ISM, T_proj);
         outfile << T_ap / MKS::GeV << " " << sigma_H / MKS::mbarn << "\n";
     }
     outfile.close();
