@@ -33,10 +33,10 @@ int main() {
     XS4GCR::PID He(2, 4);
 
     const auto x_leptons = xsec.create_secondary_leptons(positron);
-    const double T_n_proj = 100 * MKS::GeV;
-    const double units = MKS::mbarn / MKS::GeV;
-    for (double T_lepton = 1 * MKS::GeV; T_lepton < T_n_proj; T_lepton *= 1.1) {
-        std::cout << T_lepton / MKS::GeV << " ";
+    const double T_n_proj = 100 * cgs::GeV;
+    const double units = cgs::mbarn / cgs::GeV;
+    for (double T_lepton = 1 * cgs::GeV; T_lepton < T_n_proj; T_lepton *= 1.1) {
+        std::cout << T_lepton / cgs::GeV << " ";
         std::cout << x_leptons->get(H, XS4GCR::H_ISM, T_n_proj, T_lepton) / units << "\t";
         std::cout << x_leptons->get(He, XS4GCR::H_ISM, T_n_proj, T_lepton) / units << "\n";
     }

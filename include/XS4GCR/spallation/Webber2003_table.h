@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-#include "XS4GCR/mks.h"
+#include "XS4GCR/cgs.h"
 #include "XS4GCR/pid.h"
 #include "XS4GCR/utilities.h"
 
@@ -31,8 +31,8 @@ class Webber2003_table {
     size_t n_headers = 4;
     size_t n_reactions = 4657;
     size_t Tn_size = 41;
-    double Tn_min = 0.01 * MKS::GeV;
-    double Tn_max = 10 * MKS::GeV;
+    double Tn_min = 0.01 * cgs::GeV;
+    double Tn_max = 10 * cgs::GeV;
 };
 
 }  // namespace XS4GCR

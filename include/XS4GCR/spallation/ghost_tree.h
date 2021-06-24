@@ -7,6 +7,7 @@
 #include <utility>
 #include <vector>
 
+#include "XS4GCR/cgs.h"
 #include "XS4GCR/pid.h"
 #include "XS4GCR/utilities.h"
 
@@ -34,7 +35,7 @@ class GhostTree {
    protected:
     std::string filename;
     Tree tree;
-    double halfLife_max = MKS::kyr;
+    double halfLife_max = cgs::kyr;
 };
 
 }  // namespace XS4GCR

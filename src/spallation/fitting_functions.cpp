@@ -29,7 +29,7 @@ double SigmaFunction::sigma_le(const double& T) const {
 }
 
 double SigmaFunction::sigma_he(const double& T) const {
-    const double T_h = 2. * MKS::GeV;
+    const double T_h = 2. * cgs::GeV;
     double he = sigma_1 * std::pow(1. - E_th / T, xi);
     he *= 1. + Delta / (1. + pow2(T_h / T));
     return he;
@@ -64,11 +64,11 @@ void FittingFunctions::read_data_file() {
            Delta >> sigma_ratio) {
         PID child(Z_c, A_c);
         PID parent(Z_p, A_p);
-        SigmaFunction function{E_th * MKS::MeV,
-                               sigma_0 * MKS::mbarn,
-                               Gamma * MKS::MeV,
-                               M * MKS::MeV,
-                               sigma_1 * MKS::mbarn,
+        SigmaFunction function{E_th * cgs::MeV,
+                               sigma_0 * cgs::mbarn,
+                               Gamma * cgs::MeV,
+                               M * cgs::MeV,
+                               sigma_1 * cgs::mbarn,
                                xi,
                                Delta};
         if (!is_present(channel(parent, child)))

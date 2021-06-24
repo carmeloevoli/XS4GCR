@@ -6,11 +6,13 @@
 #include <string>
 #include <utility>
 
+#include "XS4GCR/cgs.h"
+
 namespace XS4GCR {
 
 antiproton_tables::antiproton_tables(std::pair<size_t, size_t> sizes, const std::string &filename)
     : T_proj_size(sizes.first), T_ap_size(sizes.second), datafile(filename) {
-    read_data_file(filename, MKS::GeV, MKS::mbarn / MKS::GeV);
+    read_data_file(filename, cgs::GeV, cgs::mbarn / cgs::GeV);
 }
 
 antiproton_tables::antiproton_tables(std::pair<size_t, size_t> sizes)

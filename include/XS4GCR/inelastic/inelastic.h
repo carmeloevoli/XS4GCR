@@ -9,7 +9,6 @@
 #include <string>
 
 #include "XS4GCR/grid.h"
-#include "XS4GCR/mks.h"
 #include "XS4GCR/pid.h"
 #include "XS4GCR/utilities.h"
 

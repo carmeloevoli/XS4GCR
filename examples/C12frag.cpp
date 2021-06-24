@@ -26,11 +26,11 @@ int main() {
     std::ofstream ofile("C12_fragxsecs.txt");
     if (ofile.is_open()) {
         ofile << "T [GeV/n] - Be7 [mb] - Be9 [mb] - Be10 [mb] - B10 [mb] - B11 [mb] - C11 [mb]\n";
-        for (double T_n = 100. * MKS::MeV; T_n < 2e4 * MKS::GeV; T_n *= 1.1) {
-            ofile << std::scientific << T_n / MKS::GeV << "\t";  // TODO passa a CGS!
+        for (double T_n = 100. * cgs::MeV; T_n < 2e4 * cgs::GeV; T_n *= 1.1) {
+            ofile << std::scientific << T_n / cgs::GeV << "\t";
             for (auto& fragment : fragments) {
                 XS4GCR::channel ch(XS4GCR::C12, fragment);
-                ofile << x_in->get(ch, XS4GCR::H_ISM, T_n, false) / MKS::mbarn << "\t";
+                ofile << x_in->get(ch, XS4GCR::H_ISM, T_n, false) / cgs::mbarn << "\t";
             }
             ofile << "\n";
         }

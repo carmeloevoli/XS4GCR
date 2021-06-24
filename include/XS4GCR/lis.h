@@ -4,7 +4,7 @@
 
 #include <vector>
 
-#include "XS4GCR/mks.h"
+#include "XS4GCR/cgs.h"
 
 namespace Ghelfi2016 {
 
@@ -15,7 +15,7 @@ class LIS {
         double log_J_LIS = 0;
         if (T_n < T_threshold) {
             for (size_t i = 0; i < c.size(); i++) {
-                double log_T_i = pow(log10(T_n / MKS::GeV) / log10(T_threshold / MKS::GeV),
+                double log_T_i = pow(log10(T_n / cgs::GeV) / log10(T_threshold / cgs::GeV),
                                      static_cast<double>(i));
                 log_J_LIS += c.at(i) * log_T_i;
             }
@@ -23,7 +23,8 @@ class LIS {
             double log_T = log10(T_n / T_threshold);
             log_J_LIS = c_tilde.at(0) - c_tilde.at(1) * log_T;
         }
-        return pow(10., log_J_LIS) / (MKS::GeV * MKS::mt2 * MKS::sec * MKS::sr);
+        const auto units = 1. / cgs::GeV / pow2(cgs::meter) / cgs::sec / cgs::sr;
+        return pow(10., log_J_LIS) * units;
     }
 
    protected:
@@ -40,7 +41,7 @@ class H_LIS : public LIS {
              +1.398976e+00, -7.028454e-01, +1.997827e+01, +2.885280e+00, -7.560171e+01,
              +3.405332e+00, +1.168359e+02, -3.274338e+01, -6.947553e+01, +3.535965e+01};
         c_tilde = {-3.850699e+00, +2.703917e+00};
-        T_threshold = 800. * MKS::GeV;
+        T_threshold = 800. * cgs::GeV;
     }
 };
 
@@ -52,7 +53,7 @@ class He_LIS : public LIS {
              +7.473942e+00, -8.053260e+00, -1.916564e+01, +1.766888e+01, +3.293412e+01,
              -2.955671e+01, -3.064750e+01, +2.792617e+01, +1.090915e+01, -1.019233e+01};
         c_tilde = {-4.978057e+00, +2.713877e+00};
-        T_threshold = 800. * MKS::GeV;
+        T_threshold = 800. * cgs::GeV;
     }
 };
 

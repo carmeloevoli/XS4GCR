@@ -9,6 +9,8 @@
 #include <utility>
 #include <vector>
 
+#include "XS4GCR/cgs.h"
+
 namespace XS4GCR {
 
 void DefaultCosmicRayChart::print() {
@@ -39,7 +41,7 @@ void DefaultCosmicRayChart::add_isotope(const std::string& line) {
     std::string mode;
     double tau;
     ss >> Z >> A >> name >> mode >> tau;
-    tau *= MKS::kyr;
+    tau *= cgs::kyr;
     Decay_mode decay_mode;
     if (mode == "STABLE") {
         decay_mode = STABLE;

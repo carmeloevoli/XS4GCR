@@ -58,13 +58,13 @@ void Webber2003_table::read_data_file() {
         int id = static_cast<int>(row.at(0));
         if (id == 0) {
             std::copy(row.begin() + 1, row.end(), std::back_inserter(T_n_grid));
-            for (auto& x : T_n_grid) x *= MKS::MeV;
+            for (auto& x : T_n_grid) x *= cgs::MeV;
         } else {
             channel ch = convert_id(id);
             if (ch.first.get_A() < 18) {
                 std::vector<double> v;
                 std::copy(row.begin() + 1, row.end(), std::back_inserter(v));
-                for (auto& x : v) x *= MKS::mbarn;
+                for (auto& x : v) x *= cgs::mbarn;
                 spallation_map[ch] = v;
             }
         }

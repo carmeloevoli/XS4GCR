@@ -5,9 +5,9 @@
 #include <memory>
 #include <string>
 
+#include "XS4GCR/cgs.h"
 #include "XS4GCR/inelastic/inelastic.h"
 #include "XS4GCR/pid.h"
-
 namespace XS4GCR {
 
 class CROSEC_Total_Inelastic : public Total_Inelastic {
@@ -29,8 +29,8 @@ class CROSEC_Total_Inelastic : public Total_Inelastic {
     const int IS = 2;  // calculation of non-elastic cross-sections
     double PA = 1;
     double PZ = 1;  // projectile mass and charge numbers (for pions PA<0.2)
-    double T_n_min = 20. * MKS::MeV;
-    double T_n_max = MKS::TeV;
+    double T_n_min = 20. * cgs::MeV;
+    double T_n_max = cgs::TeV;
 };
 
 }  // namespace XS4GCR

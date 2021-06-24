@@ -26,7 +26,7 @@ double DRAGON2_Proton_Xsecs::get_inelastic(const TARGET& target, const double& T
             value = 30.7 - 0.96 * log(x) + 0.18 * pow2(log(x));
             value *= pow3(1 - pow(x, -1.9));
         }
-        return value * MKS::mbarn;
+        return value * cgs::mbarn;
     } else {
         return Tripathi99::inelastic_sigma(4, 2, 1, 1, T);
     }

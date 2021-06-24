@@ -5,8 +5,6 @@
 #include <memory>
 #include <utility>
 
-#include "XS4GCR/mks.h"
-
 namespace XS4GCR {
 
 Evoli2019_Spallation::Evoli2019_Spallation() {}

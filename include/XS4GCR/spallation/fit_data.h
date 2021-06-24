@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-#include "XS4GCR/mks.h"
+#include "XS4GCR/cgs.h"
 #include "XS4GCR/pid.h"
 
 namespace XS4GCR {
@@ -41,7 +41,7 @@ class FitData {
         datafile.ignore(512, '\n');
         while (datafile >> Z_proj >> A_proj >> Z_frag >> A_frag >> T >> s >> serr >> label) {
             auto ch = std::make_pair(PID(Z_proj, A_proj), PID(Z_frag, A_frag));
-            data_struct data{ch, T * MKS::GeV, s * MKS::mbarn, serr * MKS::mbarn};
+            data_struct data{ch, T * cgs::GeV, s * cgs::mbarn, serr * cgs::mbarn};
             Data.push_back(data);
         }
         datafile.close();

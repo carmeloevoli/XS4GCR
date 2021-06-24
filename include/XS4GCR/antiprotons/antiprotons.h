@@ -11,7 +11,6 @@
 #include "TanNg83.h"
 #include "XS4GCR/antiprotons/antiproton_tables.h"
 #include "XS4GCR/grid.h"
-#include "XS4GCR/mks.h"
 #include "XS4GCR/pid.h"
 #include "XS4GCR/utilities.h"
 

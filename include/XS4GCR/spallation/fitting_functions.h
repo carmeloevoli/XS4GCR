@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "XS4GCR/mks.h"
+#include "XS4GCR/cgs.h"
 #include "XS4GCR/pid.h"
 #include "XS4GCR/utilities.h"
 
@@ -47,7 +47,7 @@ class FittingFunctions {
     void read_data_file();
 
    protected:
-    double T_h = 2. * MKS::GeV;
+    double T_h = 2. * cgs::GeV;
     std::string data_filename;
     std::map<channel, SigmaFunction> functions;
 };

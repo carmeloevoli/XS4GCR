@@ -38,8 +38,8 @@ double CROSEC_Total_Inelastic::get(const PID& projectile, const TARGET& target,
     double TA = projectile.get_A();
     double TZ = projectile.get_Z();  // target nucleus mass and charge numbers (4.0<=A2<=239.0)
     double T = set_energy_within_range(T_n) /
-               MKS::MeV;  // projectile particle kinetic energy (MEV; 14(20)MEV<T<1TEV)
-    double value = Utils::sighad_cc(IS, PA, PZ, TA, TZ, T) * MKS::mbarn;
+               cgs::MeV;  // projectile particle kinetic energy (MEV; 14(20)MEV<T<1TEV)
+    double value = Utils::sighad_cc(IS, PA, PZ, TA, TZ, T) * cgs::mbarn;
     value *= (target.is_He()) ? 2.1 * pow(projectile.get_A(), .055) : 1;
     return value;
 }

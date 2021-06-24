@@ -6,7 +6,6 @@
 #include <cmath>
 #include <iostream>
 
-#include "XS4GCR/mks.h"
 #include "XS4GCR/utilities.h"
 #include "gsl/gsl_integration.h"
 

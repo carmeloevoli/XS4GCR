@@ -12,7 +12,6 @@
 #include <vector>
 
 #include "XS4GCR/interpolator.h"
-#include "XS4GCR/mks.h"
 #include "XS4GCR/utilities.h"
 
 namespace XS4GCR {

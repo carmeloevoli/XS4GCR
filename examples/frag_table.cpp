@@ -17,14 +17,14 @@ void write_table(const std::shared_ptr<XS4GCR::Spallation>& sigma,
     txtfile.open(filename, std::ios_base::out);
     txtfile.precision(3);
 
-    const double E_min = 10. * MKS::MeV;
-    const double E_max = 1. * MKS::TeV;
+    const double E_min = 10. * cgs::MeV;
+    const double E_max = 1. * cgs::TeV;
     const size_t E_size = 5 * 32;
     const XS4GCR::log_axis<double> E(E_min, E_max, E_size);
 
     txtfile << "0 0 0 0 ";
     for (size_t i = 0; i < E_size; ++i) {
-        txtfile << std::scientific << E.at(i) / MKS::GeV;
+        txtfile << std::scientific << E.at(i) / cgs::GeV;
         if (i < E_size - 1) txtfile << " ";
     }
     txtfile << "\n";
@@ -40,7 +40,7 @@ void write_table(const std::shared_ptr<XS4GCR::Spallation>& sigma,
                 txtfile << projectile.get_Z() << " " << projectile.get_A() << " ";
                 for (size_t i = 0; i < E_size; ++i) {
                     XS4GCR::channel ch(projectile, fragment);
-                    txtfile << sigma->get(ch, XS4GCR::H_ISM, E.at(i), doGhosts) / MKS::mbarn;
+                    txtfile << sigma->get(ch, XS4GCR::H_ISM, E.at(i), doGhosts) / cgs::mbarn;
                     if (i < E_size - 1) txtfile << " ";
                 }
                 txtfile << "\n";

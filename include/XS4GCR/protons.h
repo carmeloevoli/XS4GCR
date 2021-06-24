@@ -6,7 +6,7 @@
 #include <memory>
 #include <string>
 
-#include "XS4GCR/mks.h"
+#include "XS4GCR/cgs.h"
 #include "XS4GCR/pid.h"
 #include "XS4GCR/utilities.h"
 
@@ -39,7 +39,7 @@ class DRAGON2_Proton_Xsecs : public Proton_Xsecs {
     double get_inelastic(const TARGET &target, const double &T_n) const override;
 
    private:
-    double T_threshold = 0.2797 * MKS::GeV;
+    double T_threshold = 0.2797 * cgs::GeV;
 };
 
 }  // namespace XS4GCR

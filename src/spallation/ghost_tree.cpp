@@ -21,17 +21,17 @@ GhostTree::~GhostTree() {}
 bool GhostTree::isGhost(double tau_value, std::string tau_units) const {
     double halfLife = tau_value;
     if (tau_units == "ms")
-        halfLife *= 1e-3 * MKS::sec;
+        halfLife *= 1e-3 * cgs::sec;
     else if (tau_units == "s")
-        halfLife *= MKS::sec;
+        halfLife *= cgs::sec;
     else if (tau_units == "m")
-        halfLife *= 60. * MKS::sec;
+        halfLife *= 60. * cgs::sec;
     else if (tau_units == "h")
-        halfLife *= 3600. * MKS::sec;
+        halfLife *= 3600. * cgs::sec;
     else if (tau_units == "d")
-        halfLife *= 24. * 3600. * MKS::sec;
+        halfLife *= 24. * 3600. * cgs::sec;
     else if (tau_units == "y")
-        halfLife *= MKS::year;
+        halfLife *= cgs::year;
     else
         assert(tau_units == "s");
     return halfLife < halfLife_max;

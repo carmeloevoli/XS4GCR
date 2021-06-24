@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+#include "XS4GCR/cgs.h"
+
 namespace Utils {
 
 size_t count_file_lines(const std::string& filename) {
@@ -166,20 +168,20 @@ void set_sigma_cc() {
 }
 
 double wsigma_cc(int IZ, int IA, int JZ, int JA, double T_n) {
-    double T_n_MeV = T_n / MKS::MeV;
+    double T_n_MeV = T_n / cgs::MeV;
     double cs_mb = wsigma_(&IZ, &IA, &JZ, &JA, &T_n_MeV);
-    return cs_mb * MKS::mbarn;
+    return cs_mb * cgs::mbarn;
 }
 
 double yieldx_cc(int IZ, int IA, int JZ, int JA, double T_n) {
     float cs_mb;
-    float T_n_MeV = static_cast<float>(T_n) / MKS::MeV;
+    float T_n_MeV = static_cast<float>(T_n) / cgs::MeV;
     yieldx_(&IZ, &IA, &JZ, &JA, &T_n_MeV, &cs_mb);
-    return cs_mb * MKS::mbarn;
+    return cs_mb * cgs::mbarn;
 }
 
 double Ferrando1998_He2H(const double& T_n, const int& Z_I, const int& Z_F) {
-    double T_GeV = (T_n / MKS::GeV < 1.51) ? T_n / MKS::GeV : 1.51;
+    double T_GeV = (T_n / cgs::GeV < 1.51) ? T_n / cgs::GeV : 1.51;
     double Z = (Z_I < 26) ? Z_I : 26;
     double mu_E = 0.1601136 - 0.21994302 * T_GeV + 0.08903134 * T_GeV * T_GeV;
     double delta_E = 0.40183405 + 5.60541311 * T_GeV - 1.95868946 * T_GeV * T_GeV;

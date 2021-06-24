@@ -7,8 +7,6 @@
 #include <cmath>
 #include <string>
 
-#include "XS4GCR/mks.h"  // TODO(CE) convert to cgs
-
 namespace Utils {
 
 template <typename T>

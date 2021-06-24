@@ -3,6 +3,8 @@
 
 #include <algorithm>
 
+#include "XS4GCR/cgs.h"
+
 namespace Duperray03 {
 
 #define LIMIT 10000
@@ -21,15 +23,15 @@ double sigma_in() {
 
 double sigma_invariant(const double &sqrt_s, const double &X_r,
                        const double &p_T) {  // TODO(CE) check units
-    double sqrt_s_GeV = sqrt_s / MKS::GeV;
-    double p_T_GeVc = p_T / MKS::GeV_c;
+    double sqrt_s_GeV = sqrt_s / cgs::GeV;
+    double p_T_GeVc = p_T / cgs::GeV_c;
     double value = sigma_in();
     value *= std::pow(A_He, C[1] * std::log(sqrt_s_GeV / C[2]) * p_T_GeVc);
     value *= std::pow(1. - X_r, C[3] * std::log(sqrt_s_GeV));
     value *= std::exp(-C[4] * X_r);
     value *= C[5] * std::pow(sqrt_s_GeV, C[6]) * std::exp(-C[7] * p_T_GeVc) +
              C[8] * std::pow(sqrt_s_GeV, C[9]) * std::exp(-C[10] * p_T_GeVc * p_T_GeVc);
-    return std::max(value, 0.) * MKS::mbarn * pow3(MKS::c_light) / pow2(MKS::GeV);
+    return std::max(value, 0.) * cgs::mbarn * pow3(cgs::c_light) / pow2(cgs::GeV);
 }
 
 double sigma_func(double eta, void *params) {
@@ -39,11 +41,11 @@ double sigma_func(double eta, void *params) {
     double E_ap = db_params[1];
     double p_ap = db_params[2];
 
-    double gamma_cm = sqrt_s / 2 / MKS::proton_mass_c2;
-    double betagamma_cm = std::sqrt(s - 4 * MKS::proton_mass_c2_2) / 2 / MKS::proton_mass_c2;
-    double E_ap_cm = gamma_cm * E_ap - betagamma_cm * p_ap * MKS::c_light * std::tanh(eta);
+    double gamma_cm = sqrt_s / 2 / cgs::proton_mass_c2;
+    double betagamma_cm = std::sqrt(s - 4 * pow2(cgs::proton_mass_c2)) / 2 / cgs::proton_mass_c2;
+    double E_ap_cm = gamma_cm * E_ap - betagamma_cm * p_ap * cgs::c_light * std::tanh(eta);
     double X_r = 2 * sqrt_s * E_ap_cm;
-    X_r /= s - 8 * MKS::proton_mass_c2_2;
+    X_r /= s - 8 * pow2(cgs::proton_mass_c2);
     double p_T = p_ap / std::cosh(eta);
 
     return (X_r > 1) ? 0 : sigma_invariant(sqrt_s, X_r, p_T) / pow2(std::cosh(eta));
@@ -52,12 +54,12 @@ double sigma_func(double eta, void *params) {
 double dsigma_dT(double T_n, double T_ap) {
     double result = 0;
     double error = 0;
-    double s = 2 * T_n * MKS::proton_mass_c2 + 4 * MKS::proton_mass_c2 * MKS::proton_mass_c2;
+    double s = 2 * T_n * cgs::proton_mass_c2 + 4 * cgs::proton_mass_c2 * cgs::proton_mass_c2;
     double sqrt_s = std::sqrt(s);
-    double p_ap = std::sqrt(T_ap * T_ap + 2 * MKS::proton_mass_c2 * T_ap) / MKS::c_light;
-    if (sqrt_s > 4 * MKS::proton_mass_c2) {
+    double p_ap = std::sqrt(T_ap * T_ap + 2 * cgs::proton_mass_c2 * T_ap) / cgs::c_light;
+    if (sqrt_s > 4 * cgs::proton_mass_c2) {
         gsl_integration_workspace *w = gsl_integration_workspace_alloc(LIMIT);
-        double params[3] = {sqrt_s, (T_ap + MKS::proton_mass_c2), p_ap};
+        double params[3] = {sqrt_s, (T_ap + cgs::proton_mass_c2), p_ap};
         gsl_function F;
         F.function = &sigma_func;
         F.params = &params;
@@ -65,7 +67,7 @@ double dsigma_dT(double T_n, double T_ap) {
         gsl_integration_workspace_free(w);
     }
     double neutron_factor = 2.3;
-    return neutron_factor * 2 * M_PI * p_ap * result / pow2(MKS::c_light);
+    return neutron_factor * 2 * M_PI * p_ap * result / pow2(cgs::c_light);
 }
 
 } /* namespace Duperray03 */
