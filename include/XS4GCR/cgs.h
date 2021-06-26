@@ -30,6 +30,7 @@ static const double mbarn = 1e-3 * barn;
 static const double sec = second;
 static const double K = kelvin;
 static const double cm = centimeter;
+static const double m = meter;
 static const double sr = steradian;
 
 // physical constants
