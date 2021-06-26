@@ -27,7 +27,7 @@ class PID {
 
     void set(const int &Z, const int &A) {
         assert(A >= 0);
-        assert(A >= Z);
+        if (A > 0) assert(A >= Z);
         m_Z = Z;
         m_A = A;
         m_id = A * 1000 + Z;
@@ -85,9 +85,6 @@ class TARGET : public PID {
             set(2, 4);
     }
 };
-
-static const auto H_ISM = TARGET(TARGET::GasType::H);
-static const auto He_ISM = TARGET(TARGET::GasType::He);
 
 using channel = std::pair<PID, PID>;
 
