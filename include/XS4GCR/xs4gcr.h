@@ -13,6 +13,7 @@
 #include "XS4GCR/inelastic/Tripathi99.h"
 #include "XS4GCR/inelastic/inelastic.h"
 #include "XS4GCR/leptons/leptons.h"
+#include "XS4GCR/particlenames.h"
 #include "XS4GCR/protons.h"
 #include "XS4GCR/spallation/Evoli2019.h"
 #include "XS4GCR/spallation/Webber1993.h"
@@ -29,7 +30,7 @@ class XSECS {
     std::shared_ptr<Total_Inelastic> create_total_inelastic();
     std::shared_ptr<Proton_Xsecs> create_proton_xsecs();
     std::shared_ptr<Secondary_Antiprotons> create_secondary_antiprotons(generators g = EPOS);
-    std::shared_ptr<Secondary_Leptons> create_secondary_leptons(const PID &lepton);
+    std::shared_ptr<Secondary_Leptons> create_secondary_leptons(PID lepton = positron);
     std::shared_ptr<CosmicRayChart> create_decay_chart();
     std::shared_ptr<Spallation> create_secondary_nuclei();
 

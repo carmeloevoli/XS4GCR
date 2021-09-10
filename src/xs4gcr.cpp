@@ -29,7 +29,7 @@ std::shared_ptr<Proton_Xsecs> XSECS::create_proton_xsecs() {
     return proton_xsecs->clone();
 }
 
-std::shared_ptr<Secondary_Leptons> XSECS::create_secondary_leptons(const PID& lepton) {
+std::shared_ptr<Secondary_Leptons> XSECS::create_secondary_leptons(PID lepton) {
     if (secondary_leptons_model == "Kamae2006") {
         secondary_leptons = std::make_shared<Kamae2006_Secondary_Leptons>(lepton);
     } else if (secondary_leptons_model == "HuangPohl2007") {
