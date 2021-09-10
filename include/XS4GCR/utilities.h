@@ -6,7 +6,7 @@
 #include <cassert>
 #include <cmath>
 #include <string>
-
+#include <vector>
 namespace Utils {
 
 template <typename T>
@@ -65,6 +65,12 @@ class BiLinear_Interpol {
     T q12 = 0;
     T q22 = 0;
 };
+
+double ISimpsonsLog(std::vector<double> x, std::vector<double> fx);
+
+std::vector<double> LinAxis(const double& min, const double& max, const size_t& size);
+
+std::vector<double> LogAxis(const double& min, const double& max, const size_t& size);
 
 bool file_exist(const std::string& filename);
 
